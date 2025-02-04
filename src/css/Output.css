@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+.output-OuterContainer{
+    background-color: #FDFDFD;
+}
+.oIcOne{
+    background-color: #FFFF;
+    border-bottom: 3px solid #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 56.8px;
+    z-index: 1;
+    /* padding-left: 20px; */
+}
+
+.output-subContainer{
+    /* border-bottom: 2px solid black; */
+    font-family: "Mona Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    margin: 0;
+    line-height:28px;
+    /* font-size: 16px; */
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+    padding: 0.5em 1.5em;
+    /* position: fixed; */
+}
+.sub1 div{
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    padding: 0 5px;
+    background-color: #F7A5EC;
+}
+
+.sub1 .sub1Calender{
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+.sub1 p{
+    font-weight: 800;
+    font-size: 19px; 
+    margin: 0;
+}
+
+.output-sub2{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+
+}
+
+.output-sub2 p{
+    margin: 0;
+}
+.outputMultipleCards{
+    margin-top: 25.48px;
+}
+/* .output-list{
+    font-family: "Mona Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    margin: 0;
+    line-height:28px;
+    font-size: 16px;
+    
+    color: rgb(61, 61, 78)
+    ;
+    border-bottom: 3px solid #f6f6f6;
+    height: 2em;
+    background-color: #FFFF;
+    margin-bottom: 0;
+    align-items: center;
+    
+    display: flex;
+    padding: 0.5em 1.5em;
+
+} */
+
+
+/* 
+@media (max-width: 768px) {
+    .output-list{
+        font-size: 25px;
+        
+    }
+} */

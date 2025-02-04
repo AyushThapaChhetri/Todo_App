@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.div-outerInput{
+    /* background-color: rgb(0, 9, 128); */
+    /* border: solid 2px black; */
+    height: 12%;
+    
+}
+.div-innerInput{
+    /* background-color: rgb(0, 128, 41); */
+    border-bottom: 3px solid #F6F6F6;
+    background-color: #FFFFFF;
+    padding:0 5px;
+    padding: 0.7em 1.5em;
+    width: 100%;
+    height:98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchField{
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    font-variation-settings:
+        "wdth" 100;
+    height: 30px;
+    width: 100%;
+    border: 1px solid #FCFAFA;
+    background-color: #FCFAFA;
+    border-radius: 10px;
+    /* box-shadow: 
+    0 0 5px rgba(0, 0, 0, 0.6), 
+    0 0 10px rgba(0, 0, 0, 0.4), 
+    0 0 15px rgba(0, 0, 0, 0.2); */
+}
+.searchField::placeholder {
+    font-size: 15px; /* Change font size */
+    padding-left: 4%;
+    color: #888;     /* Change placeholder color */
+  }
+
+
+  
+.button-input{
+    /* width: 9%; */
+    margin-right: 20%;
+    text-align: left;
+    font-size: 15px;
+    color: white;
+    background-color: #3B67CA;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 
+    0 0 5px rgba(0, 0, 0, 0.6), 
+    0 0 10px rgba(0, 0, 0, 0.4), 
+    0 0 15px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1%;
+    padding-right: 2%;
+    height: 2em;
+}
+
+@media (max-width: 768px) {
+    .text-field{
+        width: 50%;
+        font-size: 10px;
+    }
+    .button-input {
+        width: 10%;
+        font-size: 15px;
+    }
+    /* Hide "New Project" text */
+  .button-input span {
+    display: none;
+  }
+  /* Add the "+" sign using a pseudo-element */
+  .button-input::before {
+    content: "+";
+    font-weight: bold;
+    margin-right: 5px;
+    padding-left: 41%;
+  }
+}
+
+
+
+
+/* popup fields */
+.text-field{
+    /* font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100; */
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    font-variation-settings:
+        "wdth" 100;
+    height: 30px;
+    width: 30%;
+    border: none;
+    border-radius: 10px;
+    /* box-shadow: 
+    /* 0 0 5px rgba(0, 0, 0, 0.6), 
+    0 0 10px rgba(0, 0, 0, 0.4), 
+    0 0 15px rgba(0, 0, 0, 0.2);  */ 
+}
+.text-field::placeholder {
+    /* background-color: #3B67CA; */
+    font-size: 15px; /* Change font size */
+    padding-left: 4%;
+    color: #888;     /* Change placeholder color */
+  }
+
+
+.popupBox-Wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.popupBox{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border: solid 3 px black;
+    background-color: #cec3c3;
+    border-radius: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100%; */
+}
+/* .popupBox form{
+    border: solid 3px black;
+} */
+.closePopup{
+    position: absolute;
+    right: 9px;
+    top: 5px;
+    border: none;
+    background-color: #cec3c3;
+    border-radius: 5px;
+}

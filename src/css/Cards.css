@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+.cards-outerContainer{
+    /* background-color: rgb(58, 198, 72); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 77px;
+    /* border:solid rgb(212, 84, 84) 1px; */
+    
+}
+.cards-innerContainer{
+    position: relative;
+    background-color: #FFFFFF;
+    border: 2px solid #F6F6F6;
+    width: 84%;
+    height: 5em;
+    padding: 1rem;
+    margin: 0;
+    /* text-align: center; */
+    /* align-items: center; */
+    display: flex;
+    justify-content: space-between;
+    border-radius: 18pxS;
+    /* box-shadow: 
+    0 0 5px rgba(0, 0, 0, 0.6), 
+    0 0 10px rgba(0, 0, 0, 0.4), 
+    0 0 15px rgba(0, 0, 0, 0.2);  */
+    /* justify-content: center; */
+    padding-left: 10px;
+    /* color: white; */
+    /* border:solid black 4px; */
+}
+
+.blured{
+    opacity: 0.5 ;
+}
+.cSisub1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.sub1cSisub1{
+    /* border: 2px solid rgb(0, 255, 60); */
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    /* color: black; */
+
+}
+
+.cards-icon {
+    font-size: 18px; /* Adjust icon size */
+    color: grey;     /* Set icon color */
+    /* margin-right: 10px; Add spacing around the icon */
+    /* transition: color 0.3s; Smooth color change effect */
+    font-weight: bold;
+  }
+ 
+  .output-para{
+    /* padding-left: 10px; */
+    font-family: "Mona Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    margin: 0;
+    line-height:28px;
+    font-size: 16px;
+    /* text-align: center; */
+    color: rgb(61, 61, 78)
+    ;
+}
+.cards-Priority{
+    background-color: #ee9ae3cc;
+    border-radius: 10px;
+    height: 1.3em;
+    width: auto;
+    padding: 0 1em;
+    display: flex;
+    align-items: center;
+  }
+.cards-Priority.high{
+    background-color: red;
+}
+.cards-Priority.medium{
+    background-color: #b3e693;
+}
+.cards-Priority.low{
+    background-color: #e3b1fb;
+}
+
+.cards-Task{
+    background-color: #27aed8e8;
+    border-radius: 10px;
+    height: 1.3em;
+    width: auto;
+    padding: 0 1em;
+    display: flex;
+    align-items: center;
+}
+.sub2cSisub1{
+    /* border: 2px solid rgb(43, 94, 148); */
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 0.8em;
+}
+  .sub2cSisub1-time.Icon{
+    color: grey;
+    font-size: 20px;
+    /* padding-left: 1em; */
+  }
+  .sub2cSisub1-para{
+    color: black;
+    
+  }
+/* .cards-subInner {
+    border: 2px solid red; */
+    /* position: absolute;
+    right: 0;
+} */
+
+.cSisub2{
+    /* border: 2px solid rgb(0, 255, 60); */
+    /* position: absolute; */
+    right: 0;
+    height: 100%;
+    display: flex;
+    /* align-items: center; */
+
+}
+
+/* .linkCardsInfo{
+    position: absolute;
+    right: 0;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+} */
+/* .cardsMoreInfo{
+    position: absolute;
+    right: 8px;
+    border:none;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    box-shadow: 
+    0 0 5px rgba(0, 0, 0, 0.6), 
+    0 0 10px rgba(0, 0, 0, 0.4), 
+    0 0 15px rgba(0, 0, 0, 0.2); 
+    background-color: rgb(234, 90, 23);
+    display: flex;
+    justify-content: center;
+    color: white;
+} */
+
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    /* position: absolute;
+    right: 10px; */
+    
+}
+
+

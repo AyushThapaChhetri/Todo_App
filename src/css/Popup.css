@@ -1,0 +1,46 @@
+/* .popupBox-Wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+} */
+
+/* .popupBox{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    border: solid 3 px black;
+    background-color: red;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+} */
+
+/* .popupBox form{
+    border: solid 3px black;
+}
+.closePopup{
+    position: absolute;
+    right: 0;
+    top: 0;
+} */
+
+/* .outerPopupForm{
+   
+} */
+
+
+.outerPopupForm .popUpForm button{
+    padding: 0.8em;
+    border-radius: 44px;
+    border: solid .2px grey;
+}
