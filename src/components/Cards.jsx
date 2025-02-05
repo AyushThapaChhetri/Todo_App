@@ -17,6 +17,7 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
     let capitalizedProjectName = capitalizerFunc(cardsData.projectName);
     let capitalizedTaskName = capitalizerFunc(cardsData.taskName);
     let captializedPriority = capitalizerFunc(cardsData.priority);
+    let capitalizedProgressStatus = capitalizerFunc(cardsData.progressStatus);
 
 
 
@@ -32,7 +33,9 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
                         <div className='sub1cSisub1'>
                             <FaCalendarAlt className='cards-icon' />
                             <p className='output-para'>
-                                {capitalizedProjectName}
+                                {/* {capitalizedProjectName} */}
+                                {capitalizedTaskName}
+
                             </p>
                             <div className={`cards-Priority ${cardsData.priority}`}>
                                 <p>
@@ -41,9 +44,17 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
                             </div>
                             <div className='cards-Task'>
                                 <p>
-                                    Task Name: {capitalizedTaskName}
+                                    Project Name: {capitalizedProjectName}
                                 </p>
                             </div>
+                            {/* <div
+                                // className='cards-ProgressStatus'
+                                className={`cards-progressStatus ${cardsData.progressStatus}`}
+                            >
+                                <p>
+                                    Status: {capitalizedProgressStatus}
+                                </p>
+                            </div> */}
                         </div>
 
                         <div className='sub2cSisub1'>
@@ -51,8 +62,7 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
                             <p className='sub2cSisub1-para'>
                                 {(cardsData.endDate.length === 0) ?
                                     (!(cardsData.hoursTime == 0) ? cardsData.hoursTime + ` hours ` : '') +
-                                    (!(cardsData.minutesTime == 0) ? cardsData.minutesTime + ` minutes ` : '') +
-                                    (!(cardsData.secondsTime == 0) ? cardsData.secondsTime + ` seconds ` : '') :
+                                    (!(cardsData.minutesTime == 0) ? cardsData.minutesTime + ` minutes ` : '') :
                                     cardsData.endDate}
                             </p>
                         </div>
