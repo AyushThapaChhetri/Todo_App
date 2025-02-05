@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 
 .output-OuterContainer{
-    background-color: #FDFDFD;
+    /* background-color: #FDFDFD; */
+    background-color: #FFFFFF;
 }
 .oIcOne{
     background-color: #FFFF;
@@ -63,9 +64,70 @@
 .output-sub2 p{
     margin: 0;
 }
+
 .outputMultipleCards{
     margin-top: 25.48px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
 }
+.todo_progressSections{
+    background-color: #f6f6f6;
+    padding: 2em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    
+}
+.outputMultipleCards .outputTodoCards{
+    /* height: 400px; */
+    width: 90%;
+    /* border: 2px solid black; */
+}
+
+.outputTodoCardsPara{
+    margin: 0;
+    font-family: "Mona Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    margin: 0;
+    line-height:28px;
+    color: grey
+}
+.outputMultipleCards .outputProgressCards{
+    /* height: 400px; */
+    width: 90%;
+    /* border: 2px solid red; */
+
+}
+.outputProgressCards{
+    margin-bottom: 20px;
+}
+.cardsHide{
+    display: none;
+}
+.showComplete{
+    /* margin: 0; */
+    font-family: "Mona Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    margin: 0;
+    line-height:28px;
+    color: grey
+}
+.hideComplete{
+    display: none;
+}
+
 /* .output-list{
     font-family: "Mona Sans", serif;
     font-optical-sizing: auto;

@@ -35,6 +35,7 @@ const Output = ({ item }) => {
     //State managing the Checklist
     const [checkedList, setCheckedList] = useState(new Set());
 
+
     useEffect(() => {
         let deserializedData = JSON.parse(localStorage.getItem("checkboxInformation")) || [];
         let restoreListValues = new Set(deserializedData);
@@ -101,10 +102,80 @@ const Output = ({ item }) => {
                 </div>
                 {/* <div className='output-list'>Today</div> */}
                 <div className="outputMultipleCards">
+                    <div className='outputTodoCards todo_progressSections'>
+                        <p className='outputTodoCardsPara'>TODO</p>
+                        {(item ?? [])
+                            .filter((e) => e.progressStatus === "todo")
+                            .map((e) => {
+                                const isChecked = checkedList.has(e.id);
+                                {/* console.log(isChecked); */ }
+                                return (
+                                    <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
 
-                    {(item ?? []).map((e) => {
+                                        {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
+                                    </div>
+                                );
+                            })
+                        }
+                        {/* Check if any item is completed (checked) */}
+                        {(item ?? [])
+                            .filter((e) => e.progressStatus === "todo")
+                            .some((e) => checkedList.has(e.id)) && (
+                                <p className='outputTodoCardsPara'>COMPLETED</p>
+                            )}
+                        {(item ?? [])
+                            .filter((e) => e.progressStatus === "todo")
+                            .map((e) => {
+                                const isChecked = checkedList.has(e.id);
+                                {/* console.log(isChecked); */ }
+                                return (
+                                    <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
+
+                                        {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                    <div className='outputProgressCards todo_progressSections'>
+                        <p className='outputTodoCardsPara'>IN PROGRESS</p>
+                        {(item ?? [])
+                            .filter((e) => e.progressStatus === "progress")
+                            .map((e) => {
+                                const isChecked = checkedList.has(e.id);
+                                {/* console.log(isChecked); */ }
+                                return (
+                                    <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
+
+                                        {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
+                                    </div>
+                                );
+                            })
+                        }
+                        {/* Check if any item is completed (checked) */}
+                        {(item ?? [])
+                            .filter((e) => e.progressStatus === "progress")
+                            .some((e) => checkedList.has(e.id)) && (
+                                <p className='outputTodoCardsPara'>COMPLETED</p>
+                            )}
+
+                        {(item ?? [])
+                            .filter((e) => e.progressStatus === "progress")
+                            .map((e) => {
+                                const isChecked = checkedList.has(e.id);
+                                {/* console.log(isChecked); */ }
+                                return (
+                                    <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
+
+                                        {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                    {/* {(item ?? []).map((e) => {
                         const isChecked = checkedList.has(e.id);
-                        {/* console.log(isChecked); */ }
+                        console.log(isChecked);
                         return (
                             <div key={e.id}>
 
@@ -112,43 +183,10 @@ const Output = ({ item }) => {
                             </div>
                         );
                     })
-                    }
-                    {(item ?? []).map((e) => {
-                        const isChecked = checkedList.has(e.id);
-                        {/* console.log(isChecked); */ }
-                        return (
-                            <div key={e.id}>
-                                {isChecked && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
-                            </div>
-                        );
-                    })
-                    }
-
-
-                    {/* {(item ?? [])
-
-                        .filter((e) => !(checkedList).has(e.id))
-                        .map((e) => {
-                            return (
-                                <div key={e.id}>
-                                    <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />
-                                </div>
-                            );
-                        })
-
-                    }
-                    {(item ?? [])
-
-                        .filter((e) => (checkedList).has(e.id))
-                        .map((e) => {
-                            return (
-                                <div key={e.id}>
-                                    <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />
-                                </div>
-                            );
-                        })
-
                     } */}
+
+
+
 
                 </div>
 

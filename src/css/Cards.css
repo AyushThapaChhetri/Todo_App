@@ -2,13 +2,13 @@
 
 .cards-outerContainer{
     /* background-color: rgb(58, 198, 72); */
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    height: 60px;
+    /* width: 100%; */
+    /* display: flex;
+    justify-content: center; */
+    /* height: 60px; */
     padding: 0;
     margin: 0;
-    padding-bottom: 77px;
+    /* padding-bottom: 77px; */
     /* border:solid rgb(212, 84, 84) 1px; */
     
 }
@@ -16,7 +16,8 @@
     position: relative;
     background-color: #FFFFFF;
     border: 2px solid #F6F6F6;
-    width: 84%;
+    /* width: 70%; */
+    /* width: 90%; */
     height: 5em;
     padding: 1rem;
     margin: 0;
@@ -33,6 +34,9 @@
     padding-left: 10px;
     /* color: white; */
     /* border:solid black 4px; */
+}
+.cards-innerContainer p{
+
 }
 
 .blured{
@@ -72,8 +76,7 @@
     line-height:28px;
     font-size: 16px;
     /* text-align: center; */
-    color: rgb(61, 61, 78)
-    ;
+    color: rgb(61, 61, 78);
 }
 .cards-Priority{
     background-color: #ee9ae3cc;
@@ -102,6 +105,20 @@
     padding: 0 1em;
     display: flex;
     align-items: center;
+}
+.cards-progressStatus{
+    border-radius: 10px;
+    height: 1.3em;
+    width: auto;
+    padding: 0 1em;
+    display: flex;
+    align-items: center;
+}
+.cards-progressStatus.todo{
+    background-color: #ffdc02d1;
+}
+.cards-progressStatus.progress{
+    background-color: #33d933;
 }
 .sub2cSisub1{
     /* border: 2px solid rgb(43, 94, 148); */
