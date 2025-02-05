@@ -49,7 +49,11 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
                         <div className='sub2cSisub1'>
                             <MdAccessTime className='sub2cSisub1-time Icon' />
                             <p className='sub2cSisub1-para'>
-                                {cardsData.endDate}
+                                {(cardsData.endDate.length === 0) ?
+                                    (!(cardsData.hoursTime == 0) ? cardsData.hoursTime + ` hours ` : '') +
+                                    (!(cardsData.minutesTime == 0) ? cardsData.minutesTime + ` minutes ` : '') +
+                                    (!(cardsData.secondsTime == 0) ? cardsData.secondsTime + ` seconds ` : '') :
+                                    cardsData.endDate}
                             </p>
                         </div>
                     </div>

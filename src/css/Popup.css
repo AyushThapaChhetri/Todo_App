@@ -44,3 +44,113 @@
     border-radius: 44px;
     border: solid .2px grey;
 }
+
+.chooseTime{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 10px;
+    margin-top: 3px;
+}
+/* #time_wrapper{
+    display: none;
+} */
+
+#time_wrapper {
+    width: fit-content;
+    margin: 0 auto;
+    /*   background: pink; */
+   position: relative;
+   left: -53px;
+    /* top: 150px;  */
+    /* display: flex; */
+    transform: scale(.9);
+  }
+  
+  #time_input {
+    border: 2px solid #acd4ae;
+    width: fit-content;
+    color: #86c288;
+    display: flex;
+    align-items: center;
+  }
+  
+  #time_input input {
+    width: 60px;
+    height: 60px;
+    border: none;
+    box-sizing: border-box;
+    padding: auto 15px;
+    text-align: center;
+    color: #132c14;
+  }
+
+  #time_input label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  #time_input .label {
+    font-size: 0.55rem;
+    position: absolute;
+    top: 4.5px;
+  }
+
+  #time_input .label.lbl-hrs {
+    left: 20px;
+  }
+
+  #time_input .label.lbl-min {
+    left: 14px;
+  }
+  
+  #time_input .label.lbl-sec {
+    left: 13px;
+  }
+  
+  /* Chrome, Safari, Edge, Opera */
+#time_input input::-webkit-outer-spin-button,
+#time_input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Chrome */
+#time_input input[type="number"]::-webkit-outer-spin-button,
+#time_input input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#time_input,
+#time_input input {
+  border-radius: 8px;
+  font-size: 1.5rem;
+}
+
+#time_input input:focus {
+    outline: 3px solid #2b662e;
+  }
+  
+#time_input input:focus + .label {
+    color: #2b662e;
+  }
+  
+/* #time_input input.invalid:focus {
+    outline: 3px solid red;
+  }
+  
+#time_input input.invalid:focus + .label {
+    color: red;
+  }
+  
+#error {
+    width: 280px;
+    position: relative;
+    top: 170px;
+    margin: 0 auto;
+    color: red;
+    visibility: hidden;
+  } */
