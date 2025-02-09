@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'; // Import PropTypes
 import '../css/Popup.css'
 
 // const Popup = ({ editData }) => {
@@ -284,5 +285,13 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
         </>
     )
 }
+
+// Define PropTypes for your component
+Popup.propTypes = {
+    setItem: PropTypes.func.isRequired, // setItem should be a function
+    editData: PropTypes.object, // editData should be an object (it could be undefined, so no isRequired)
+    setIsPopUp_OutputComponent: PropTypes.func.isRequired, // setIsPopUp_OutputComponent should be a function
+};
+
 
 export default Popup

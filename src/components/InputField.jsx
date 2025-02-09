@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import "../Css/InputField.css"
+import PropTypes from 'prop-types';
 // import Output from './Output';
 import Popup from './Popup'
 // import { CiKeyboard } from "react-icons/ci";
@@ -51,5 +52,13 @@ const InputField = ({ item, setItem, isPopUpVisible, setPopUpVisible }) => {
         </>
     )
 }
+
+// Prop validation
+InputField.propTypes = {
+    item: PropTypes.array.isRequired,        // Assuming 'item' is an array
+    setItem: PropTypes.func.isRequired,      // Assuming 'setItem' is a function
+    isPopUpVisible: PropTypes.bool.isRequired,   // Assuming 'isPopUpVisible' is a boolean
+    setPopUpVisible: PropTypes.func.isRequired,  // Assuming 'setPopUpVisible' is a function
+};
 
 export default InputField

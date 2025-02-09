@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import "../Css/Output.css"
 import Cards from './Cards';
 import { SlCalender } from "react-icons/sl";
 import { CiCircleList } from "react-icons/ci";
 import { IoMdClipboard } from "react-icons/io";
-import { IoTimerOutline } from "react-icons/io5";
+// import { IoTimerOutline } from "react-icons/io5";
 import Popup from "./Popup";
+import PropTypes from 'prop-types';
 
 
 
@@ -98,12 +99,12 @@ const Output = ({ item, setItem }) => {
                                 Board
                             </p>
                         </div>
-                        <div className='output-sub2 Timeline'>
+                        {/* <div className='output-sub2 Timeline'>
                             <IoTimerOutline />
                             <p>
                                 Timeline
                             </p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 {/* <div className='output-list'>Today</div> */}
@@ -226,5 +227,10 @@ const Output = ({ item, setItem }) => {
         </>
     );
 }
+
+Output.propTypes = {
+    item: PropTypes.array.isRequired,   // Corrected PropTypes import
+    setItem: PropTypes.func.isRequired,
+};
 
 export default Output

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import '../css/Cards.css'
 // import { useNavigate } from 'react-router-dom';
 // import { Link } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdAccessTime } from "react-icons/md";
 import { HiDotsHorizontal } from "react-icons/hi";
+import PropTypes from 'prop-types';
 
 {/* <CiCalendar className='cards-icon' /> */ }
 
@@ -112,6 +113,23 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
     )
 
 }
+
+// Define PropTypes for the Cards component
+Cards.propTypes = {
+    cardsData: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        projectName: PropTypes.string.isRequired,
+        taskName: PropTypes.string.isRequired,
+        priority: PropTypes.string.isRequired,
+        endDate: PropTypes.string.isRequired,
+        hoursTime: PropTypes.string.isRequired,
+        minutesTime: PropTypes.string.isRequired,
+    }).isRequired,
+    handleCheck: PropTypes.func.isRequired,
+    checkedList: PropTypes.instanceOf(Set).isRequired,
+    setIsPopUp_OutputComponent: PropTypes.func.isRequired,
+    handleEditData: PropTypes.func.isRequired,
+};
 
 
 export default Cards
