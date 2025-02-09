@@ -4,9 +4,16 @@ import '../css/Cards.css'
 // import { Link } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdAccessTime } from "react-icons/md";
+import { HiDotsHorizontal } from "react-icons/hi";
+
 {/* <CiCalendar className='cards-icon' /> */ }
 
-const Cards = ({ cardsData, handleCheck, checkedList }) => {
+// const Cards = ({ cardsData, handleCheck, checkedList, setPopUpVisible }) => {
+const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent, handleEditData }) => {
+
+
+
+
 
     function capitalizerFunc(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -17,7 +24,7 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
     let capitalizedProjectName = capitalizerFunc(cardsData.projectName);
     let capitalizedTaskName = capitalizerFunc(cardsData.taskName);
     let captializedPriority = capitalizerFunc(cardsData.priority);
-    let capitalizedProgressStatus = capitalizerFunc(cardsData.progressStatus);
+    // let capitalizedProgressStatus = capitalizerFunc(cardsData.progressStatus);
 
 
 
@@ -26,6 +33,7 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
         <>
             <div className="cards-outerContainer">
                 <div
+
                     // className="cards-innerContainer"
                     className={`cards-innerContainer ${checkedList.has(cardsData.id) ? "blured" : ""}`}
                 >
@@ -80,8 +88,21 @@ const Cards = ({ cardsData, handleCheck, checkedList }) => {
                             // checked={(.isChecked) && (classId == cardsData.id) ? true : false}
                             onChange={() => handleCheck(cardsData.id)}
                             name={cardsData.id}
-                            value={cardsData.id} />
+                            value={cardsData.id}
+                        />
+                        {/* <HiDotsHorizontal onClick={() => {
+                            setEdiTData(cardsData)
+                            setPopUpVisible((prev) => !prev)
+                        }} /> */}
+                        <HiDotsHorizontal
+                            onClick={() => {
+                                // console.log("clicked");
+                                setIsPopUp_OutputComponent((prev) => !prev);
+                                handleEditData(cardsData);
+                            }
+                            }
 
+                        />
 
                     </div>
                 </div>

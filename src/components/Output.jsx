@@ -5,36 +5,26 @@ import { SlCalender } from "react-icons/sl";
 import { CiCircleList } from "react-icons/ci";
 import { IoMdClipboard } from "react-icons/io";
 import { IoTimerOutline } from "react-icons/io5";
+import Popup from "./Popup";
 
 
 
 
-const Output = ({ item }) => {
+const Output = ({ item, setItem }) => {
+    // const Output = ({ item }) => {
+    const [editData, setEditData] = useState(null);
+    const [isPopUp_OutputComponent, setIsPopUp_OutputComponent] = useState(false);
+    const [isEditHoursFormat, setIsEditHoursFormat] = useState(false);
 
-    // console.log(item);
-    // console.log((item ?? []).map((e) => ({
-    //     id: e.id,
-    //     projectName: e.projectName,
-    //     taskName: e.taskName,
-    //     priority: e.priority,
-    //     startDate: e.startDate,
-    //     endDate: e.endDate
-    // })));
-
-    // console.log(item);
-    // const yellow = item.map((e) => ({
-    //     id: e.id,
-    //     projectName: e.projectName,
-    //     taskName: e.taskName,
-    //     priority: e.priority,
-    //     startDate: e.startDate,
-    //     endDate: e.endDate
-    // }));
-
+    // console.log('before');
+    // console.log(isEditHoursFormat);
+    // console.log('after');
 
     //State managing the Checklist
     const [checkedList, setCheckedList] = useState(new Set());
+    // const [isPopup, setPopUpVisible] = useState(false);
 
+    // console.log(isPopUpVisible);
 
     useEffect(() => {
         let deserializedData = JSON.parse(localStorage.getItem("checkboxInformation")) || [];
@@ -63,6 +53,13 @@ const Output = ({ item }) => {
             return newCheckedState;
         }
         );
+    }
+
+    function handleEditData(data) {
+        // console.log(data);
+        // console.log(editData);
+        setEditData(data);
+        // console.log(editData);
     }
 
     return (
@@ -102,90 +99,114 @@ const Output = ({ item }) => {
                 </div>
                 {/* <div className='output-list'>Today</div> */}
                 <div className="outputMultipleCards">
-                    <div className='outputTodoCards todo_progressSections'>
-                        <p className='outputTodoCardsPara'>TODO</p>
-                        {(item ?? [])
-                            .filter((e) => e.progressStatus === "todo")
-                            .map((e) => {
-                                const isChecked = checkedList.has(e.id);
-                                {/* console.log(isChecked); */ }
-                                return (
-                                    <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
+                    {(item ?? [])
+                        .some((e) => e.progressStatus === 'todo') && (
+                            <>
+                                <div className='outputTodoCards todo_progressSections'>
 
-                                        {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
-                                    </div>
-                                );
-                            })
-                        }
-                        {/* Check if any item is completed (checked) */}
-                        {(item ?? [])
-                            .filter((e) => e.progressStatus === "todo")
-                            .some((e) => checkedList.has(e.id)) && (
-                                <p className='outputTodoCardsPara'>COMPLETED</p>
-                            )}
-                        {(item ?? [])
-                            .filter((e) => e.progressStatus === "todo")
-                            .map((e) => {
-                                const isChecked = checkedList.has(e.id);
-                                {/* console.log(isChecked); */ }
-                                return (
-                                    <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
+                                    <p className='outputTodoCardsPara'>TODO</p>
 
-                                        {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                    <div className='outputProgressCards todo_progressSections'>
-                        <p className='outputTodoCardsPara'>IN PROGRESS</p>
-                        {(item ?? [])
-                            .filter((e) => e.progressStatus === "progress")
-                            .map((e) => {
-                                const isChecked = checkedList.has(e.id);
-                                {/* console.log(isChecked); */ }
-                                return (
-                                    <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
+                                    {(item ?? [])
+                                        .filter((e) => e.progressStatus === "todo")
+                                        .map((e) => {
+                                            const isChecked = checkedList.has(e.id);
+                                            {/* console.log(isChecked); */ }
+                                            return (
+                                                <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
 
-                                        {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
-                                    </div>
-                                );
-                            })
-                        }
-                        {/* Check if any item is completed (checked) */}
-                        {(item ?? [])
-                            .filter((e) => e.progressStatus === "progress")
-                            .some((e) => checkedList.has(e.id)) && (
-                                <p className='outputTodoCardsPara'>COMPLETED</p>
-                            )}
+                                                    {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} />}
+                                                </div>
+                                            );
+                                        })
+                                    }
+                                    {/* Check if any item is completed (checked) */}
+                                    {(item ?? [])
+                                        .filter((e) => e.progressStatus === "todo")
+                                        .some((e) => checkedList.has(e.id)) && (
+                                            <p className='outputTodoCardsPara'>COMPLETED</p>
+                                        )}
+                                    {(item ?? [])
+                                        .filter((e) => e.progressStatus === "todo")
+                                        .map((e) => {
+                                            const isChecked = checkedList.has(e.id);
+                                            {/* console.log(isChecked); */ }
+                                            return (
+                                                <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
 
-                        {(item ?? [])
-                            .filter((e) => e.progressStatus === "progress")
-                            .map((e) => {
-                                const isChecked = checkedList.has(e.id);
-                                {/* console.log(isChecked); */ }
-                                return (
-                                    <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
+                                                    {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} />}
+                                                </div>
+                                            );
+                                        })
+                                    }
+                                </div>
+                            </>
+                        )}
 
-                                        {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                    {/* {(item ?? []).map((e) => {
-                        const isChecked = checkedList.has(e.id);
-                        console.log(isChecked);
-                        return (
-                            <div key={e.id}>
+                    {(item ?? [])
+                        .some((e) => e.progressStatus === 'progress') && (
+                            <>
+                                <div className='outputProgressCards todo_progressSections'>
+                                    {(item ?? [])
+                                        .some((e) => e.progressStatus === 'progress') && (
+                                            <>
+                                                <p className='outputTodoCardsPara'>IN PROGRESS</p>
 
-                                {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} />}
+                                            </>
+                                        )}
+
+                                    {(item ?? [])
+                                        .filter((e) => e.progressStatus === "progress")
+                                        .map((e) => {
+                                            const isChecked = checkedList.has(e.id);
+                                            {/* console.log(isChecked); */ }
+                                            return (
+                                                <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
+
+                                                    {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} />}
+                                                </div>
+                                            );
+                                        })
+                                    }
+                                    {/* Check if any item is completed (checked) */}
+                                    {(item ?? [])
+                                        .filter((e) => e.progressStatus === "progress")
+                                        .some((e) => checkedList.has(e.id)) && (
+                                            <p className='outputTodoCardsPara'>COMPLETED</p>
+                                        )}
+
+                                    {(item ?? [])
+                                        .filter((e) => e.progressStatus === "progress")
+                                        .map((e) => {
+                                            const isChecked = checkedList.has(e.id);
+                                            {/* console.log(isChecked); */ }
+                                            return (
+                                                <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
+
+                                                    {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} />}
+                                                </div>
+                                            );
+                                        })
+                                    }
+                                </div>
+                            </>
+                        )}
+
+
+                    {isPopUp_OutputComponent &&
+                        (<>
+
+                            <div className='popupBox-Wrapper'>
+                                <div className='popupBox'>
+                                    <button type='button' onClick={() => setIsPopUp_OutputComponent((prev) => !prev)} className='closePopup'>
+                                        X
+                                    </button>
+                                    <Popup editData={editData} setItem={setItem} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} />
+
+                                </div>
                             </div>
-                        );
-                    })
-                    } */}
 
-
+                        </>
+                        )}
 
 
                 </div>
