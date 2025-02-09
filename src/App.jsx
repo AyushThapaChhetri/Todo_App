@@ -9,15 +9,15 @@ import './App.css'
 function App() {
   //lifted State to manage local storage
   const [item, setItem] = useState([]);
+  const [isPopUpVisible, setPopUpVisible] = useState(false);
 
 
   useEffect(() => {
     const rawData = localStorage.getItem("myObj1");
     const parsedData = JSON.parse(rawData) || [];
     setItem(parsedData)
-    // console.log(item);
-    // console.log(parsedData[0].projectName);
   }, []);
+
   return (
     <>
       <div className="appContainer">
@@ -26,11 +26,12 @@ function App() {
         </div>
         <div className='bodyContainer'>
           <div className="inputfield-container">
-            <InputField item={item} setItem={setItem} />
+            <InputField item={item} setItem={setItem} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} />
           </div>
 
           <div className="outputContainer">
-            <Output item={item} />
+            {/* <Output item={item} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} /> */}
+            <Output item={item} setItem={setItem} />
           </div>
         </div>
       </div>
