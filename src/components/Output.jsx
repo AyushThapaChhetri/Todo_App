@@ -11,30 +11,39 @@ import Popup from "./Popup";
 
 
 const Output = ({ item, setItem }) => {
-    // const Output = ({ item }) => {
     const [editData, setEditData] = useState(null);
     const [isPopUp_OutputComponent, setIsPopUp_OutputComponent] = useState(false);
-    const [isEditHoursFormat, setIsEditHoursFormat] = useState(false);
 
-    // console.log('before');
-    // console.log(isEditHoursFormat);
-    // console.log('after');
 
     //State managing the Checklist
     const [checkedList, setCheckedList] = useState(new Set());
-    // const [isPopup, setPopUpVisible] = useState(false);
 
-    // console.log(isPopUpVisible);
+
+
+
 
     useEffect(() => {
-        let deserializedData = JSON.parse(localStorage.getItem("checkboxInformation")) || [];
-        let restoreListValues = new Set(deserializedData);
-        setCheckedList(restoreListValues);
+        const storedData = localStorage.getItem("checkboxInformation");
+        if (storedData) {
+            try {
+                const parsedData = JSON.parse(storedData);
+                if (Array.isArray(parsedData)) {
+                    setCheckedList(new Set(parsedData)); // Ensure it's a valid Set
+                }
+            } catch (error) {
+                console.error("Error parsing localStorage data:", error);
+            }
+        }
     }, []);
 
-    //updating local storage with clickedCards
-    let checkedListData = [...checkedList];
-    (checkedListData.length > 0) ? localStorage.setItem("checkboxInformation", JSON.stringify(checkedListData)) : [];
+
+    useEffect(() => {
+        if (checkedList.size > 0) {
+            localStorage.setItem("checkboxInformation", JSON.stringify([...checkedList]));
+        } else {
+            localStorage.removeItem("checkboxInformation");  // Only remove when explicitly empty
+        }
+    }, [checkedList]);
 
     //looping through the keys checking type
     // for (const x of checkedList.keys()) {

@@ -23,13 +23,13 @@ const Navbar = () => {
                         <div className='navCaption setCap'>
                             <p className='navPara settings'>Settings</p>
                         </div>
-                        <div className='navIcon supportIcon'>
+                        {/* <div className='navIcon supportIcon'>
                             <IoIosHelpCircleOutline className="nvicon" />
-                        </div>
-                        <div className='navCaption supCap'>
+                        </div> */}
+                        {/* <div className='navCaption supCap'>
                             <p className='navPara support'>Help & Support</p>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -4,7 +4,8 @@ import '../css/Popup.css'
 // const Popup = ({ editData }) => {
 const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
 
-    // const [isSameDate, setIsSameDate] = useState(false);
+    // const [isSameDate, setIsSameDate] = useState(false); 
+
 
     // console.log(editData);
     // const [formData, setFormData] = useState({
@@ -57,7 +58,7 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
         }
     }, [editData]);  //Run this effect whenever editData changes
 
-    // const [item, setItem] = useState([]);
+
 
     // On component load, get the data from localStorage (if any)
     // Getting item form the localStorage for updation
@@ -72,32 +73,12 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
         }));
         // console.log(formData);
     }
-    // console.log(isEditHoursFormat);
-    // console.log(editData?.endDate === "");
 
-
-    // console.log(editData?.id);
-    // console.log(inputProject);
     const handleSubmit = (e) => {
         e.preventDefault();
 
 
 
-        // if (formData.projectName.trim() === "" || formData.taskName.trim() === "") {
-        //     // console.log("Empty field");
-        //     alert("❌❌❌Khali thau vayo hai vara timi!❌❌❌");
-
-        // } else if (new Date(formData.startDate).getTime() > new Date(formData.endDate).getTime()) {
-
-        //     alert("❌❌❌Start Date Can't be later than End Date! ❌❌❌");
-
-        // } else if (new Date(formData.startDate).getTime() == new Date(formData.endDate).getTime()) {
-        //     setIsSameDate(true);
-        //     alert(`❌❌❌Start Date Can't be Same as End Date! ❌❌❌\n ⬇️ Assign Hours:Minutes to be finished ⬇️`);
-        //     formData.startDate = "";
-        //     formData.endDate = "";
-
-        // } 
 
         if (formData.projectName.trim() === "" || formData.taskName.trim() === "") {
             // console.log("Empty field");

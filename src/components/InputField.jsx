@@ -10,10 +10,11 @@ const InputField = ({ item, setItem, isPopUpVisible, setPopUpVisible }) => {
 
 
     // useEffect(() => {
+
     //     const rawData = localStorage.getItem("myObj1");
     //     const dataReceived = JSON.parse(rawData) || [];
     //     console.log("Parsed data:", dataReceived);
-    // }, []);
+    // },[]);
 
 
     const handleButtonClick = () => {
