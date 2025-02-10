@@ -10,6 +10,17 @@ function App() {
   //lifted State to manage local storage
   const [item, setItem] = useState([]);
   const [isPopUpVisible, setPopUpVisible] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
+
+  // console.log(activeCard);
+
+
+  const onDrop = (status, position) => {
+    console.log(
+      `${activeCard} is going to place in ${status} at ${position}`
+    );
+  }
+
 
 
   useEffect(() => {
@@ -24,6 +35,7 @@ function App() {
         <div className="navbarContainer">
           <Navbar />
         </div>
+        <h5 style={{ zIndex: 1000, paddingTop: "50px", position: 'fixed' }}>ActiveCard - {activeCard}</h5>
         <div className='bodyContainer'>
           <div className="inputfield-container">
             <InputField item={item} setItem={setItem} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} />
@@ -31,13 +43,14 @@ function App() {
 
           <div className="outputContainer">
             {/* <Output item={item} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} /> */}
-            <Output item={item} setItem={setItem} />
+            <Output item={item} setItem={setItem} setActiveCard={setActiveCard} onDrop={onDrop} />
           </div>
         </div>
       </div>
     </>
   )
 }
+
 
 export default App
 

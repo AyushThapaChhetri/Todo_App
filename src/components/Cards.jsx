@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 {/* <CiCalendar className='cards-icon' /> */ }
 
 // const Cards = ({ cardsData, handleCheck, checkedList, setPopUpVisible }) => {
-const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent, handleEditData }) => {
+const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
 
 
 
@@ -32,7 +32,7 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
 
     return (
         <>
-            <div className="cards-outerContainer">
+            <div className="cards-outerContainer" draggable onDragStart={() => setActiveCard(cardsData.id)} onDragEnd={() => setActiveCard(null)}>
                 <div
 
                     // className="cards-innerContainer"
@@ -129,6 +129,7 @@ Cards.propTypes = {
     checkedList: PropTypes.instanceOf(Set).isRequired,
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
     handleEditData: PropTypes.func.isRequired,
+    setActiveCard: PropTypes.func.isRequired,
 };
 
 
