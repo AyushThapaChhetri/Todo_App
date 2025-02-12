@@ -1,70 +1,104 @@
-/* .popupBox-Wrapper{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
 
-/* .popupBox{
-    position: relative;
-    width: 400px;
-    height: 500px;
-    border: solid 3 px black;
-    background-color: red;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1100;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-} */
 
-/* .popupBox form{
-    border: solid 3px black;
+
+
+.outerPopupForm{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.closePopup{
-    position: absolute;
-    right: 0;
-    top: 0;
-} */
-
-/* .outerPopupForm{
-   
-} */
-
+.popUpForm{
+  margin: 10px 0;
+  height: 420px;
+  width: 340px;
+}
 
 .outerPopupForm .popUpForm button{
     padding: 0.8em;
     border-radius: 44px;
+    
     border: solid .2px grey;
+}
+
+
+.popUpForm .inputNamesPopup{
+  height: 6%;
+  width: 98%;
+  font-family: "Mona Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: light;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  color: grey;
+  font-size: 16px;
+  
+}
+
+.popUpForm .inputNamesPopup::placeholder{
+  font-family: "Mona Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: light;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  color: grey;
+  font-size: 16px;
+  padding-left: 5px;
+}
+
+.popUpForm select{
+  height: 8%;
+  width: 100%;
+  font-family: "Mona Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: light;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  color: grey;
+  font-size: 16px;
+  padding-left: 5px;
+
 }
 
 .chooseTime{
     display: flex;
     align-items: center;
+    /* justify-content: space-between; */
     gap: 0.5em;
     margin-bottom: 10px;
     margin-top: 3px;
 }
-/* #time_wrapper{
-    display: none;
-} */
+
+.chooseTime input[type="radio"] {
+    transform: scale(1.5); /* Increase the size */
+    margin-right: 5px; /* Optional: Adjust spacing */
+  }
+.calendarContainer{
+  margin-top: 25px;
+}
+.calendarContainer label{
+  font-size: 14px;
+  /* width: 10%; */
+  margin-right: 14px;
+}
+.calendarContainer input[type="date"] {
+  font-size: 16px; /* Change font size */
+  padding: 5px; /* Optional: Adjust padding */
+}
+
+.calendarContainer input[type="date"]{
+  width: 80%;
+  height: 20px;
+}
 
 #time_wrapper {
-    width: fit-content;
-    margin: 0 auto;
-    /*   background: pink; */
-   position: relative;
-   left: -53px;
-    /* top: 150px;  */
-    /* display: flex; */
     transform: scale(.9);
+    margin: 40px 20px;
   }
   
   #time_input {
@@ -73,6 +107,7 @@
     color: #86c288;
     display: flex;
     align-items: center;
+
   }
   
   #time_input input {
@@ -138,6 +173,30 @@
     color: #2b662e;
   }
   
+.popUpForm button{
+  height: 8%;
+  width: 36%;
+  font-family: "Mona Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: light;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  color: grey;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+
+.popUpForm button:hover{
+  background-color: rgba(219, 190, 190, 0.815);
+  color: white;
+  border: .2px solid white;
+  
+}
 /* #time_input input.invalid:focus {
     outline: 3px solid red;
   }

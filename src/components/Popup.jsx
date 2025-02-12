@@ -167,13 +167,13 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
         <>
             <div className='outerPopupForm'>
                 <form onSubmit={handleSubmit} className='popUpForm'>
-                    <label htmlFor="projectName">Project Name:</label>
-                    <input type="text" id="project-name" name="projectName" value={formData.projectName} onChange={handleInputChange} required />
-                    <br /><br />
-                    <label htmlFor="taskName">Task Name:</label>
-                    <input type="text" id="task-name" name="taskName" value={formData.taskName} onChange={handleInputChange} required /><br /><br />
 
-                    <label htmlFor="priority" >Priority:</label>
+                    <input type="text" id="project-name" className='inputNamesPopup' name="projectName" value={formData.projectName} onChange={handleInputChange} placeholder='Project Name' required />
+                    <br /><br />
+
+                    <input type="text" id="task-name" className='inputNamesPopup' name="taskName" value={formData.taskName} onChange={handleInputChange} placeholder='Task Name' required /><br /><br />
+
+
                     <select id="priority" name="priority" value={formData.priority} onChange={handleInputChange} required>
                         <option value="high">High</option>
                         <option value="medium">Medium</option>
@@ -181,7 +181,7 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
                     </select>
                     <br /><br />
 
-                    <label htmlFor="progressStatus" >Progress Status:</label>
+
                     <select id="progressStatus" name="progressStatus" value={formData.progressStatus} onChange={handleInputChange} required>
                         <option value="todo">Todo</option>
                         <option value="progress">Progress</option>
@@ -227,13 +227,13 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
 
                     {timeFormat === 'calendar'
                         && (
-                            <>
+                            <div className='calendarContainer'>
                                 <label htmlFor="start-date">Start Date:</label>
                                 <input type="date" id="start-date" name="startDate" value={formData.startDate} onChange={handleInputChange} required /><br /><br />
 
                                 <label htmlFor="end-date">End Date:</label>
                                 <input type="date" id="end-date" name="endDate" value={formData.endDate} onChange={handleInputChange} required /><br /><br />
-                            </>
+                            </div>
                         )}
 
                     {/* {isSameDate || editData?.endDate === "" */}

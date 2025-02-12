@@ -38,11 +38,16 @@ const InputField = ({ item, setItem, checkedList, setCheckedList, isPopUpVisible
 
                         <div className='popupBox-Wrapper'>
                             <div className='popupBox'>
-                                <button type='button' onClick={handleButtonClick} className='closePopup'>
-                                    X
-                                </button>
-                                {/* <Popup item={item} setItem={setItem} isSameDate={isSameDate} setIsSameDate={setIsSameDate} /> */}
-                                <Popup item={item} checkedList={checkedList} setCheckedList={setCheckedList} setItem={setItem} />
+                                <div className="popupBoxFormContainerImage">
+                                </div>
+                                <div className="popupFormDataContainerInputField">
+
+                                    <button type='button' onClick={handleButtonClick} className='closePopup'>
+                                        X
+                                    </button>
+                                    {/* <Popup item={item} setItem={setItem} isSameDate={isSameDate} setIsSameDate={setIsSameDate} /> */}
+                                    <Popup item={item} checkedList={checkedList} setCheckedList={setCheckedList} setItem={setItem} />
+                                </div>
                             </div>
                         </div>
 
