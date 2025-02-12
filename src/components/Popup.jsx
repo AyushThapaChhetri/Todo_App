@@ -1,38 +1,14 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'; // Import PropTypes
 import '../css/Popup.css'
+// import { GiChecklist } from 'react-icons/gi';
 
-// const Popup = ({ editData }) => {
-const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
-
-    // const [isSameDate, setIsSameDate] = useState(false); 
-
-
-    // console.log(editData);
-    // const [formData, setFormData] = useState({
-
-    //     // projectName: editData.projectName  ?editData.projecteName : '',
-    //     projectName: '',
-    //     taskName: '',
-    //     priority: 'medium',
-    //     progressStatus: 'todo',
-    //     startDate: '',
-    //     endDate: '',
-    //     hoursTime: '',
-    //     minutesTime: '',
-    //     secondsTime: ''
-    // });
-    // console.log(isSameDate);
-
-    // useEffect(() => {
-    //     if (editData?.endDate === "") {
-    //         setIsSameDate(true);
-    //     }
-    // });
+const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_OutputComponent }) => {
 
 
 
 
+    //only the form datas current or the already setForm data are loaded of the particular card
     const [formData, setFormData] = useState({
 
         // projectName: editData.projectName  ?editData.projecteName : '',
@@ -61,8 +37,7 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
 
 
 
-    // On component load, get the data from localStorage (if any)
-    // Getting item form the localStorage for updation
+
 
     // Handle any of the changes occuring in the form
 
@@ -70,19 +45,18 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: value                  //dynamic way of handling form data where input change occurs, it triggers the respective handles with name of it and values
+            [name]: value   //dynamic way of handling form data where input change occurs, it triggers the respective handles with name of it and values
         }));
         // console.log(formData);
     }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
 
-
-
         if (formData.projectName.trim() === "" || formData.taskName.trim() === "") {
-            // console.log("Empty field");
+
             alert("❌❌❌Khali thau vayo hai vara timi!❌❌❌");
 
         } else if (timeFormat === 'calendar' && new Date(formData.startDate).getTime() > new Date(formData.endDate).getTime()) { // ADD: Check timeFormat before validating dates
@@ -111,14 +85,36 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
                 secondsTime: formData.secondsTime
             };
 
+            //checking editData ProgressStatus only works when form submited after edit popup closes
+            if (newData.progressStatus === "completed") {
+                console.log(newData.progressStatus, ' : etai bata ho');
+                console.log("Progress is completed. checkedList type:", checkedList instanceof Set, "Value:", checkedList); // Debugging line
+                setCheckedList((prev) => {
+
+                    const newCheckedState = new Set([...prev]);
+                    newCheckedState.add(newData.id);
+                    localStorage.setItem("checkboxInformation", JSON.stringify([...newCheckedState]));
+                    return newCheckedState;
+                });
+
+                // if (editData?.progressStatus) {
+                //     checkedList.add(newData.id);
+                //     localStorage.setItem("checkboxInformation", JSON.stringify([...checkedList]));
+
+                // }
+            }
 
 
-            // if (editData?.endDate === "") {
-            //     console.log(isEditHoursFormat);
-            //     // console.log(editData?.endDate);
-            // }
-            // console.log("Before Saving to localStorage: ", newData); // Check here
+            if (editData && newData?.progressStatus !== "completed") {
 
+                checkedList.delete(newData.id);
+                localStorage.setItem('checkboxInformation', JSON.stringify([...checkedList]));
+                ;
+            }
+
+
+
+            // Item value which is in local storage and the app component is changed
             setItem((prevItems) => {
                 let updatedItems;
                 if (editData?.id) {
@@ -137,14 +133,6 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
             });
 
 
-            // setItem((prev) => {
-
-            //     const updatedArray = [...prev, newData];
-            //     localStorage.setItem("myObj1", JSON.stringify(updatedArray));
-            //     return updatedArray;
-
-            // }
-            // );
 
             setFormData({
                 projectName: '',
@@ -158,13 +146,12 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
                 secondsTime: ''
             });
 
+
+
             if (editData?.id) {
                 setIsPopUp_OutputComponent(false); // This will close the popup after editing
             }
-            // if (editData?.endDate === "") {
-            //     setIsSameDate(false);
-            // }
-            // console.log('Form Data:', item);
+
         }
 
 
@@ -195,6 +182,7 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
                     <select id="progressStatus" name="progressStatus" value={formData.progressStatus} onChange={handleInputChange} required>
                         <option value="todo">Todo</option>
                         <option value="progress">Progress</option>
+                        <option value="completed">Completed</option>
                     </select>
                     <br /><br />
 
@@ -202,10 +190,7 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
                     <div className='chooseTime'>
                         <input type="radio" id="calendarFormat" name="timeFormat"
                             onChange={() => {
-                                // if (editData?.endDate === "") {
-                                //     setIsSameDate((prev) => !prev);
-                                // }
-                                // setIsSameDate(false);
+
                                 setTimeFormat('calendar');
                                 setFormData((prev) => ({
                                     ...prev,
@@ -214,18 +199,14 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
                                     secondsTime: ""  // Reset seconds
                                 }));
                             }}
-                            // checked={!isSameDate || !(editData?.endDate === "")}
-                            // checked={!isSameDate}
+
                             checked={timeFormat === 'calendar'}
                             value='calendarFormat' />
                         <label htmlFor='calendarFormat'>Calendar Format</label>
 
                         <input type="radio" id="hoursFormat" name="timeFormat"
                             onChange={() => {
-                                // if (editData?.endDate === "") {
-                                //     setIsSameDate((prev) => !prev);
-                                // }
-                                // setIsSameDate(true);
+
                                 setTimeFormat('hours');
                                 setFormData((prev) => ({
                                     ...prev,
@@ -234,15 +215,13 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
                                 }));
 
                             }}
-                            // checked={isSameDate || (editData?.endDate === "")}
-                            // checked={isSameDate}
+
                             checked={timeFormat === 'hours'}
                             value="hoursFormat" />
                         <label htmlFor='hoursFormat'>Hours Format</label>
                     </div>
 
-                    {/* {!isSameDate || !(editData?.endDate === "") */}
-                    {/* {!isSameDate */}
+
                     {timeFormat === 'calendar'
                         && (
                             <>
@@ -290,7 +269,11 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
 Popup.propTypes = {
     setItem: PropTypes.func.isRequired, // setItem should be a function
     editData: PropTypes.object, // editData should be an object (it could be undefined, so no isRequired)
-    setIsPopUp_OutputComponent: PropTypes.func.isRequired, // setIsPopUp_OutputComponent should be a function
+    // checkedList: PropTypes.object.isRequired, // Corrected to expect a Set
+    // setCheckedList: PropTypes.func.isRequired,
+    checkedList: PropTypes.instanceOf(Set), // Corrected to expect a Set
+    setCheckedList: PropTypes.func, // Corrected to expect a function
+    setIsPopUp_OutputComponent: PropTypes.func, // setIsPopUp_OutputComponent should be a function
 };
 
 

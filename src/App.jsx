@@ -11,6 +11,7 @@ function App() {
   const [item, setItem] = useState([]);
   const [isPopUpVisible, setPopUpVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
+  const [checkedList, setCheckedList] = useState(new Set());
 
   // console.log(activeCard);
 
@@ -22,12 +23,19 @@ function App() {
   }
 
 
-
+  //When page reload set the local storage with all the changes made
   useEffect(() => {
     const rawData = localStorage.getItem("myObj1");
     const parsedData = JSON.parse(rawData) || [];
     setItem(parsedData)
   }, []);
+
+  // when edits is made in item render the page
+  // useEffect(() => {
+  //   const rawData = localStorage.getItem("myObj1");
+  //   const parsedData = JSON.parse(rawData) || [];
+  //   setItem(parsedData)
+  // }, [item]);
 
   return (
     <>
@@ -38,12 +46,12 @@ function App() {
         <h5 style={{ zIndex: 1000, paddingTop: "50px", position: 'fixed' }}>ActiveCard - {activeCard}</h5>
         <div className='bodyContainer'>
           <div className="inputfield-container">
-            <InputField item={item} setItem={setItem} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} />
+            <InputField item={item} setItem={setItem} checkedList={checkedList} setCheckedList={setCheckedList} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} />
           </div>
 
           <div className="outputContainer">
             {/* <Output item={item} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} /> */}
-            <Output item={item} setItem={setItem} setActiveCard={setActiveCard} onDrop={onDrop} />
+            <Output item={item} setItem={setItem} checkedList={checkedList} setCheckedList={setCheckedList} setActiveCard={setActiveCard} onDrop={onDrop} />
           </div>
         </div>
       </div>

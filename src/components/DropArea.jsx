@@ -1,6 +1,7 @@
 // import  from 'react'
 import { useState } from 'react';
 import '../css/DropArea.css'
+import PropTypes from 'prop-types';
 
 const DropArea = ({ onDrop }) => {
     const [showDrop, setShowDrop] = useState(false);
@@ -17,10 +18,15 @@ const DropArea = ({ onDrop }) => {
                 onDragOver={e => e.preventDefault()}
             >
                 Drop Here
-            </section >
+            </section>
         </>
 
     )
 }
 
 export default DropArea
+
+DropArea.propTypes = {
+    onDrop: PropTypes.func.isRequired,
+
+};

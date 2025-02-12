@@ -8,25 +8,27 @@ import { IoMdClipboard } from "react-icons/io";
 // import { IoTimerOutline } from "react-icons/io5";
 import Popup from "./Popup";
 import PropTypes from 'prop-types';
-import DropArea from './DropArea';
+// import DropArea from './DropArea';
 
 
 
 
 
-const Output = ({ item, setItem, setActiveCard, onDrop }) => {
+// const Output = ({ item, setItem, setActiveCard, onDrop }) => {
+const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) => {
     const [editData, setEditData] = useState(null);
     const [isPopUp_OutputComponent, setIsPopUp_OutputComponent] = useState(false);
 
 
     //State managing the Checklist
-    const [checkedList, setCheckedList] = useState(new Set());
-    const [isTodoChecked, setIsTodoChecked] = useState(false);
-    const [isTodoInProgressChecked, setIsTodoInProgressChecked] = useState(false);
+    // const [checkedList, setCheckedList] = useState(new Set());
+    // const [isTodoChecked, setIsTodoChecked] = useState(false);
+    // const [isTodoInProgressChecked, setIsTodoInProgressChecked] = useState(false);
+
+    // const [completedTodo, setCompletedTodo] = useState([]);
 
 
-
-
+    // checkedList data when refreshed is able to restore the checked box 
     useEffect(() => {
         const storedData = localStorage.getItem("checkboxInformation");
         if (storedData) {
@@ -42,6 +44,8 @@ const Output = ({ item, setItem, setActiveCard, onDrop }) => {
     }, []);
 
 
+
+    // every checkedList is updation renders dom
     useEffect(() => {
         if (checkedList.size > 0) {
             localStorage.setItem("checkboxInformation", JSON.stringify([...checkedList]));
@@ -50,38 +54,58 @@ const Output = ({ item, setItem, setActiveCard, onDrop }) => {
         }
     }, [checkedList]);
 
-    //looping through the keys checking type
-    // for (const x of checkedList.keys()) {
-    //     console.log(typeof (x));
-    // };
-    useEffect(() => {
-        // Check if any item in "todo" is checked
-        const hasCheckedTodos = (item ?? []).some((e) => e.progressStatus === "todo" && checkedList.has(e.id));
-        setIsTodoChecked(hasCheckedTodos);
-    }, [item, checkedList]); // Dependency array updates only when items or checkedList changes
-
-    setIsTodoInProgressChecked
-
-    useEffect(() => {
-        // Check if any item in "todo" is checked
-        const hasCheckedTodos = (item ?? []).some((e) => e.progressStatus === "progress" && checkedList.has(e.id));
-        setIsTodoChecked(hasCheckedTodos);
-    }, [item, checkedList]); // Dependency array updates only when items or checkedList changes
 
     function handleCheck(value) {
 
+
+        //Changing the data to completed when clicking the checkbox button
+        const newState = {
+            id: value.id ? value.id : '',
+            projectName: value.projectName ? value.projectName : '',
+            taskName: value.taskName ? value.taskName : '',
+            priority: value.priority ? value.priority : 'medium',
+            progressStatus: (value.progressStatus) && !(checkedList.has(value.id)) ? 'completed' : 'todo',
+            startDate: value.startDate ? value.startDate : '',
+            endDate: value.endDate ? value.endDate : '',
+            hoursTime: value.hoursTime ? value.hoursTime : '',
+            minutesTime: value.minutesTime ? value.minutesTime : '',
+            secondsTime: value.secondsTime ? value.secondsTime : ''
+        };
+        // console.log(newState);
+
+        setItem((prevItem) => {
+            let updatedItems;
+            if (value.id) {
+                updatedItems = prevItem.map((item) =>
+                    (item.id === value.id) ? newState : item
+                );
+            }
+            // console.log(updatedItems);
+            // Save the updated items to localStorage
+            localStorage.setItem("myObj1", JSON.stringify(updatedItems));
+            return updatedItems;
+        });
+
+        // setcompletedTodo((prev) =>{
+
+        // })
+
+        // setting checked list data
         setCheckedList((prev) => {
 
             const newCheckedState = new Set([...prev]);
 
-
+            // console.log(value.id);
             //if already value in the set then remove from it else populate it
-            (newCheckedState.has(value)) ? newCheckedState.delete(value) : newCheckedState.add(value);
+            (newCheckedState.has(value.id)) ? newCheckedState.delete(value.id) : newCheckedState.add(value.id);
             return newCheckedState;
-        }
-        );
+        });
     }
+    // function handleTodoToCompleteSection(checkboxData) {
+    //     console.log(checkboxData);
+    // }
 
+    // Handling edit data
     function handleEditData(data) {
         // console.log(data);
         // console.log(editData);
@@ -89,6 +113,9 @@ const Output = ({ item, setItem, setActiveCard, onDrop }) => {
         // console.log(editData);
     }
     // const isChecked = checkedList.has(e.id);
+
+    // item.forEach(e => console.log(e));
+    // (item ?? []).filter((e) => e.progressStatus === "progress").forEach(e => console.log(e));
 
     return (
         <>
@@ -127,57 +154,38 @@ const Output = ({ item, setItem, setActiveCard, onDrop }) => {
                 </div>
                 {/* <div className='output-list'>Today</div> */}
                 <div className="outputMultipleCards">
+                    {/* todo */}
                     {(item ?? [])
                         .some((e) => e.progressStatus === 'todo') && (
                             <>
-                                <div className='outputTodoCards todo_progressSections' >
-
-                                    <p className='outputTodoCardsPara'>TODO</p>
-                                    {(!isTodoChecked) && <DropArea />}
+                                <div className='outputProgressCards todo_todoSections' >
                                     {(item ?? [])
-                                        .filter((e) => e.progressStatus === "todo")
-                                        .map((e, index) => {
-                                            const isChecked = checkedList.has(e.id);
-                                            return (
-                                                <>
-                                                    <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
+                                        .some((e) => e.progressStatus === 'todo') && (
+                                            <>
+                                                <p className='outputTodoCardsPara'>TODO</p>
 
-                                                        {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} setActiveCard={setActiveCard} />}
-                                                    </div>
-                                                    {(!isChecked) && <DropArea onDrop={() => onDrop(e.progressStatus, index + 1)} />}
-                                                </>
-                                            );
-                                        })
-                                    }
-                                    {/* Check if any item is completed (checked) */}
-                                    {(item ?? [])
-                                        .filter((e) => e.progressStatus === "todo")
-                                        .some((e) => checkedList.has(e.id)) && (
-                                            <p className='outputTodoCardsPara'>COMPLETED</p>
+                                            </>
                                         )}
-                                    {(isTodoChecked) && <DropArea onDrop={() => onDrop(status, position)} />}
-                                    {/* <DropArea /> */}
+
+                                    {/* {(!isTodoChecked) && <DropArea />} */}
                                     {(item ?? [])
                                         .filter((e) => e.progressStatus === "todo")
-                                        .map((e, index) => {
-                                            const isChecked = checkedList.has(e.id);
-                                            {/* console.log(isChecked); */ }
-
-                                            return (
-                                                <>
-                                                    <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
-
-                                                        {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} setActiveCard={setActiveCard} />}
-                                                    </div>
-                                                    {(isChecked) && <DropArea onDrop={() => onDrop(e.progressStatus, index + 1)} />}
-                                                </>
-                                            );
-                                        })
+                                        .map((e) => (
+                                            <Cards
+                                                key={e.id}
+                                                cardsData={e}
+                                                handleCheck={handleCheck}
+                                                checkedList={checkedList}
+                                                setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                                handleEditData={handleEditData}
+                                                setActiveCard={setActiveCard}
+                                            />
+                                        ))
                                     }
                                 </div>
                             </>
                         )}
-
+                    {/* progress */}
                     {(item ?? [])
                         .some((e) => e.progressStatus === 'progress') && (
                             <>
@@ -190,52 +198,60 @@ const Output = ({ item, setItem, setActiveCard, onDrop }) => {
                                             </>
                                         )}
 
-                                    <DropArea />
                                     {(item ?? [])
                                         .filter((e) => e.progressStatus === "progress")
-                                        .map((e, index) => {
-                                            const isChecked = checkedList.has(e.id);
-                                            {/* console.log(isChecked); */ }
-                                            return (
-                                                <>
-                                                    <div key={e.id} className={(!isChecked) ? `cardsShow` : `cardsHide`}>
-
-                                                        {(!isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} setActiveCard={setActiveCard} />}
-                                                    </div>
-                                                    {(!isChecked) && <DropArea onDrop={() => onDrop(e.progressStatus, index + 1)} />}
-                                                </>
-                                            );
-                                        })
+                                        .map((e) =>
+                                        (
+                                            <Cards
+                                                key={e.id}
+                                                cardsData={e}
+                                                handleCheck={handleCheck}
+                                                checkedList={checkedList}
+                                                setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                                handleEditData={handleEditData}
+                                                setActiveCard={setActiveCard}
+                                            />
+                                        )
+                                        )
                                     }
-                                    {/* Check if any item is completed (checked) */}
-                                    {(item ?? [])
-                                        .filter((e) => e.progressStatus === "progress")
-                                        .some((e) => checkedList.has(e.id)) && (
-                                            <p className='outputTodoCardsPara'>COMPLETED</p>
-                                        )}
-                                    {(isTodoInProgressChecked) && <DropArea />}
-                                    {/* <DropArea /> */}
-                                    {(item ?? [])
-                                        .filter((e) => e.progressStatus === "progress")
-                                        .map((e, index) => {
-                                            const isChecked = checkedList.has(e.id);
-                                            {/* console.log(isChecked); */ }
-                                            return (
-                                                <>
-                                                    <div key={e.id} className={(isChecked) ? `cardsShow` : `cardsHide`}>
 
-                                                        {(isChecked) && <Cards cardsData={e} handleCheck={handleCheck} checkedList={checkedList} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} handleEditData={handleEditData} setActiveCard={setActiveCard} />}
-                                                    </div>
-                                                    {(isChecked) && <DropArea onDrop={() => onDrop(e.progressStatus, index + 1)} />}
-                                                </>
-                                            );
-                                        })
+                                </div>
+                            </>
+                        )}
+                    {/* completed todo  */}
+                    {(item ?? [])
+                        .some((e) => e.progressStatus === 'completed') && (
+                            <>
+                                <div className='outputProgressCards todo_CompletedSections'>
+                                    {(item ?? [])
+                                        .some((e) => e.progressStatus === 'completed') && (
+                                            <>
+                                                <p className='outputTodoCardsPara'>COMPLETED</p>
+
+                                            </>
+                                        )}
+
+                                    {/* <DropArea /> */}
+
+                                    {(item ?? [])
+                                        .filter((e) => e.progressStatus === "completed")
+                                        .map((e) => (
+                                            <Cards
+                                                key={e.id}
+                                                cardsData={e}
+                                                handleCheck={handleCheck}
+                                                checkedList={checkedList}
+                                                setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                                handleEditData={handleEditData}
+                                                setActiveCard={setActiveCard}
+                                            />
+                                        ))
                                     }
                                 </div>
                             </>
                         )}
 
-
+                    {/* isPopUp_OutputComponent when set to true runs popup form component */}
                     {isPopUp_OutputComponent &&
                         (<>
 
@@ -244,8 +260,12 @@ const Output = ({ item, setItem, setActiveCard, onDrop }) => {
                                     <button type='button' onClick={() => setIsPopUp_OutputComponent((prev) => !prev)} className='closePopup'>
                                         X
                                     </button>
-                                    <Popup editData={editData} setItem={setItem} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} />
-
+                                    <Popup
+                                        editData={editData}
+                                        setItem={setItem}
+                                        setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                        checkedList={checkedList}
+                                        setCheckedList={setCheckedList} />
                                 </div>
                             </div>
 
@@ -266,6 +286,9 @@ Output.propTypes = {
     item: PropTypes.array.isRequired,   // Corrected PropTypes import
     setItem: PropTypes.func.isRequired,
     setActiveCard: PropTypes.func.isRequired,
+    checkedList: PropTypes.instanceOf(Set), // Corrected to expect a Set
+    setCheckedList: PropTypes.func,
+    onDrop: PropTypes.func.isRequired,
 };
 
 export default Output
