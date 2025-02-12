@@ -73,19 +73,18 @@
     flex-direction: column;
     gap: 2em;
 }
-.todo_progressSections{
+
+.outputMultipleCards .outputProgressCards{
+    /* height: 400px; */
+    width: 90%;
+    /* border: 2px solid red; */
     background-color: #f6f6f6;
     padding: 2em;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 1em;
-    
-}
-.outputMultipleCards .outputTodoCards{
-    /* height: 400px; */
-    width: 90%;
-    /* border: 2px solid black; */
+
 }
 
 .outputTodoCardsPara{
@@ -100,20 +99,17 @@
     line-height:28px;
     color: grey
 }
-.outputMultipleCards .outputProgressCards{
-    /* height: 400px; */
-    width: 90%;
-    /* border: 2px solid red; */
 
-}
 .outputProgressCards{
     margin-bottom: 20px;
 }
-.cardsHide{
+
+/* not used classes feature developed before had it */
+/* .cardsHide{
     display: none;
 }
 .showComplete{
-    /* margin: 0; */
+    
     font-family: "Mona Sans", serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -124,10 +120,14 @@
     line-height:28px;
     color: grey
 }
+
 .hideComplete{
     display: none;
-}
+} */
 
+
+
+/* unused classes not defined in component */
 /* .output-list{
     font-family: "Mona Sans", serif;
     font-optical-sizing: auto;

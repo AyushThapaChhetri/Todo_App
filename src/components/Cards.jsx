@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
 {/* <CiCalendar className='cards-icon' /> */ }
 
 // const Cards = ({ cardsData, handleCheck, checkedList, setPopUpVisible }) => {
-const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent, handleEditData }) => {
+// const Cards = ({ cardsData, handleCheck, handleTodoToCompleteSection, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
+const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
 
 
 
@@ -27,16 +28,19 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
     let captializedPriority = capitalizerFunc(cardsData.priority);
     // let capitalizedProgressStatus = capitalizerFunc(cardsData.progressStatus);
 
-
+    // if(cardsData.progressStatus === "completed"){
+    //     checkedList.add(cardsData.id);
+    //     localStorage.setItem("checkboxInformation",JSON.stringify(c));
+    // }
 
 
     return (
         <>
-            <div className="cards-outerContainer">
+            <div className="cards-outerContainer" draggable onDragStart={() => setActiveCard(cardsData.id)} onDragEnd={() => setActiveCard(null)}>
                 <div
 
                     // className="cards-innerContainer"
-                    className={`cards-innerContainer ${checkedList.has(cardsData.id) ? "blured" : ""}`}
+                    className={`cards-innerContainer ${checkedList.has(cardsData.id) || (cardsData.progressStatus === "completed") ? "blured" : ""}`}
                 >
                     <div className='cards-subInner cSisub1'>
                         <div className='sub1cSisub1'>
@@ -83,11 +87,13 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
                             id={cardsData.id}
                             className='checkbox-check'
                             // checked={isChecked}
-                            checked={checkedList.has(cardsData.id)}
+                            checked={checkedList.has(cardsData.id) || cardsData.progressStatus === "completed"}
 
                             // checked={(isChecked) && (classId == cardsData.id) ? true : false}
                             // checked={(.isChecked) && (classId == cardsData.id) ? true : false}
-                            onChange={() => handleCheck(cardsData.id)}
+
+                            // function handle check is defined in the output component
+                            onChange={() => (handleCheck(cardsData))}
                             name={cardsData.id}
                             value={cardsData.id}
                         />
@@ -99,6 +105,7 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
                             onClick={() => {
                                 // console.log("clicked");
                                 setIsPopUp_OutputComponent((prev) => !prev);
+                                //edit function is defined in the output Component
                                 handleEditData(cardsData);
                             }
                             }
@@ -121,6 +128,7 @@ Cards.propTypes = {
         projectName: PropTypes.string.isRequired,
         taskName: PropTypes.string.isRequired,
         priority: PropTypes.string.isRequired,
+        progressStatus: PropTypes.string.isRequired,
         endDate: PropTypes.string.isRequired,
         hoursTime: PropTypes.string.isRequired,
         minutesTime: PropTypes.string.isRequired,
@@ -129,6 +137,9 @@ Cards.propTypes = {
     checkedList: PropTypes.instanceOf(Set).isRequired,
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
     handleEditData: PropTypes.func.isRequired,
+    setActiveCard: PropTypes.func.isRequired,
+    // handleTodoToCompleteSection: PropTypes.func.isRequired,
+
 };
 
 

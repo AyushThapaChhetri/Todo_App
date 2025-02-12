@@ -7,7 +7,7 @@ import Popup from './Popup'
 
 
 
-const InputField = ({ item, setItem, isPopUpVisible, setPopUpVisible }) => {
+const InputField = ({ item, setItem, checkedList, setCheckedList, isPopUpVisible, setPopUpVisible }) => {
 
 
     // useEffect(() => {
@@ -42,7 +42,7 @@ const InputField = ({ item, setItem, isPopUpVisible, setPopUpVisible }) => {
                                     X
                                 </button>
                                 {/* <Popup item={item} setItem={setItem} isSameDate={isSameDate} setIsSameDate={setIsSameDate} /> */}
-                                <Popup item={item} setItem={setItem} />
+                                <Popup item={item} checkedList={checkedList} setCheckedList={setCheckedList} setItem={setItem} />
                             </div>
                         </div>
 
@@ -59,6 +59,8 @@ InputField.propTypes = {
     setItem: PropTypes.func.isRequired,      // Assuming 'setItem' is a function
     isPopUpVisible: PropTypes.bool.isRequired,   // Assuming 'isPopUpVisible' is a boolean
     setPopUpVisible: PropTypes.func.isRequired,  // Assuming 'setPopUpVisible' is a function
+    checkedList: PropTypes.instanceOf(Set), // Corrected to expect a Set
+    setCheckedList: PropTypes.func,
 };
 
 export default InputField

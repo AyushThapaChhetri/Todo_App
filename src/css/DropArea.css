@@ -1,0 +1,16 @@
+.dropAreaOuterContainer{
+    height: 6em;
+    width: 100%;
+    border: 1px dashed grey;
+    opacity: 0.6;
+    background-color: #ececec;
+    /* text-align: center; */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    transition: all .1s ease-in-out;
+}
+.hidedropAreaOuterContainer{
+    opacity: 0;
+    height: 8px;
+}
