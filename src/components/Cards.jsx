@@ -32,7 +32,7 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
     //     checkedList.add(cardsData.id);
     //     localStorage.setItem("checkboxInformation",JSON.stringify(c));
     // }
-
+    // console.log(cardsData.secondsTime);
 
     return (
         <>
@@ -75,7 +75,8 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
                             <p className='sub2cSisub1-para'>
                                 {(cardsData.endDate.length === 0) ?
                                     (!(cardsData.hoursTime == 0) ? cardsData.hoursTime + ` hours ` : '') +
-                                    (!(cardsData.minutesTime == 0) ? cardsData.minutesTime + ` minutes ` : '') :
+                                    (!(cardsData.minutesTime == 0) ? cardsData.minutesTime + ` minutes ` : '') +
+                                    (((cardsData.hoursTime == 0 && cardsData.minutesTime == 0 && cardsData.secondsTime != 0) ? (cardsData.secondsTime + ` seconds`) : '')) :
                                     cardsData.endDate}
                             </p>
                         </div>
@@ -132,6 +133,7 @@ Cards.propTypes = {
         endDate: PropTypes.string.isRequired,
         hoursTime: PropTypes.string.isRequired,
         minutesTime: PropTypes.string.isRequired,
+        secondsTime: PropTypes.string.isRequired,
     }).isRequired,
     handleCheck: PropTypes.func.isRequired,
     checkedList: PropTypes.instanceOf(Set).isRequired,

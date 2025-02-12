@@ -67,7 +67,10 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
             alert("❌❌❌Start Date Can't be Same as End Date! ❌❌❌\n ⬇️ Assign Hours:Minutes to be finished ⬇️");
             setFormData(prev => ({ ...prev, startDate: "", endDate: "" }));// ADD: Reset dates
 
-        } else {
+        } else if (timeFormat === 'hours' && formData.hoursTime == 0 && formData.minutesTime == 0 && formData.secondsTime == 0) {
+            alert("all value set to 0");
+        }
+        else {
 
             //local Storage variable definition 
             const newData = {
