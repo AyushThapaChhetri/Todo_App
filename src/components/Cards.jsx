@@ -6,6 +6,8 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { MdAccessTime } from "react-icons/md";
 import { HiDotsHorizontal } from "react-icons/hi";
 import PropTypes from 'prop-types';
+import Edits from "./Edits"
+import { useState } from 'react';
 
 {/* <CiCalendar className='cards-icon' /> */ }
 
@@ -14,8 +16,7 @@ import PropTypes from 'prop-types';
 const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
 
 
-
-
+    const [isEditOptions, setIsEditOptions] = useState(false);
 
     function capitalizerFunc(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -103,15 +104,19 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
                             setPopUpVisible((prev) => !prev)
                         }} /> */}
                         <HiDotsHorizontal
-                            onClick={() => {
-                                // console.log("clicked");
-                                setIsPopUp_OutputComponent((prev) => !prev);
-                                //edit function is defined in the output Component
-                                handleEditData(cardsData);
-                            }
-                            }
+                            onMouseEnter={() => setIsEditOptions(true)}
+                            onMouseLeave={() => setIsEditOptions(false)}
+                            style={{ cursor: "pointer" }}
 
                         />
+
+                        {(isEditOptions) && <Edits
+                            cardsData={cardsData}
+                            handleEditData={handleEditData}
+                            setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                            setIsEditOptions={setIsEditOptions}
+
+                        />}
 
                     </div>
                 </div>

@@ -257,18 +257,21 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
 
                             <div className='popupBox-Wrapper'>
                                 <div className='popupBox'>
+                                    <div className="popupBoxFormContainerImage">
+                                    </div>
+                                    <div className="popupFormDataContainerInputField">
 
 
-
-                                    <button type='button' onClick={() => setIsPopUp_OutputComponent((prev) => !prev)} className='closePopup'>
-                                        X
-                                    </button>
-                                    <Popup
-                                        editData={editData}
-                                        setItem={setItem}
-                                        setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
-                                        checkedList={checkedList}
-                                        setCheckedList={setCheckedList} />
+                                        <button type='button' onClick={() => setIsPopUp_OutputComponent((prev) => !prev)} className='closePopup'>
+                                            X
+                                        </button>
+                                        <Popup
+                                            editData={editData}
+                                            setItem={setItem}
+                                            setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                            checkedList={checkedList}
+                                            setCheckedList={setCheckedList} />
+                                    </div>
 
                                 </div>
                             </div>
