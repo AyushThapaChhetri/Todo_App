@@ -4,19 +4,20 @@ import '../css/Cards.css'
 // import { Link } from "react-router-dom";
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdAccessTime } from "react-icons/md";
-import { HiDotsHorizontal } from "react-icons/hi";
+// import { HiDotsHorizontal } from "react-icons/hi";
 import PropTypes from 'prop-types';
-import Edits from "./Edits"
-import { useState } from 'react';
+// import Edits from "./Edits"
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 
-{/* <CiCalendar className='cards-icon' /> */ }
+
 
 // const Cards = ({ cardsData, handleCheck, checkedList, setPopUpVisible }) => {
 // const Cards = ({ cardsData, handleCheck, handleTodoToCompleteSection, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
-const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
+const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
 
 
-    const [isEditOptions, setIsEditOptions] = useState(false);
+    // const [isEditOptions, setIsEditOptions] = useState(false);
 
     function capitalizerFunc(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -29,11 +30,7 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
     let captializedPriority = capitalizerFunc(cardsData.priority);
     // let capitalizedProgressStatus = capitalizerFunc(cardsData.progressStatus);
 
-    // if(cardsData.progressStatus === "completed"){
-    //     checkedList.add(cardsData.id);
-    //     localStorage.setItem("checkboxInformation",JSON.stringify(c));
-    // }
-    // console.log(cardsData.secondsTime);
+
 
     return (
         <>
@@ -61,6 +58,18 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
                                     Project Name: {capitalizedProjectName}
                                 </p>
                             </div>
+
+                            <FaEdit
+                                className='edit-icon-cards'
+                                onClick={() => {
+                                    // console.log('helllo');
+                                    setIsPopUp_OutputComponent((prev) => !prev);
+                                    //edit function is defined in the output Component
+                                    handleEditData(cardsData);
+
+                                }}
+
+                            />
                             {/* <div
                                 // className='cards-ProgressStatus'
                                 className={`cards-progressStatus ${cardsData.progressStatus}`}
@@ -72,7 +81,7 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
                         </div>
 
                         <div className='sub2cSisub1'>
-                            <MdAccessTime className='sub2cSisub1-time Icon' />
+                            <MdAccessTime className='sub2cSisub1-timeIcon' />
                             <p className='sub2cSisub1-para'>
                                 {(cardsData.endDate.length === 0) ?
                                     (!(cardsData.hoursTime == 0) ? cardsData.hoursTime + ` hours ` : '') +
@@ -99,24 +108,41 @@ const Cards = ({ cardsData, handleCheck, checkedList, setIsPopUp_OutputComponent
                             name={cardsData.id}
                             value={cardsData.id}
                         />
+
+
+
+
+
+                        <MdDeleteForever
+                            className='delete-icon-cards'
+                            onClick={() => {
+                                // console.log('delete');   
+                                handleDeleteDataEditComp(cardsData)
+                            }}
+                        />
+
+
+
                         {/* <HiDotsHorizontal onClick={() => {
                             setEdiTData(cardsData)
                             setPopUpVisible((prev) => !prev)
                         }} /> */}
-                        <HiDotsHorizontal
+                        {/* <HiDotsHorizontal
                             onMouseEnter={() => setIsEditOptions(true)}
                             onMouseLeave={() => setIsEditOptions(false)}
                             style={{ cursor: "pointer" }}
 
-                        />
+                        /> */}
 
-                        {(isEditOptions) && <Edits
+
+                        {/* {(isEditOptions) && <Edits
                             cardsData={cardsData}
                             handleEditData={handleEditData}
                             setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                            handleDeleteDataEditComp={handleDeleteDataEditComp}
                             setIsEditOptions={setIsEditOptions}
 
-                        />}
+                        />} */}
 
                     </div>
                 </div>
@@ -145,6 +171,8 @@ Cards.propTypes = {
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
     handleEditData: PropTypes.func.isRequired,
     setActiveCard: PropTypes.func.isRequired,
+    handleDeleteDataEditComp: PropTypes.func.isRequired,
+
     // handleTodoToCompleteSection: PropTypes.func.isRequired,
 
 };

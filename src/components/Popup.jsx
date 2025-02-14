@@ -100,11 +100,7 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
                     return newCheckedState;
                 });
 
-                // if (editData?.progressStatus) {
-                //     checkedList.add(newData.id);
-                //     localStorage.setItem("checkboxInformation", JSON.stringify([...checkedList]));
 
-                // }
             }
 
 

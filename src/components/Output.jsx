@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import "../Css/Output.css"
 import Cards from './Cards';
-
 import { SlCalender } from "react-icons/sl";
 import { CiCircleList } from "react-icons/ci";
 import { IoMdClipboard } from "react-icons/io";
@@ -24,7 +23,6 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
     // const [checkedList, setCheckedList] = useState(new Set());
     // const [isTodoChecked, setIsTodoChecked] = useState(false);
     // const [isTodoInProgressChecked, setIsTodoInProgressChecked] = useState(false);
-
     // const [completedTodo, setCompletedTodo] = useState([]);
 
 
@@ -80,42 +78,57 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
                     (item.id === value.id) ? newState : item
                 );
             }
-            // console.log(updatedItems);
             // Save the updated items to localStorage
             localStorage.setItem("myObj1", JSON.stringify(updatedItems));
             return updatedItems;
         });
 
-        // setcompletedTodo((prev) =>{
 
-        // })
 
         // setting checked list data
         setCheckedList((prev) => {
 
             const newCheckedState = new Set([...prev]);
 
-            // console.log(value.id);
             //if already value in the set then remove from it else populate it
             (newCheckedState.has(value.id)) ? newCheckedState.delete(value.id) : newCheckedState.add(value.id);
             return newCheckedState;
         });
     }
-    // function handleTodoToCompleteSection(checkboxData) {
-    //     console.log(checkboxData);
-    // }
+    console.log(checkedList);
 
     // Handling edit data
     function handleEditData(data) {
-        // console.log(data);
-        // console.log(editData);
         setEditData(data);
-        // console.log(editData);
     }
-    // const isChecked = checkedList.has(e.id);
 
-    // item.forEach(e => console.log(e));
-    // (item ?? []).filter((e) => e.progressStatus === "progress").forEach(e => console.log(e));
+    function handleDeleteDataEditComp(deleteData) {
+        // console.log(deleteData);
+        // console.log(item);
+
+
+
+        setCheckedList((prev) => {
+            let newCheckedList = new Set([...prev]);
+
+            if (newCheckedList.has(deleteData.id)) {
+
+                newCheckedList.delete(deleteData.id);
+                localStorage.setItem('checkboxInformation', [...newCheckedList]);
+
+            }
+            return newCheckedList;
+
+
+        });
+
+        // console.log(item2);
+        setItem(() => {
+            let item2 = item.filter((e) => e.id != deleteData.id);
+            localStorage.setItem('myObj1', JSON.stringify(item2));
+            return item2;
+        })
+    }
 
     return (
         <>
@@ -178,6 +191,7 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
                                                 checkedList={checkedList}
                                                 setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                                 handleEditData={handleEditData}
+                                                handleDeleteDataEditComp={handleDeleteDataEditComp}
                                                 setActiveCard={setActiveCard}
                                             />
                                         ))
@@ -209,6 +223,7 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
                                                 checkedList={checkedList}
                                                 setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                                 handleEditData={handleEditData}
+                                                handleDeleteDataEditComp={handleDeleteDataEditComp}
                                                 setActiveCard={setActiveCard}
                                             />
                                         )
@@ -243,6 +258,7 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
                                                 checkedList={checkedList}
                                                 setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                                 handleEditData={handleEditData}
+                                                handleDeleteDataEditComp={handleDeleteDataEditComp}
                                                 setActiveCard={setActiveCard}
                                             />
                                         ))
@@ -296,6 +312,7 @@ Output.propTypes = {
     checkedList: PropTypes.instanceOf(Set), // Corrected to expect a Set
     setCheckedList: PropTypes.func,
     onDrop: PropTypes.func.isRequired,
+
 };
 
 export default Output

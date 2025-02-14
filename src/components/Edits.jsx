@@ -3,33 +3,49 @@ import '../css/Edit.css'
 import PropTypes from 'prop-types'
 // import '../css/Popup.css'
 
-const Edits = ({ setIsEditOptions, cardsData, handleEditData, setIsPopUp_OutputComponent }) => {
+const Edits = ({ setIsEditOptions, handleDeleteDataEditComp, cardsData, handleEditData, setIsPopUp_OutputComponent }) => {
     return (
         <div
             className="editsOuterContainer"
-            onMouseEnter={() => setIsEditOptions(true)}
-            onMouseLeave={() => setIsEditOptions(false)} style={{ cursor: 'pointer' }}>
+            onMouseOver={() => setIsEditOptions(true)}
+            onMouseOut={() => setIsEditOptions(false)} style={{ cursor: 'pointer' }}>
             <div className="editsInnerContainer" >
                 <div className='pointerEditsInnerContainer'></div>
                 <div
                     className="editsInnerSubContainer"
                     onClick={() => {
-                        // console.log("clicked");
                         setIsPopUp_OutputComponent((prev) => !prev);
-
-                        //Edit Div open
-                        // setIsEditOptions((prev) => !prev);
-
                         //edit function is defined in the output Component
                         handleEditData(cardsData);
                     }
                     }
                 >
-                    <p className='editsInnerContainer-para1'>
+
+                    <p
+                        className='editsInnerContainer-para1'
+                    >
                         Edit
                     </p>
+
+
                 </div>
-                <p>Delete</p>
+                <div
+                    className='deleteInnerSubContainer'
+                    onClick={() => handleDeleteDataEditComp(cardsData)}
+                >
+                    <p
+
+                    >
+                        Delete
+
+                    </p>
+                    {/* <button
+                        onClick={() => handleDeleteDataEditComp(cardsData)}
+
+                    >
+                        Delete
+                    </button> */}
+                </div>
             </div>
         </div>
     )
@@ -52,4 +68,5 @@ Edits.propTypes = {
     handleEditData: PropTypes.func.isRequired,
     setIsEditOptions: PropTypes.func.isRequired,
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
+    handleDeleteDataEditComp: PropTypes.func.isRequired,
 }
