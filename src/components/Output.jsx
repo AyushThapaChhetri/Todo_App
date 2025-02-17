@@ -61,6 +61,7 @@ const Output = ({ item, setItem, setIsFetch, setActiveCard }) => {
     // Handling delete operation performed in each card (Clicking delete button exectues this function)
     function handleDeleteDataEditComp(deleteData) {
 
+        //utils delete function
         handleDelete(deleteData, item);
         setIsFetch(true);
     }
