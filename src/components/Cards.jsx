@@ -12,9 +12,7 @@ import { MdDeleteForever } from "react-icons/md";
 
 
 
-// const Cards = ({ cardsData, handleCheck, checkedList, setPopUpVisible }) => {
-// const Cards = ({ cardsData, handleCheck, handleTodoToCompleteSection, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
-const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, checkedList, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
+const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
 
 
     // const [isEditOptions, setIsEditOptions] = useState(false);
@@ -28,7 +26,6 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, checkedList, 
     let capitalizedProjectName = capitalizerFunc(cardsData.projectName);
     let capitalizedTaskName = capitalizerFunc(cardsData.taskName);
     let captializedPriority = capitalizerFunc(cardsData.priority);
-    // let capitalizedProgressStatus = capitalizerFunc(cardsData.progressStatus);
 
 
 
@@ -37,14 +34,14 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, checkedList, 
             <div className="cards-outerContainer" draggable onDragStart={() => setActiveCard(cardsData.id)} onDragEnd={() => setActiveCard(null)}>
                 <div
 
-                    // className="cards-innerContainer"
-                    className={`cards-innerContainer ${checkedList.has(cardsData.id) || (cardsData.progressStatus === "completed") ? "blured" : ""}`}
+
+                    className={`cards-innerContainer ${(cardsData.progressStatus === "completed") ? "blured" : ""}`}
                 >
                     <div className='cards-subInner cSisub1'>
                         <div className='sub1cSisub1'>
                             <FaCalendarAlt className='cards-icon' />
                             <p className='output-para'>
-                                {/* {capitalizedProjectName} */}
+
                                 {capitalizedTaskName}
 
                             </p>
@@ -62,22 +59,15 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, checkedList, 
                             <FaEdit
                                 className='edit-icon-cards'
                                 onClick={() => {
-                                    // console.log('helllo');
+
                                     setIsPopUp_OutputComponent((prev) => !prev);
-                                    //edit function is defined in the output Component
+
                                     handleEditData(cardsData);
 
                                 }}
 
                             />
-                            {/* <div
-                                // className='cards-ProgressStatus'
-                                className={`cards-progressStatus ${cardsData.progressStatus}`}
-                            >
-                                <p>
-                                    Status: {capitalizedProgressStatus}
-                                </p>
-                            </div> */}
+
                         </div>
 
                         <div className='sub2cSisub1'>
@@ -97,11 +87,7 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, checkedList, 
                             type="checkbox"
                             id={cardsData.id}
                             className='checkbox-check'
-                            // checked={isChecked}
-                            checked={checkedList.has(cardsData.id) || cardsData.progressStatus === "completed"}
-
-                            // checked={(isChecked) && (classId == cardsData.id) ? true : false}
-                            // checked={(.isChecked) && (classId == cardsData.id) ? true : false}
+                            checked={cardsData.progressStatus === "completed"}
 
                             // function handle check is defined in the output component
                             onChange={() => (handleCheck(cardsData))}
@@ -116,7 +102,6 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, checkedList, 
                         <MdDeleteForever
                             className='delete-icon-cards'
                             onClick={() => {
-                                // console.log('delete');   
                                 handleDeleteDataEditComp(cardsData)
                             }}
                         />
@@ -167,12 +152,10 @@ Cards.propTypes = {
         secondsTime: PropTypes.string.isRequired,
     }).isRequired,
     handleCheck: PropTypes.func.isRequired,
-    checkedList: PropTypes.instanceOf(Set).isRequired,
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
     handleEditData: PropTypes.func.isRequired,
     setActiveCard: PropTypes.func.isRequired,
     handleDeleteDataEditComp: PropTypes.func.isRequired,
-
     // handleTodoToCompleteSection: PropTypes.func.isRequired,
 
 };

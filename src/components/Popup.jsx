@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'; // Import PropTypes
 import '../css/Popup.css'
-// import { GiChecklist } from 'react-icons/gi';
 
-const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_OutputComponent }) => {
+
+
+const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
 
 
 
@@ -87,31 +88,6 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
                 minutesTime: formData.minutesTime,
                 secondsTime: formData.secondsTime
             };
-
-            //checking editData ProgressStatus only works when form submited after edit popup closes
-            if (newData.progressStatus === "completed") {
-                console.log(newData.progressStatus, ' : etai bata ho');
-                console.log("Progress is completed. checkedList type:", checkedList instanceof Set, "Value:", checkedList); // Debugging line
-                setCheckedList((prev) => {
-
-                    const newCheckedState = new Set([...prev]);
-                    newCheckedState.add(newData.id);
-                    localStorage.setItem("checkboxInformation", JSON.stringify([...newCheckedState]));
-                    return newCheckedState;
-                });
-
-
-            }
-
-
-            if (editData && newData?.progressStatus !== "completed") {
-
-                checkedList.delete(newData.id);
-                localStorage.setItem('checkboxInformation', JSON.stringify([...checkedList]));
-                ;
-            }
-
-
 
             // Item value which is in local storage and the app component is changed
             setItem((prevItems) => {
@@ -232,8 +208,7 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
                             </div>
                         )}
 
-                    {/* {isSameDate || editData?.endDate === "" */}
-                    {/* {isSameDate */}
+
                     {timeFormat === 'hours'
                         && (
                             <>
@@ -268,10 +243,6 @@ const Popup = ({ setItem, checkedList, setCheckedList, editData, setIsPopUp_Outp
 Popup.propTypes = {
     setItem: PropTypes.func.isRequired, // setItem should be a function
     editData: PropTypes.object, // editData should be an object (it could be undefined, so no isRequired)
-    // checkedList: PropTypes.object.isRequired, // Corrected to expect a Set
-    // setCheckedList: PropTypes.func.isRequired,
-    checkedList: PropTypes.instanceOf(Set), // Corrected to expect a Set
-    setCheckedList: PropTypes.func, // Corrected to expect a function
     setIsPopUp_OutputComponent: PropTypes.func, // setIsPopUp_OutputComponent should be a function
 };
 

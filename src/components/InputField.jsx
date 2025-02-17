@@ -3,25 +3,16 @@ import "../Css/InputField.css"
 import PropTypes from 'prop-types';
 // import Output from './Output';
 import Popup from './Popup'
-// import { CiKeyboard } from "react-icons/ci";
 
 
 
-const InputField = ({ item, setItem, checkedList, setCheckedList, isPopUpVisible, setPopUpVisible }) => {
 
 
-    // useEffect(() => {
-
-    //     const rawData = localStorage.getItem("myObj1");
-    //     const dataReceived = JSON.parse(rawData) || [];
-    //     console.log("Parsed data:", dataReceived);
-    // },[]);
+const InputField = ({ item, setItem, isPopUpVisible, setPopUpVisible }) => {
 
 
     const handleButtonClick = () => {
-        // console.log("Buttonclicked");
         setPopUpVisible(!isPopUpVisible);
-        // console.log(isPopUpVisible);
     }
 
     return (
@@ -45,8 +36,7 @@ const InputField = ({ item, setItem, checkedList, setCheckedList, isPopUpVisible
                                     <button type='button' onClick={handleButtonClick} className='closePopup'>
                                         X
                                     </button>
-                                    {/* <Popup item={item} setItem={setItem} isSameDate={isSameDate} setIsSameDate={setIsSameDate} /> */}
-                                    <Popup item={item} checkedList={checkedList} setCheckedList={setCheckedList} setItem={setItem} />
+                                    <Popup item={item} setItem={setItem} />
                                 </div>
                             </div>
                         </div>
@@ -64,8 +54,6 @@ InputField.propTypes = {
     setItem: PropTypes.func.isRequired,      // Assuming 'setItem' is a function
     isPopUpVisible: PropTypes.bool.isRequired,   // Assuming 'isPopUpVisible' is a boolean
     setPopUpVisible: PropTypes.func.isRequired,  // Assuming 'setPopUpVisible' is a function
-    checkedList: PropTypes.instanceOf(Set), // Corrected to expect a Set
-    setCheckedList: PropTypes.func,
 };
 
 export default InputField
