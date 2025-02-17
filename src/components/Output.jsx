@@ -7,6 +7,7 @@ import { IoMdClipboard } from "react-icons/io";
 // import { IoTimerOutline } from "react-icons/io5";
 import Popup from "./Popup";
 import PropTypes from 'prop-types';
+import handleDelete from '../utils/delete';
 // import DropArea from './DropArea';
 
 
@@ -95,7 +96,7 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
             return newCheckedState;
         });
     }
-    console.log(checkedList);
+    // console.log(checkedList);
 
     // Handling edit data
     function handleEditData(data) {
@@ -103,31 +104,28 @@ const Output = ({ item, setItem, checkedList, setCheckedList, setActiveCard }) =
     }
 
     function handleDeleteDataEditComp(deleteData) {
-        // console.log(deleteData);
-        // console.log(item);
 
 
+        handleDelete(deleteData, item, setItem, checkedList, setCheckedList);
 
-        setCheckedList((prev) => {
-            let newCheckedList = new Set([...prev]);
+        // setCheckedList((prev) => {
+        //     let newCheckedList = new Set([...prev]);
 
-            if (newCheckedList.has(deleteData.id)) {
+        //     if (newCheckedList.has(deleteData.id)) {
 
-                newCheckedList.delete(deleteData.id);
-                localStorage.setItem('checkboxInformation', [...newCheckedList]);
+        //         newCheckedList.delete(deleteData.id);
+        //         localStorage.setItem('checkboxInformation', [...newCheckedList]);
 
-            }
-            return newCheckedList;
+        //     }
+        //     return newCheckedList;
+        // });
 
 
-        });
-
-        // console.log(item2);
-        setItem(() => {
-            let item2 = item.filter((e) => e.id != deleteData.id);
-            localStorage.setItem('myObj1', JSON.stringify(item2));
-            return item2;
-        })
+        // setItem(() => {
+        //     let item2 = item.filter((e) => e.id != deleteData.id);
+        //     localStorage.setItem('myObj1', JSON.stringify(item2));
+        //     return item2;
+        // })
     }
 
     return (
