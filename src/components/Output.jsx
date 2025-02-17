@@ -7,6 +7,7 @@ import { IoMdClipboard } from "react-icons/io";
 import Popup from "./Popup";
 import PropTypes from 'prop-types';
 import handleDelete from '../utils/delete';
+import handleCheckbox from '../utils/handleCheckbox'
 // import DropArea from './DropArea';
 
 
@@ -24,32 +25,9 @@ const Output = ({ item, setItem, setIsFetch, setActiveCard }) => {
     // When checkbox is clicked and unclicked in each card
     function handleCheck(value) {
 
-        //Changing the data to completed when clicking the checkbox button
-        const newState = {
-            id: value.id ? value.id : '',
-            projectName: value.projectName ? value.projectName : '',
-            taskName: value.taskName ? value.taskName : '',
-            priority: value.priority ? value.priority : 'medium',
-            progressStatus: (value.progressStatus != "completed") ? 'completed' : 'todo',
-            startDate: value.startDate ? value.startDate : '',
-            endDate: value.endDate ? value.endDate : '',
-            hoursTime: value.hoursTime ? value.hoursTime : '',
-            minutesTime: value.minutesTime ? value.minutesTime : '',
-            secondsTime: value.secondsTime ? value.secondsTime : ''
-        };
-
-
-        setItem((prevItem) => {
-            let updatedItems;
-            if (value.id) {
-                updatedItems = prevItem.map((item) =>
-                    (item.id === value.id) ? newState : item
-                );
-            }
-            // Save the updated items to localStorage
-            localStorage.setItem("myObj1", JSON.stringify(updatedItems));
-            return updatedItems;
-        });
+        //utils Handle Chekbox function
+        handleCheckbox(value, item);
+        setIsFetch(true);
     }
 
 
@@ -60,7 +38,7 @@ const Output = ({ item, setItem, setIsFetch, setActiveCard }) => {
 
     // Handling delete operation performed in each card (Clicking delete button exectues this function)
     function handleDeleteDataEditComp(deleteData) {
-
+        //utils delete function
         handleDelete(deleteData, item);
         setIsFetch(true);
     }
