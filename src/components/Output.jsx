@@ -15,11 +15,13 @@ import handleDelete from '../utils/delete';
 
 // const Output = ({ item, setItem, setActiveCard, onDrop }) => {
 
-const Output = ({ item, setItem, setActiveCard }) => {
+const Output = ({ item, setItem, setIsFetch, setActiveCard }) => {
     const [editData, setEditData] = useState(null);
     const [isPopUp_OutputComponent, setIsPopUp_OutputComponent] = useState(false);
 
-    // #2
+
+
+    // When checkbox is clicked and unclicked in each card
     function handleCheck(value) {
 
         //Changing the data to completed when clicking the checkbox button
@@ -51,21 +53,16 @@ const Output = ({ item, setItem, setActiveCard }) => {
     }
 
 
-    // Handling edit data
+    // Handling edit data , card info retrieval when clicking edit button in each card fetches it info
     function handleEditData(data) {
         setEditData(data);
     }
 
+    // Handling delete operation performed in each card (Clicking delete button exectues this function)
     function handleDeleteDataEditComp(deleteData) {
 
-
-        // handleDelete(deleteData, item, setItem, checkedList, setCheckedList);
-        let updatedItemAfterDelete = handleDelete(deleteData, item);
-
-        setItem(() => {
-            localStorage.setItem('myObj1', JSON.stringify(updatedItemAfterDelete));
-            return updatedItemAfterDelete;
-        })
+        handleDelete(deleteData, item);
+        setIsFetch(true);
     }
 
     return (
@@ -238,6 +235,7 @@ Output.propTypes = {
     item: PropTypes.array.isRequired,   // Corrected PropTypes import
     setItem: PropTypes.func.isRequired,
     setActiveCard: PropTypes.func.isRequired,
+    setIsFetch: PropTypes.func.isRequired,
     // onDrop: PropTypes.func.isRequired,
 
 };

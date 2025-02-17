@@ -11,6 +11,7 @@ function App() {
   const [item, setItem] = useState([]);
   const [isPopUpVisible, setPopUpVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
+  const [isFetch, setIsFetch] = useState(false);
 
 
   // console.log(activeCard);
@@ -23,12 +24,14 @@ function App() {
   // }
 
 
+
   //When page reload set the local storage with all the changes made
   useEffect(() => {
     const rawData = localStorage.getItem("myObj1");
     const parsedData = JSON.parse(rawData) || [];
-    setItem(parsedData)
-  }, []);
+    setItem(parsedData);
+    setIsFetch(false);
+  }, [isFetch]);
 
 
 
@@ -47,7 +50,7 @@ function App() {
           <div className="outputContainer">
 
             {/* <Output item={item} setItem={setItem} checkedList={checkedList} setCheckedList={setCheckedList} setActiveCard={setActiveCard} onDrop={onDrop} /> */}
-            <Output item={item} setItem={setItem} setActiveCard={setActiveCard} />
+            <Output item={item} setItem={setItem} setIsFetch={setIsFetch} setActiveCard={setActiveCard} />
           </div>
         </div>
       </div>
