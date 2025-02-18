@@ -16,11 +16,24 @@ import handleCheckbox from '../utils/handleCheckbox'
 
 // const Output = ({ item, setItem, setActiveCard, onDrop }) => {
 
-const Output = ({ item, setItem, setIsFetch, setActiveCard }) => {
+const Output = ({ item, setItem, searchField, setIsFetch, setActiveCard }) => {
     const [editData, setEditData] = useState(null);
     const [isPopUp_OutputComponent, setIsPopUp_OutputComponent] = useState(false);
 
 
+    // let searchedItem = item.filter(e => e.taskName.toLowerCase().includes(searchField));
+    // console.log(searchedItem);
+
+    // filtering the output if it matches the search result and status
+    const filteredTodoItems = (item ?? [])
+        .filter((e) => e.progressStatus === "todo")
+        .filter((e) => e.taskName.toLowerCase().includes(searchField));
+    const filteredProgressItems = (item ?? [])
+        .filter((e) => e.progressStatus === "progress")
+        .filter((e) => e.taskName.toLowerCase().includes(searchField));
+    const filteredCompletedItems = (item ?? [])
+        .filter((e) => e.progressStatus === "completed")
+        .filter((e) => e.taskName.toLowerCase().includes(searchField));
 
     // When checkbox is clicked and unclicked in each card
     function handleCheck(value) {
@@ -75,101 +88,95 @@ const Output = ({ item, setItem, setIsFetch, setActiveCard }) => {
                 {/* <div className='output-list'>Today</div> */}
                 <div className="outputMultipleCards">
                     {/* todo */}
-                    {(item ?? [])
-                        .some((e) => e.progressStatus === 'todo') && (
-                            <>
-                                <div className='outputProgressCards todo_todoSections' >
-                                    {(item ?? [])
-                                        .some((e) => e.progressStatus === 'todo') && (
-                                            <>
-                                                <p className='outputTodoCardsPara'>TODO</p>
+                    {filteredTodoItems.length > 0 && (
+                        <>
+                            <div className='outputProgressCards todo_todoSections' >
+                                {(item ?? [])
+                                    .some((e) => e.progressStatus === 'todo') && (
+                                        <>
+                                            <p className='outputTodoCardsPara'>TODO</p>
 
-                                            </>
-                                        )}
+                                        </>
+                                    )}
 
-                                    {/* {(!isTodoChecked) && <DropArea />} */}
-                                    {(item ?? [])
-                                        .filter((e) => e.progressStatus === "todo")
-                                        .map((e) => (
-                                            <Cards
-                                                key={e.id}
-                                                cardsData={e}
-                                                handleCheck={handleCheck}
-                                                setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
-                                                handleEditData={handleEditData}
-                                                handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                                setActiveCard={setActiveCard}
-                                            />
-                                        ))
-                                    }
-                                </div>
-                            </>
-                        )}
+                                {/* {(!isTodoChecked) && <DropArea />} */}
+                                {filteredTodoItems
+                                    .map((e) => (
+                                        <Cards
+                                            key={e.id}
+                                            cardsData={e}
+                                            handleCheck={handleCheck}
+                                            setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                            handleEditData={handleEditData}
+                                            handleDeleteDataEditComp={handleDeleteDataEditComp}
+                                            setActiveCard={setActiveCard}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        </>
+                    )}
                     {/* progress */}
-                    {(item ?? [])
-                        .some((e) => e.progressStatus === 'progress') && (
-                            <>
-                                <div className='outputProgressCards todo_progressSections'>
-                                    {(item ?? [])
-                                        .some((e) => e.progressStatus === 'progress') && (
-                                            <>
-                                                <p className='outputTodoCardsPara'>IN PROGRESS</p>
+                    {filteredProgressItems.length > 0 && (
+                        <>
+                            <div className='outputProgressCards todo_progressSections'>
+                                {(item ?? [])
+                                    .some((e) => e.progressStatus === 'progress') && (
+                                        <>
+                                            <p className='outputTodoCardsPara'>IN PROGRESS</p>
 
-                                            </>
-                                        )}
+                                        </>
+                                    )}
 
-                                    {(item ?? [])
-                                        .filter((e) => e.progressStatus === "progress")
-                                        .map((e) =>
-                                        (
-                                            <Cards
-                                                key={e.id}
-                                                cardsData={e}
-                                                handleCheck={handleCheck}
-                                                setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
-                                                handleEditData={handleEditData}
-                                                handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                                setActiveCard={setActiveCard}
-                                            />
-                                        )
-                                        )
-                                    }
+                                {filteredProgressItems
+                                    .map((e) =>
+                                    (
+                                        <Cards
+                                            key={e.id}
+                                            cardsData={e}
+                                            handleCheck={handleCheck}
+                                            setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                            handleEditData={handleEditData}
+                                            handleDeleteDataEditComp={handleDeleteDataEditComp}
+                                            setActiveCard={setActiveCard}
+                                        />
+                                    )
+                                    )
+                                }
 
-                                </div>
-                            </>
-                        )}
+                            </div>
+                        </>
+                    )}
                     {/* completed todo  */}
-                    {(item ?? [])
-                        .some((e) => e.progressStatus === 'completed') && (
-                            <>
-                                <div className='outputProgressCards todo_CompletedSections'>
-                                    {(item ?? [])
-                                        .some((e) => e.progressStatus === 'completed') && (
-                                            <>
-                                                <p className='outputTodoCardsPara'>COMPLETED</p>
+                    {filteredCompletedItems.length > 0 && (
+                        <>
+                            <div className='outputProgressCards todo_CompletedSections'>
+                                {(item ?? [])
+                                    .some((e) => e.progressStatus === 'completed') && (
+                                        <>
+                                            <p className='outputTodoCardsPara'>COMPLETED</p>
 
-                                            </>
-                                        )}
+                                        </>
+                                    )}
 
-                                    {/* <DropArea /> */}
+                                {/* <DropArea /> */}
 
-                                    {(item ?? [])
-                                        .filter((e) => e.progressStatus === "completed")
-                                        .map((e) => (
-                                            <Cards
-                                                key={e.id}
-                                                cardsData={e}
-                                                handleCheck={handleCheck}
-                                                setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
-                                                handleEditData={handleEditData}
-                                                handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                                setActiveCard={setActiveCard}
-                                            />
-                                        ))
-                                    }
-                                </div>
-                            </>
-                        )}
+                                {filteredCompletedItems
+                                    .map((e) => (
+                                        <Cards
+                                            key={e.id}
+                                            cardsData={e}
+                                            handleCheck={handleCheck}
+                                            setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                            handleEditData={handleEditData}
+                                            handleDeleteDataEditComp={handleDeleteDataEditComp}
+                                            setActiveCard={setActiveCard}
+                                        />
+                                    ))
+                                }
+                            </div>
+                        </>
+                    )}
 
                     {/* isPopUp_OutputComponent when set to true runs popup form component */}
                     {isPopUp_OutputComponent &&
@@ -215,6 +222,7 @@ Output.propTypes = {
     setActiveCard: PropTypes.func.isRequired,
     setIsFetch: PropTypes.func.isRequired,
     // onDrop: PropTypes.func.isRequired,
+    searchField: PropTypes.string.isRequired,
 
 };
 

@@ -1,5 +1,4 @@
 // Handling the checkbox functionality
-// const handleEdit = (cardData, item) => {
 const handleCheckbox = (card, item) => {
 
 

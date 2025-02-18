@@ -42,7 +42,10 @@
     padding-left: 4%;
     color: #888;     /* Change placeholder color */
   }
+.searchField:focus{
+    width: 300px;
 
+}
 
   
 .button-input{

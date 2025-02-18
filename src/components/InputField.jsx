@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react'
 import "../Css/InputField.css"
 import PropTypes from 'prop-types';
 // import Output from './Output';
@@ -8,19 +7,31 @@ import Popup from './Popup'
 
 
 
-const InputField = ({ item, setItem, isPopUpVisible, setPopUpVisible }) => {
+
+const InputField = ({ item, setItem, searchField, setSearchField, isPopUpVisible, setPopUpVisible }) => {
 
 
     const handleButtonClick = () => {
         setPopUpVisible(!isPopUpVisible);
     }
 
+    // console.log(item);
+    // console.log(searchField);
+    // let searchedItem = item.filter(e => e.taskName.toLowerCase().includes(searchField));
+    // console.log(searchedItem);
+
     return (
         <>
             <div className='div-outerInput'>
                 <div className='div-innerInput'>
                     <div className='searchbarContainer'>
-                        <input type='text' id='userSearchInput' className='searchField' placeholder="Search Todos Please" required />
+                        <input
+                            type='text'
+                            id='userSearchInput'
+                            className='searchField'
+                            onChange={(e) => (setSearchField(e.target.value))}
+                            value={searchField}
+                            placeholder="Search Todos Please" required />
                     </div>
                     <button type='button' className='button-input' onClick={handleButtonClick}><span><b>+</b>&nbsp;&nbsp;New Project</span></button>
                 </div>
@@ -54,6 +65,8 @@ InputField.propTypes = {
     setItem: PropTypes.func.isRequired,      // Assuming 'setItem' is a function
     isPopUpVisible: PropTypes.bool.isRequired,   // Assuming 'isPopUpVisible' is a boolean
     setPopUpVisible: PropTypes.func.isRequired,  // Assuming 'setPopUpVisible' is a function
+    searchField: PropTypes.string.isRequired,
+    setSearchField: PropTypes.func.isRequired,
 };
 
 export default InputField
