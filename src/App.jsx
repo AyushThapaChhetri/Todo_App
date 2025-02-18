@@ -45,7 +45,7 @@ function App() {
         <h5 style={{ zIndex: 1000, paddingTop: "50px", position: 'fixed' }}>ActiveCard - {activeCard}</h5>
         <div className='bodyContainer'>
           <div className="inputfield-container">
-            <InputField item={item} setItem={setItem} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} searchField={searchField} setSearchField={setSearchField} />
+            <InputField item={item} setItem={setItem} setIsFetch={setIsFetch} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} searchField={searchField} setSearchField={setSearchField} />
           </div>
 
           <div className="outputContainer">

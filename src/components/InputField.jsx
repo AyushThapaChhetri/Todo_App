@@ -8,17 +8,14 @@ import Popup from './Popup'
 
 
 
-const InputField = ({ item, setItem, searchField, setSearchField, isPopUpVisible, setPopUpVisible }) => {
+const InputField = ({ item, setItem, setIsFetch, searchField, setSearchField, isPopUpVisible, setPopUpVisible }) => {
 
 
     const handleButtonClick = () => {
         setPopUpVisible(!isPopUpVisible);
     }
 
-    // console.log(item);
-    // console.log(searchField);
-    // let searchedItem = item.filter(e => e.taskName.toLowerCase().includes(searchField));
-    // console.log(searchedItem);
+
 
     return (
         <>
@@ -47,7 +44,7 @@ const InputField = ({ item, setItem, searchField, setSearchField, isPopUpVisible
                                     <button type='button' onClick={handleButtonClick} className='closePopup'>
                                         X
                                     </button>
-                                    <Popup item={item} setItem={setItem} />
+                                    <Popup item={item} setItem={setItem} setIsFetch={setIsFetch} />
                                 </div>
                             </div>
                         </div>
@@ -67,6 +64,7 @@ InputField.propTypes = {
     setPopUpVisible: PropTypes.func.isRequired,  // Assuming 'setPopUpVisible' is a function
     searchField: PropTypes.string.isRequired,
     setSearchField: PropTypes.func.isRequired,
+    setIsFetch: PropTypes.func.isRequired,
 };
 
 export default InputField

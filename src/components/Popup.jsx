@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'; // Import PropTypes
 import '../css/Popup.css'
+import handleAdd from '../utils/add';
 
 
-
-const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
-
-
+const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
 
 
     //only the form datas current or the already setForm data are loaded of the particular card
@@ -89,25 +87,9 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
                 secondsTime: formData.secondsTime
             };
 
-            // Item value which is in local storage and the app component is changed
-            setItem((prevItems) => {
-                let updatedItems;
-                if (editData?.id) {
-                    // If editing, update the existing item
-                    updatedItems = prevItems.map((item) =>
-                        item.id === editData.id ? newData : item
-                    );
-                } else {
-                    // If adding new, just append to the list
-                    updatedItems = [...prevItems, newData];
-                }
-
-                // Save the updated items to localStorage
-                localStorage.setItem("myObj1", JSON.stringify(updatedItems));
-                return updatedItems;
-            });
-
-
+            //utils handleAdd data 
+            handleAdd(newData, item);
+            setIsFetch(true);
 
             setFormData({
                 projectName: '',
@@ -241,9 +223,11 @@ const Popup = ({ setItem, editData, setIsPopUp_OutputComponent }) => {
 
 // Define PropTypes for your component
 Popup.propTypes = {
+    item: PropTypes.array.isRequired,
     setItem: PropTypes.func.isRequired, // setItem should be a function
     editData: PropTypes.object, // editData should be an object (it could be undefined, so no isRequired)
     setIsPopUp_OutputComponent: PropTypes.func, // setIsPopUp_OutputComponent should be a function
+    setIsFetch: PropTypes.func, // setIsPopUp_OutputComponent should be a function
 };
 
 

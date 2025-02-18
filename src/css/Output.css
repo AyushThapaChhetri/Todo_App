@@ -65,45 +65,6 @@
     margin: 0;
 }
 
-.outputMultipleCards{
-    margin-top: 25.48px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 2em;
-}
-
-.outputMultipleCards .outputProgressCards{
-    /* height: 400px; */
-    width: 90%;
-    /* border: 2px solid red; */
-    background-color: #f6f6f6;
-    padding: 2em;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-
-}
-
-.outputTodoCardsPara{
-    margin: 0;
-    font-family: "Mona Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings:
-        "wdth" 100;
-    margin: 0;
-    line-height:28px;
-    color: grey
-}
-
-.outputProgressCards{
-    margin-bottom: 20px;
-}
-
 
 /* not used classes feature developed before had it */
 /* .cardsHide{
