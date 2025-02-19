@@ -69,64 +69,6 @@
     height: 2em;
 }
 
-@media (max-width: 768px) {
-    .text-field{
-        width: 50%;
-        font-size: 10px;
-    }
-    .button-input {
-        width: 10%;
-        font-size: 15px;
-    }
-    /* Hide "New Project" text */
-  .button-input span {
-    display: none;
-  }
-  /* Add the "+" sign using a pseudo-element */
-  .button-input::before {
-    content: "+";
-    font-weight: bold;
-    margin-right: 5px;
-    padding-left: 41%;
-  }
-}
-
-
-
-
-/* popup fields */
-.text-field{
-    /* font-family: "Roboto", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-size: 20px;
-    font-style: normal;
-    font-variation-settings:
-        "wdth" 100; */
-    font-family: "Open Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 20px;
-    font-variation-settings:
-        "wdth" 100;
-    height: 30px;
-    width: 30%;
-    border: none;
-    border-radius: 10px;
-    /* box-shadow: 
-    /* 0 0 5px rgba(0, 0, 0, 0.6), 
-    0 0 10px rgba(0, 0, 0, 0.4), 
-    0 0 15px rgba(0, 0, 0, 0.2);  */ 
-}
-.text-field::placeholder {
-    /* background-color: #3B67CA; */
-    font-size: 15px; /* Change font size */
-    padding-left: 4%;
-    color: #888;     /* Change placeholder color */
-  }
-
-
 .popupBox-Wrapper{
     position: fixed;
     top: 0;
@@ -140,11 +82,11 @@
 
 .popupBox{
     position: relative;
-    width: 55%;
-    height: 70%;
+    /* width: 55%;
+    height: 70%; */
     /* border: solid 3 px black; */
     background-color: #cec3c3;
-    border-radius: 20px;
+    border-radius: 30px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -158,12 +100,8 @@
     /* height: 100%; */
 }
 .popupBoxFormContainerImage{
-    width: 50%;
-    height: 100%;
-    border: solid 2 px black;
-    background-color: #3B67CA;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    /* display: show; */
+    
     background-image: url("../assets/todoBackground.avif"); /* Replace with your image path */
     background-size: cover; 
     /* Ensures the image covers the entire div */
@@ -172,21 +110,144 @@
     background-position: center; 
     /* Centers the image */
     background-repeat: no-repeat;
-     /* Prevents repeating */
+    /* Prevents repeating */
+    
 }
 .popupFormDataContainerInputField{
-    width: 50%;
-    height: 100%;
+    /* width: 50%;
+    height: 100%; */
     /* padding: 10%; */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /* .popupBox form{
     border: solid 3px black;
 } */
 .closePopup{
     position: absolute;
-    right: 9px;
-    top: 5px;
+    /* right: 9px;
+    top: 5px; */
+    right: 14px;
+    top: 11px;
     border: none;
     background-color: #cec3c3;
     border-radius: 5px;
+    color:red;
+    font-weight: bold;
+}
+
+/* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+@media (min-width: 320px) and (max-width: 768px)   { 
+    .popupBox{
+        flex-direction: column;
+        width: 340px;
+        height: 521px;
+    }
+    .popupBoxFormContainerImage{
+        display: none;
+    }
+
+    .popupFormDataContainerInputField{
+       width: 68.7%;;
+        height: 100%;
+        /* padding: 10%; */
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        
+       
+    }
+
+ }
+ 
+
+ @media (max-width: 768px) {
+    
+    .button-input {
+        width: 10%;
+        font-size: 15px;
+    }
+    /* Hide "New Project" text */
+    .button-input span {
+    display: none;
+    }
+    /* Add the "+" sign using a pseudo-element */
+    .button-input::before {
+    content: "+";
+    font-weight: bold;
+    margin-right: 5px;
+    padding-left: 41%;
+    }
+}
+
+
+
+
+@media (min-width:768px) and (max-width:1281px) { /* hi-res laptops and desktops */
+    .popupBox{
+
+        flex-direction: column;
+        width: 399px;
+        height: 480px;
+        /* width: 34%;
+
+        height: 61%; */
+
+        /* background-color: #1947ab; */
+        padding-top: 20px; 
+        
+    }
+   
+    
+    .closePopup{
+        /* background-color: #b6b4b4; */
+        background-color: #cec3c3;
+        
+    }
+    .popupBoxFormContainerImage{
+      
+        display: none;
+    } 
+    .popupFormDataContainerInputField{
+        /* width: 100%; */
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        
+        
+     }
+
+}
+@media (min-width:1281px) {
+    .popupBox{
+        display: flex;
+        flex-direction: row;
+        width: 55%;
+        height: 70vh;
+        background-color: #b6b4b4;
+        
+        
+    }
+    .closePopup{
+        background-color: #b6b4b4;
+    }
+    .popupBoxFormContainerImage{
+        display: block;
+        /* display: none; */
+        height: 100%;
+        width: 50%;
+    } 
+    .popupFormDataContainerInputField{
+        /* border: 2px solid black; */
+        border-radius: 0px;
+        display: flex;
+        /* background-color: #3B67CA; */
+        /* justify-content: center;
+        align-items: center; */
+        height: 100%;
+        width: 49.5%;
+       
+    
+     }
 }
