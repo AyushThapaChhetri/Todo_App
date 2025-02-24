@@ -1,7 +1,7 @@
-import React from 'react'
+
 import "../Css/Navbar.css"
 import { CiSettings } from "react-icons/ci";
-import { IoIosHelpCircleOutline } from "react-icons/io";
+// import { IoIosHelpCircleOutline } from "react-icons/io";
 
 
 const Navbar = () => {

@@ -38,12 +38,26 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
                 >
                     <div className='cards-subInner cSisub1'>
                         <div className='sub1cSisub1'>
-                            <FaCalendarAlt className='cards-icon' />
-                            <p className='output-para'>
+                            <div className='sub1cSisub1 innerC2'>
+                                <FaCalendarAlt className='cards-icon' />
 
-                                {capitalizedTaskName}
+                                <p className='output-para'>
 
-                            </p>
+                                    {capitalizedTaskName}
+
+                                </p>
+                                <FaEdit
+                                    className='Mobile-edit-icon-cards'
+                                    onClick={() => {
+
+                                        setIsPopUp_OutputComponent((prev) => !prev);
+
+                                        handleEditData(cardsData);
+
+                                    }}
+
+                                />
+                            </div>
                             <div className={`cards-Priority ${cardsData.priority}`}>
                                 <p>
                                     {captializedPriority} Priority

@@ -64,25 +64,28 @@
     padding: 0 1em;
     display: flex;
     align-items: center;
+    color: white;
   }
 .cards-Priority.high{
-    background-color: red;
+    background-color: darkred;
+   
 }
 .cards-Priority.medium{
-    background-color: #b3e693;
+    background-color: #79a65e;
 }
 .cards-Priority.low{
-    background-color: #e3b1fb;
+    background-color: #cb93e4;
 }
 
 .cards-Task{
-    background-color: #27aed8e8;
+    background-color: #2598bce8;
     border-radius: 10px;
     height: 1.3em;
     width: auto;
     padding: 0 1em;
     display: flex;
     align-items: center;
+    color: white;
 }
 .cards-progressStatus{
     border-radius: 10px;
@@ -151,5 +154,38 @@ input[type="checkbox"] {
     height: 16px;
     
 }
+.Mobile-edit-icon-cards{
+ display: none;       
+}
 
-
+@media (min-width: 320px) and (max-width: 768px) { 
+    .cards-innerContainer{
+        height: 7em;
+    }
+    .sub1cSisub1{
+        display: block;
+    }
+    .Mobile-edit-icon-cards{
+        display: block;       
+        color: grey;
+    }
+    .Mobile-edit-icon-cards:hover{
+        transform: scale(1.2);
+        color: blue;
+    }
+    
+   .edit-icon-cards{
+        display: none;
+   }
+    .sub1cSisub1.innerC2{
+        display: flex;
+    }
+    .cards-Priority{
+        width: fit-content;
+        margin-top: 4px;
+    }
+    .cards-Task{
+        width: fit-content;
+        margin-top: 4px;
+    }
+}

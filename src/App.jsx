@@ -10,7 +10,7 @@ function App() {
   //lifted State to manage local storage
   const [item, setItem] = useState([]);
   const [isPopUpVisible, setPopUpVisible] = useState(false);
-  const [activeCard, setActiveCard] = useState(null);
+  // const [activeCard, setActiveCard] = useState(null);
   const [isFetch, setIsFetch] = useState(false);
   const [searchField, setSearchField] = useState('');
 
@@ -42,7 +42,7 @@ function App() {
         <div className="navbarContainer">
           <Navbar />
         </div>
-        <h5 style={{ zIndex: 1000, paddingTop: "50px", position: 'fixed' }}>ActiveCard - {activeCard}</h5>
+        {/* <h5 style={{ zIndex: 1000, paddingTop: "50px", position: 'fixed' }}>ActiveCard - {activeCard}</h5> */}
         <div className='bodyContainer'>
           <div className="inputfield-container">
             <InputField item={item} setItem={setItem} setIsFetch={setIsFetch} isPopUpVisible={isPopUpVisible} setPopUpVisible={setPopUpVisible} searchField={searchField} setSearchField={setSearchField} />
@@ -51,7 +51,8 @@ function App() {
           <div className="outputContainer">
 
             {/* <Output item={item} setItem={setItem} checkedList={checkedList} setCheckedList={setCheckedList} setActiveCard={setActiveCard} onDrop={onDrop} /> */}
-            <Output item={item} setItem={setItem} setIsFetch={setIsFetch} searchField={searchField} setActiveCard={setActiveCard} />
+            {/* <Output item={item} setItem={setItem} setIsFetch={setIsFetch} searchField={searchField} setActiveCard={setActiveCard} /> */}
+            <Output item={item} setItem={setItem} setIsFetch={setIsFetch} searchField={searchField} />
           </div>
         </div>
       </div>

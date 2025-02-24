@@ -5,88 +5,95 @@ body{
     overflow-y: auto;
     
 }   
-/* .app-container{
-    display: grid;
-    grid-template-columns:12% 88%;
-    grid-template-rows: 100%;
-    height: 100vh;
-    grid-template-areas: 
-    'a b';
-} */
+
  .appContainer{
-    display: flex;
     height: 100vh;
     width: 100vw;
  }
-/* .navbar-container{
-    grid-area: a;
-    //border: 3px solid black;
-    position: fixed;
-    width: 12%;
-    height: 100vh;
-} */
 
-.navbarContainer{
-    /* border: 3px solid black; */
-    width: 12%;
-    height: 100vh;
-    position: fixed;
 
-}
-.bodyContainer{
-    /* border: 3px solid rgb(187, 37, 37); */
-    width: 88%;  
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin-left: 11.91%;
-    background-color: #FDFDFD;
-}
-.inputfield-container{
-    /* padding: 2em; */
-    position:fixed;
-    width: 100%;
-    height: auto;
-    z-index: 10;
-    /* height: 82.93px; */
 
-}
-.outputContainer{
-    margin-top: 56.8px;
-    width: 100%;
-    height: auto;
+/* @media (min-width:1282px) { */
+@media (min-width:769px) {
+    .appContainer{
+        display: flex;
+    }
+    .navbarContainer{
+        /* border: 3px solid black; */
+        width: 12%;
+        height: 100vh;
+        position: fixed;
     
-}
-
-
-
-/* @media (max-width: 768px) {
-    .app-container{
-        
-        grid-template-columns:30% 70%;
-        grid-template-rows: 100%;
-        
     }
-    .navbar-container{
-      
-        position: fixed;
-        width: 30%;
+    .bodyContainer{
+        /* border: 3px solid rgb(187, 37, 37); */
+        width: 88%;  
         height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin-left: 11.91%;
+        background-color: #FDFDFD;
     }
-}
-
-@media (min-width: 769px) and (max-width: 1080px){
-    .app-container{
+    .inputfield-container{
+        /* padding: 2em; */
+        position:fixed;
+        width: 100%;
+        height: auto;
+        z-index: 10;
+        /* height: 82.93px; */
+    
+    }
+    .outputContainer{
+        margin-top: 56.8px;
+        width: 100%;
+        height: auto;
+        
+    }
+    
+  }
+  
+  @media (min-width: 768px) and (max-width: 1282px){
+    
+  }
+  
+  @media (min-width: 320px) and (max-width: 768px)   { 
+    .navbarContainer{
+        height: 6vh;
+        position: fixed;
+        width: 100vw;
+        z-index: 10;
+        background-color: #ad2e2e;
+        display: none;
        
-        grid-template-columns:22% 78%;
-        grid-template-rows: 100%;
+
+        /* border: 2px solid red; */
+
+    }
+    .bodyContainer{
+        
+        width: 100%;  
+        height: 94vh;
+        background-color: #FDFDFD;
+        /* border: 2px solid black; */
+        overflow-x: hidden; 
         
     }
-    .navbar-container{
-        
+    .inputfield-container{
         position: fixed;
-        width: 22%;
-        height: 100vh;
+        /* margin-top: 5.5vh; */
+        margin: 0;
+        width: 100vw;
+        z-index: 10;
+        /* background-color: #ad2e2e; */
+        /* border: 2px solid black; */
+        overflow-x: hidden; 
     }
-} */
+    .outputContainer{
+        padding-top: 80px;
+        width: 100%;
+        height: auto;
+        /* border: 2px solid green; */
+        overflow-x: hidden; 
+    }
+  }
 
