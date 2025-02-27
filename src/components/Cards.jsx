@@ -11,7 +11,8 @@ import { MdDeleteForever } from "react-icons/md";
 
 
 
-const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
+// const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
+const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_OutputComponent, handleEditData }) => {
 
 
     // const [isEditOptions, setIsEditOptions] = useState(false);
@@ -30,7 +31,8 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
 
     return (
         <>
-            <div className="cards-outerContainer" draggable onDragStart={() => setActiveCard(cardsData.id)} onDragEnd={() => setActiveCard(null)}>
+            {/* <div className="cards-outerContainer" draggable onDragStart={() => setActiveCard(cardsData.id)} onDragEnd={() => setActiveCard(null)}> */}
+            <div className="cards-outerContainer">
                 <div
 
 
@@ -145,7 +147,7 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
                     </div>
                 </div>
 
-            </div>
+            </div >
         </>
     )
 
@@ -167,7 +169,7 @@ Cards.propTypes = {
     handleCheck: PropTypes.func.isRequired,
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
     handleEditData: PropTypes.func.isRequired,
-    setActiveCard: PropTypes.func.isRequired,
+    // setActiveCard: PropTypes.func.isRequired,
     handleDeleteDataEditComp: PropTypes.func.isRequired,
     // handleTodoToCompleteSection: PropTypes.func.isRequired,
 

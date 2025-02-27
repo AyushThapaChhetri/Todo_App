@@ -99,7 +99,7 @@
 }
 .popupBoxFormContainerImage{
     
-    background-image: url("../assets/todoBackground.avif"); /* Replace with your image path */
+    background-image: url("../assets/todoBackground.png"); /* Replace with your image path */
     background-size: cover; 
     /* Ensures the image covers the entire div */
     /* background-size: contain;  */

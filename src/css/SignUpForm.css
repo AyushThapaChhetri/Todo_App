@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.signupPage-outer-container{
+    /* border: 2px solid black; */
+    display: flex;
+    overflow: hidden;
+}
+.signupPage-image-container{
+    /* border: 2px solid red; */
+    height: 100vh;
+    width: 50vw;
+    background-image: url('../assets/signupImage.png');
+    background-repeat: none;
+    background-size: 100% 100%;
+}
+
+.signupPage-back {
+    position: absolute;
+    /* border: 2px solid black; */
+    top: 40px;
+    left: 40px;
+}
+.signupPage-back .loginLink{
+    display: flex;
+    align-items: center;
+}
+.signupPage-back p{
+    font-family: "Inter", serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0%;
+    color:  #8692A6;
+    margin: 0;
+    padding: 0;
+}
+.signupPage-form-container{
+    position: relative;
+    height: 100vh;
+    width: 50vw;
+    /* border:2px solid rgb(48, 189, 130);  */
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+
+} 
+.SignupForm-outer-container-desgin{
+    width: 56%;
+    height: auto;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    /* margin-top: 160px; */
+    margin-top: 90px;
+}
+
+.SignupForm-outer-container-desgin form h3{
+    font-family: "Inter", serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36.31px;
+    letter-spacing: 0%;
+    color:#000000;
+    
+}
+.SignupForm-outer-container-desgin form label{
+    font-family: "Inter", serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.36px;
+    letter-spacing: 0%;
+    color: #696F79;
+    
+
+}
+
+.SignupForm-outer-container-desgin form p{
+    font-family: "Inter", serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0%;
+    color:  #8692A6;
+}
+
+
+.SignupForm-outer-container-desgin .inputUserDetails{
+    width: 98%;
+    min-width: 98%;
+    height: 6vh;
+    border-radius: 5px;
+    border: 1px solid grey;
+    font-family: "Inter", serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.36px;
+    letter-spacing: 0%;
+    color: #696F79;
+}
+
+
+
+.SignupForm-outer-container-desgin button{
+    background-color: #2C73EB;
+    border: none;
+    color: white;
+    width: 100%;
+    min-width: 100%;
+    height: 7vh;
+    border-radius: 6px;
+    font-family: "Inter", serif;
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.36px;
+    text-align: center;
+    letter-spacing: 0%;
+    
+}
+
+.SignupForm-outer-container-desgin .inputUserDetails:focus{
+    background-color: antiquewhite;
+    height: 8vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 1px solid grey;
+ }
+
+ .emailSignUp-password-div{
+    position: relative;
+    /* border: 2px solid green; */
+    display:flex;
+    align-items: center;
+ }
+ .emailSignUp-password-div .eyePasswordIcon{
+    position: absolute;
+    font-size: 1.5rem;
+    right: 7px;
+}
+
+@media (min-width: 320px) and (max-width: 768px)   { 
+    .signupPage-outer-container{
+        width: 100vw;  
+        display:block;
+        height: auto;
+    }
+    .signupPage-image-container{
+        width: 100%;
+        height:600px;
+    }
+    .signupPage-form-container{
+        width: 100vw;
+        height: auto;
+        overflow-y: hidden;
+    }
+
+    .SignupForm-outer-container-desgin{
+        width: 80%;
+    }
+    .inputUserDetails.emailDob{
+        width: 100%;
+        min-width: 98%;
+    }
+    .signupPage-back {
+        top: 29px;
+        left: 7px;
+    }
+    .SignupForm-outer-container-desgin button{
+        min-width: 103%;
+    }
+}
+
+@media (max-height: 430px) {
+    .SignupForm-outer-container-desgin{
+        width: 70%;
+        height: auto;
+    }
+    .inputUserDetails.emailDob{
+        width: 100%;
+        min-width: 98%;
+    }
+    
+}

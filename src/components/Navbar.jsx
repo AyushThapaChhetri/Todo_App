@@ -1,7 +1,9 @@
 
 import "../Css/Navbar.css"
-import { CiSettings } from "react-icons/ci";
+// import { CiSettings } from "react-icons/ci";
+import { IoIosLogOut } from "react-icons/io";
 // import { IoIosHelpCircleOutline } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -17,11 +19,20 @@ const Navbar = () => {
                 </div>
                 <div className='navContainer projectContainer'>
                     <div className='navSettings'>
+
+
+                        {/* <div className='navIcon logoutIcon'>
+                            <IoIosLogOut className="nviconLogout" />
+                        </div> */}
                         <div className='navIcon settingIcon'>
-                            <CiSettings className="nvicon" />
+                            <Link to="/login" className='loginLink'>
+                                <IoIosLogOut className="nvicon" />
+                            </Link>
                         </div>
                         <div className='navCaption setCap'>
-                            <p className='navPara settings'>Settings</p>
+                            <Link to="/login" className='loginLink'>
+                                <p className='navPara settings'>Logout</p>
+                            </Link>
                         </div>
                         {/* <div className='navIcon supportIcon'>
                             <IoIosHelpCircleOutline className="nvicon" />

@@ -7,6 +7,8 @@
     
 } */
 
+
+
 /* @media (min-width:1282px) { */
 @media (min-width: 768px) {
     .navs{
@@ -96,6 +98,12 @@
         
       }
     
+      .loginLink{
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit; 
+    }
+    
   }
   
 @media (min-width: 768px) and (max-width: 1282px){
@@ -129,4 +137,10 @@
     font-size: 20px;
     text-align: center;
     color: #0B0B0B;
+}
+
+.loginLink {
+    cursor: pointer;
+    text-decoration: none;
+    color: black ; 
 }

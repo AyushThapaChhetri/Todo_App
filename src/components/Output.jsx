@@ -16,7 +16,8 @@ import BoardView from './BoardView';
 
 // const Output = ({ item, setItem, setActiveCard, onDrop }) => {
 
-const Output = ({ item, setItem, setIsFetch, searchField, setActiveCard }) => {
+// const Output = ({ item, setItem, setIsFetch, searchField, setActiveCard }) => {
+const Output = ({ item, setItem, setIsFetch, searchField }) => {
     const [editData, setEditData] = useState(null);
     const [isPopUp_OutputComponent, setIsPopUp_OutputComponent] = useState(false);
 
@@ -52,7 +53,10 @@ const Output = ({ item, setItem, setIsFetch, searchField, setActiveCard }) => {
                 </div>
 
                 {/* <div className='output-list'>Today</div> */}
-                <BoardView item={item} setItem={setItem} searchField={searchField} setIsFetch={setIsFetch} setActiveCard={setActiveCard} editData={editData} setEditData={setEditData} isPopUp_OutputComponent={isPopUp_OutputComponent} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} />
+                <BoardView item={item} setItem={setItem} searchField={searchField} setIsFetch={setIsFetch}
+                    // setActiveCard={setActiveCard} 
+
+                    editData={editData} setEditData={setEditData} isPopUp_OutputComponent={isPopUp_OutputComponent} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} />
 
 
             </div>
@@ -65,7 +69,7 @@ const Output = ({ item, setItem, setIsFetch, searchField, setActiveCard }) => {
 Output.propTypes = {
     item: PropTypes.array.isRequired,   // Corrected PropTypes import
     setItem: PropTypes.func.isRequired,
-    setActiveCard: PropTypes.func.isRequired,
+    // setActiveCard: PropTypes.func.isRequired,
     setIsFetch: PropTypes.func.isRequired,
     // onDrop: PropTypes.func.isRequired,
     searchField: PropTypes.string.isRequired,

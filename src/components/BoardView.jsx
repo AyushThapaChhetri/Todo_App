@@ -6,7 +6,8 @@ import Popup from "./Popup";
 import PropTypes from 'prop-types';
 import '../css/BoardView.css';
 
-const BoardView = ({ item, setItem, searchField, setIsFetch, setActiveCard, editData, setEditData, isPopUp_OutputComponent, setIsPopUp_OutputComponent }) => {
+// const BoardView = ({ item, setItem, searchField, setIsFetch, setActiveCard, editData, setEditData, isPopUp_OutputComponent, setIsPopUp_OutputComponent }) => {
+const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditData, isPopUp_OutputComponent, setIsPopUp_OutputComponent }) => {
 
     // filtering the output if it matches the search result and status
     const filteredTodoItems = (item ?? [])
@@ -70,7 +71,7 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, setActiveCard, edit
                                         setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                         handleEditData={handleEditData}
                                         handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                        setActiveCard={setActiveCard}
+                                    // setActiveCard={setActiveCard}
                                     />
                                 ))
                             }
@@ -99,7 +100,7 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, setActiveCard, edit
                                         setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                         handleEditData={handleEditData}
                                         handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                        setActiveCard={setActiveCard}
+                                    // setActiveCard={setActiveCard}
                                     />
                                 )
                                 )
@@ -131,7 +132,7 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, setActiveCard, edit
                                         setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                         handleEditData={handleEditData}
                                         handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                        setActiveCard={setActiveCard}
+                                    // setActiveCard={setActiveCard}
                                     />
                                 ))
                             }
@@ -184,7 +185,7 @@ BoardView.propTypes = {
     setSearchField: PropTypes.func,
     setIsFetch: PropTypes.func.isRequired,
     editData: PropTypes.object,
-    setActiveCard: PropTypes.func.isRequired,
+    // setActiveCard: PropTypes.func.isRequired,
     setEditData: PropTypes.func.isRequired,
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
     isPopUp_OutputComponent: PropTypes.bool.isRequired,
