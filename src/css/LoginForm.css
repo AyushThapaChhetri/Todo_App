@@ -38,7 +38,7 @@
 
 
 .loginForm-outer-container-desgin .inputUserDetails{
-    width: 98%;
+    width: 97%;
     min-width: 98%;
     height: 6vh;
     font-family: "Inter", serif;
@@ -47,13 +47,17 @@
     line-height: 19.36px;
     letter-spacing: 0%;
     color: #696F79;
+    border-radius: 5px;
+    border: 1px solid #696F79;
+    margin-top: 10px;
 }
 
 .loginForm-outer-container-desgin .inputUserDetails:focus{
-   background-color: antiquewhite;
-   height: 8vh;
-   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-   border: 1px solid grey;
+   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+   border: .8px #2C73EB solid;
+   outline: none;
+   border-radius: 5px;
+   
 }
 
 
@@ -73,7 +77,7 @@
     letter-spacing: 0%;
 }
 
-.loginForm-outer-container-desgin form .login-sign-in{
+.loginForm-outer-container-desgin .login-sign-in{
     color: #2C73EB;
 }
 
@@ -82,16 +86,40 @@
     /* border: 2px solid green; */
     display:flex;
     align-items: center;
+    justify-content: center;
 }
 .email-password-div .eyePasswordIcon{
     position: absolute;
     font-size: 1.5rem;
     right: 7px;
+    padding-top: 3px;
 }
 
+.loginForm-outer-container-desgin form .form-error{
+    color: red;
+    font-family: "Inter", serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 19.36px;
+    letter-spacing: 0%;
+
+}
+.loginForm-outer-container-desgin .signUpInfo-para{
+    text-align: center;
+    font-family: "Inter", serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19.36px;
+    letter-spacing: 0%;
+    color: grey;
+    /* color: red; */
+}
 @media (min-width: 320px) and (max-width: 768px)   { 
     .loginForm-outer-container-desgin{
         width: 80%;
+    }
+    .loginForm-outer-container-desgin button{
+        min-width: 103%;
     }
 }
 

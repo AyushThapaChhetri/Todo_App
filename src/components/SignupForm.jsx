@@ -4,28 +4,35 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useState } from 'react';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { useFormik } from 'formik';
+import { signUpSchema } from '../schemas/signUpSchema';
+
 
 const SignupForm = () => {
     const [passwordShowSignUp, setPasswordShowSignUp] = useState({
         password: false,
         confirmPassword: false
     });
-    const [signUpFormData, setSignUpFormData] = useState({
-        fullName: "",
-        emailName: "",
-        emailPassword: "",
-        emailConfirmPassword: "",
-        gender: "",
-        emailDob: ""
+    const valuesInitial = {
+        fullName: '',
+        emailName: '',
+        emailPassword: '',
+        emailConfirmPassword: '',
+        gender: '',
+        emailDob: '',
+    };
+    const { values, handleSubmit, handleBlur, handleChange, errors, touched } = useFormik({
+        initialValues: valuesInitial,
+        validationSchema: signUpSchema,
+
+        onSubmit: (values, action) => {
+            console.log(values);
+            action.resetForm();
+
+        }
     });
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setSignUpFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    }
+
 
     // variable assigning for ease functionality
     let passwordSignup = passwordShowSignUp.password;
@@ -57,100 +64,135 @@ const SignupForm = () => {
                         </Link>
                     </div>
                     <div className='SignupForm-outer-container-desgin'>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <h3>Account Signup</h3>
                             <p>Become a member and enjoy exclusive promotions.</p>
 
-                            <label htmlFor="fullName">Full Name</label><br /><br />
-                            <input
-                                type="text"
-                                id="username-fullName" className='inputUserDetails fullName' name="fullName"
-                                onChange={handleChange}
-                                required />
-                            <br /><br />
-
-                            <label htmlFor="email">Email address</label><br /><br />
-                            <input
-                                type="email"
-                                id="username-email" className='inputUserDetails emailName' name="emailName"
-                                onChange={handleChange}
-                                required />
-                            <br /><br />
-
-                            <label htmlFor="emailPassword">Password</label><br /><br />
-                            <div className='emailSignUp-password-div'>
+                            <div className='formfield-inputDiv fullNameDiv'>
+                                <label htmlFor="username-fullName">Full Name</label><br />
                                 <input
-                                    type={passwordSignup ? "text" : "password"}
-                                    id="password-email"
-                                    className='inputUserDetails emailPassword'
+                                    type="text"
+                                    id="username-fullName" className='inputUserDetails fullName' name="fullName"
                                     onChange={handleChange}
-                                    name="emailPassword"
-                                    required />
-
-                                {(passwordSignup) ?
-                                    <FaEye
-                                        className='eyePasswordIcon eyeNotSlash'
-                                        onClick={() => handlePasswordShow("password")}
-                                    />
-                                    :
-                                    <FaEyeSlash
-                                        className='eyePasswordIcon eyeSlash'
-                                        onClick={() => handlePasswordShow("password")}
-                                    />
-                                }
-                            </div><br /><br />
-
-                            <label htmlFor="emailConfirmPassword">Confirm Password</label><br /><br />
-                            <div className='emailSignUp-password-div'>
-
-
-                                <input
-                                    type={passwordConfirmSignup ? "text" : "password"}
-                                    id="confirm-password-email" className='inputUserDetails emailConfirmPassword' name="emailConfirmPassword"
-                                    onChange={handleChange}
-                                    required
+                                    value={values.fullName}
+                                    onBlur={handleBlur}
                                 />
-
-                                {(passwordConfirmSignup) ?
-                                    <FaEye
-                                        className='eyePasswordIcon eyeNotSlash'
-                                        onClick={() => handlePasswordShow("confirmPassword")}
-                                    />
-                                    :
-                                    <FaEyeSlash
-                                        className='eyePasswordIcon eyeSlash'
-                                        onClick={() => handlePasswordShow("confirmPassword")}
-                                    />
-                                }
+                                {<p className='form-error'>{errors.fullName && touched.fullName ? errors.fullName : null}</p>}
                             </div>
-                            <br /><br />
 
-                            <label htmlFor="emailGender">Gender</label><br /><br />
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="male"
-                                onChange={handleChange}
-                                id="maleEmail" />
-                            <label htmlFor="genderMaleEmail">Male</label> &nbsp; &nbsp;
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="female"
-                                onChange={handleChange}
-                                id="femaleEmail" />
-                            <label htmlFor="genderFemaleEmail">Female</label><br /><br />
+                            <div className='formfield-inputDiv emailNameDiv'>
+                                <label htmlFor="username-email">Email address</label><br />
+                                <input
+                                    type="email"
+                                    id="username-email" className='inputUserDetails emailName' name="emailName"
+                                    onChange={handleChange}
+                                    value={values.emailName}
+                                    onBlur={handleBlur}
+                                />
+                                {<p className='form-error'>
+                                    {errors.emailName && touched.emailName ? errors.emailName : null}</p>}
+                            </div>
 
-                            <label htmlFor="emailDob">Date of Birth</label><br /><br />
-                            <input
-                                type="date"
-                                id="dob-email"
-                                className='inputUserDetails emailDob'
-                                name="emailDob"
-                                onChange={handleChange}
-                                required />
-                            <br /><br />
+                            <div className='formfield-inputDiv emailPasswordDiv'>
+                                <label htmlFor="password-email">Password</label><br />
+                                <div className='emailSignUp-password-div'>
+                                    <input
+                                        type={passwordSignup ? "text" : "password"}
+                                        id="password-email"
+                                        className='inputUserDetails emailPassword'
+                                        name="emailPassword"
+                                        onChange={handleChange}
+                                        value={values.emailPassword}
+                                        onBlur={handleBlur}
+                                    />
 
+                                    {(passwordSignup) ?
+                                        <FaEye
+                                            className='eyePasswordIcon eyeNotSlash'
+                                            onClick={() => handlePasswordShow("password")}
+                                        />
+                                        :
+                                        <FaEyeSlash
+                                            className='eyePasswordIcon eyeSlash'
+                                            onClick={() => handlePasswordShow("password")}
+                                        />
+                                    }
+                                </div>
+                                {<p className='form-error'>
+                                    {errors.emailPassword && touched.emailPassword ? errors.emailPassword : null}</p>}
+                            </div>
+
+                            <div className='formfield-inputDiv emailConfirmPasswordDiv'>
+                                <label htmlFor="confirm-password-email">Confirm Password</label><br />
+                                <div className='emailSignUp-password-div'>
+
+
+                                    <input
+                                        type={passwordConfirmSignup ? "text" : "password"}
+                                        id="confirm-password-email" className='inputUserDetails emailConfirmPassword' name="emailConfirmPassword"
+                                        onChange={handleChange}
+                                        value={values.emailConfirmPassword}
+                                        onBlur={handleBlur}
+
+                                    />
+
+                                    {(passwordConfirmSignup) ?
+                                        <FaEye
+                                            className='eyePasswordIcon eyeNotSlash'
+                                            onClick={() => handlePasswordShow("confirmPassword")}
+                                        />
+                                        :
+                                        <FaEyeSlash
+                                            className='eyePasswordIcon eyeSlash'
+                                            onClick={() => handlePasswordShow("confirmPassword")}
+                                        />
+                                    }
+                                </div>
+                                {<p className='form-error'>
+                                    {errors.emailConfirmPassword && touched.emailConfirmPassword ? errors.emailConfirmPassword : null}
+                                </p>}
+                            </div>
+
+                            <div className='formfield-inputDiv emailGenderDiv'>
+                                <label htmlFor="emailGender">Gender</label><br />
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="male"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    checked={values.gender === "male"}
+                                    id="maleEmail" />
+                                <label htmlFor="maleEmail">Male</label> &nbsp; &nbsp;
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="female"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    checked={values.gender === "female"}
+                                    id="femaleEmail" />
+
+                                <label htmlFor="femaleEmail">Female</label><br />
+                                {<p className='form-error'>
+                                    {errors.gender && touched.gender ? errors.gender : null}</p>}
+                            </div>
+
+                            <div className='formfield-inputDiv emailDobDiv'>
+                                <label htmlFor="dob-email">Date of Birth</label><br />
+                                <input
+                                    type="date"
+                                    id="dob-email"
+                                    className='inputUserDetails emailDob'
+                                    name="emailDob"
+                                    onChange={handleChange}
+                                    value={values.emailDob}
+                                    onBlur={handleBlur}
+                                />
+                                {<p className='form-error'>
+                                    {errors.emailDob && touched.emailDob ? errors.emailDob : null}
+                                </p>}
+                            </div>
                             <button type="submit">Sign up</button><br /><br />
                         </form>
                     </div>

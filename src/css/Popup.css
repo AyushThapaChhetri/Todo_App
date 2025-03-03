@@ -28,8 +28,12 @@
 
 }
 .popUpForm input:focus{
-  height: 5vh;
-  background-color: antiquewhite;
+   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+   border: .3px grey solid;
+   outline: none;
+   border-radius: 5px;
+   padding: 10px;
+   box-sizing: border-box;
 
 }
 .popUpForm select:focus{
