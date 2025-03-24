@@ -1,14 +1,41 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../css/LoginForm.css'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { loginSchema } from '../schemas/loginSchema';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+
+
+// Custom Hook for Toast Error Notifications
+// const FormErrorToasts = () => {
+//     const { errors, touched } = useFormikContext();
+
+//     useEffect(() => {
+//         Object.entries(errors).forEach(([key, value]) => {
+//             if (touched[key]) {
+//                 toast.error(value);
+//             }
+//         });
+//     }, [errors, touched]);
+
+//     return null; // This component does not render anything
+// };
 
 const LoginForm = () => {
     const [passwordShowLogin, setPasswordShowLogin] = useState(false);
 
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("authToken");
+        if (token && token.trim() === "") {
+            navigate("/");
+        }
+    })
 
     const initialValues = {
         emailName: "",
@@ -17,19 +44,48 @@ const LoginForm = () => {
     }
 
 
+
     return (
         <div className='loginForm-outer-container-desgin'>
             <Formik
                 initialValues={initialValues}
                 validationSchema={loginSchema}
-                onSubmit={(values, action) => {
+                onSubmit={async (values, action) => {
                     // same shape as initial values
-                    console.log(values);
-                    action.resetForm();
+                    // console.log(values);
+                    try {
+                        const response = await axios.post("http://localhost:5000/api/auth/login", values, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+
+                        console.log("Login Success:", response.data);
+                        console.log("User Details:", response.data.user)
+                        console.log(response.data.token);
+                        const token = response.data.token;
+                        localStorage.setItem("authToken", token);
+                        navigate('/');
+                        toast.success("Logged In Successfully");
+                        action.resetForm();
+
+
+
+                    }
+                    catch (error) {
+
+                        toast.error(`${error.response?.data?.message ||
+                            error.response?.data ||
+                            error.message}`);
+
+                    }
                 }}
+
             >
-                {() => (
+                {() =>
+                (
                     <Form>
+                        {/*<FormErrorToasts /> Custom hook for error toasts */}
                         <h3>Account Login</h3>
                         <p>If you are already a member you can login with your email address and password.</p>
 
@@ -83,7 +139,8 @@ const LoginForm = () => {
 
                         <button type="submit">Login</button><br /><br />
                     </Form>
-                )}
+                )
+                }
             </Formik>
             <p className='signUpInfo-para'>
                 Dont have an account ? &nbsp;

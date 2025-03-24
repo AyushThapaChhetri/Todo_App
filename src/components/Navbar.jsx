@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
+    const logout = () => {
+        console.log("Logout");
+        localStorage.removeItem("authToken");
+    }
     return (
         <>
             {/* <div className='navs-outer'> */}
@@ -24,15 +28,18 @@ const Navbar = () => {
                         {/* <div className='navIcon logoutIcon'>
                             <IoIosLogOut className="nviconLogout" />
                         </div> */}
-                        <div className='navIcon settingIcon'>
-                            <Link to="/login" className='loginLink'>
-                                <IoIosLogOut className="nvicon" />
-                            </Link>
-                        </div>
-                        <div className='navCaption setCap'>
-                            <Link to="/login" className='loginLink'>
-                                <p className='navPara settings'>Logout</p>
-                            </Link>
+                        <div className="logout" onClick={logout}>
+
+                            <div className='navIcon settingIcon'>
+                                <Link to="/login" className='loginLink'>
+                                    <IoIosLogOut className="nvicon" />
+                                </Link>
+                            </div>
+                            <div className='navCaption setCap'>
+                                <Link to="/login" className='loginLink'>
+                                    <p className='navPara settings'>Logout</p>
+                                </Link>
+                            </div>
                         </div>
                         {/* <div className='navIcon supportIcon'>
                             <IoIosHelpCircleOutline className="nvicon" />

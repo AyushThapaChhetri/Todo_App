@@ -3,7 +3,9 @@ import Navbar from './components/Navbar'
 import InputField from './components/InputField'
 import Output from './components/Output'
 
+
 import './App.css'
+import { useNavigate } from 'react-router-dom'
 
 
 function App() {
@@ -27,16 +29,24 @@ function App() {
 
 
   //When page reload set the local storage with all the changes made
+  const navigate = useNavigate();
   useEffect(() => {
+
+    const token = localStorage.getItem("authToken");
+    if (!token || token.trim() === "") {
+      navigate("/login");
+    }
     const rawData = localStorage.getItem("myObj1");
     const parsedData = JSON.parse(rawData) || [];
     setItem(parsedData);
     setIsFetch(false);
-  }, [isFetch]);
+  }, [isFetch, navigate]);
 
+  // toast.error("Signup Successful");
 
 
   return (
+
     <>
       <div className="appContainer">
         <div className="navbarContainer">

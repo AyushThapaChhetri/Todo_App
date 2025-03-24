@@ -225,7 +225,7 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
 Popup.propTypes = {
     item: PropTypes.array.isRequired,
     setItem: PropTypes.func.isRequired, // setItem should be a function
-    editData: PropTypes.object, // editData should be an object (it could be undefined, so no isRequired)
+    editData: PropTypes.object, // editData should be an object (it could be , so no isRequired)
     setIsPopUp_OutputComponent: PropTypes.func, // setIsPopUp_OutputComponent should be a function
     setIsFetch: PropTypes.func, // setIsPopUp_OutputComponent should be a function
 };

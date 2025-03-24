@@ -6,9 +6,13 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useFormik } from 'formik';
 import { signUpSchema } from '../schemas/signUpSchema';
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 
 const SignupForm = () => {
+    // toast.success("Signup Successful");
+
     const [passwordShowSignUp, setPasswordShowSignUp] = useState({
         password: false,
         confirmPassword: false
@@ -25,13 +29,49 @@ const SignupForm = () => {
         initialValues: valuesInitial,
         validationSchema: signUpSchema,
 
-        onSubmit: (values, action) => {
-            console.log(values);
-            action.resetForm();
+        onSubmit: async (values, action) => {
 
-        }
+
+            // console.log(values);
+            try {
+                // const response = await axios.post("http://localhost:5000/api/signup", values, {
+                await axios.post("http://localhost:5000/api/auth/signup", values, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                // console.log("Signup Success:", response.data);
+                toast.success("Registered Successfully");
+                action.resetForm();
+
+                // Optional: Add success handling
+                // alert("Signup successful!");
+                // redirect to another page if needed
+
+            } catch (error) {
+                // console.error("Signup Error:",
+                //     error.response?.data?.message ||
+                //     error.response?.data ||
+                //     error.message
+                // );
+                // toast.error(`invalid data`);
+                toast.error(`${error.response?.data?.message ||
+                    error.response?.data ||
+                    error.message}`);
+
+            }
+        },
     });
 
+    //  Auto-show error toasts when validation fails
+    // useEffect(() => {
+    //     Object.entries(errors).forEach(([key, value]) => {
+    //         if (touched[key]) {
+    //             toast.error(value);
+    //         }
+    //     });
+    // }, [errors, touched]);
 
 
     // variable assigning for ease functionality
