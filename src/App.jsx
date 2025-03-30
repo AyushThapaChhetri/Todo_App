@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import InputField from './components/InputField'
 import Output from './components/Output'
-
-
 import './App.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -32,7 +30,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
 
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("accessToken");
     if (!token || token.trim() === "") {
       navigate("/login");
     }

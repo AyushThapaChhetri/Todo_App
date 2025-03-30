@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { loginSchema } from '../schemas/loginSchema';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+// import axios from 'axios';
+import api from '../utils/api';
 
 
 // Custom Hook for Toast Error Notifications
@@ -31,8 +32,8 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem("authToken");
-        if (token && token.trim() === "") {
+        const accessToken = localStorage.getItem("accessToken");
+        if (accessToken && accessToken.trim() === "") {
             navigate("/");
         }
     })
@@ -54,7 +55,7 @@ const LoginForm = () => {
                     // same shape as initial values
                     // console.log(values);
                     try {
-                        const response = await axios.post("http://localhost:5000/api/auth/login", values, {
+                        const response = await api.post("/auth/login", values, {
                             headers: {
                                 'Content-Type': 'application/json'
                             }
@@ -62,9 +63,13 @@ const LoginForm = () => {
 
                         console.log("Login Success:", response.data);
                         console.log("User Details:", response.data.user)
-                        console.log(response.data.token);
-                        const token = response.data.token;
-                        localStorage.setItem("authToken", token);
+                        // console.log(response.data.token);
+                        // const token = response.data.token;
+                        // console.log(response.data.data)
+                        const { accessToken, refreshToken } = response.data;
+                        // localStorage.setItem("authToken", token);
+                        localStorage.setItem("accessToken", accessToken);
+                        localStorage.setItem("refreshToken", refreshToken);
                         navigate('/');
                         toast.success("Logged In Successfully");
                         action.resetForm();
