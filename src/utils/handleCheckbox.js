@@ -1,25 +1,42 @@
 // Handling the checkbox functionality
-const handleCheckbox = (card, item) => {
 
+import api from "./api";
 
-    //Changing the data to completed when clicking the checkbox button
+const handleCheckbox = async (card, setIsFetch) => {
+    // const handleCheckbox = async (card, item) => {
+
+    if (!card?.id) {
+        console.error("Invalid card ID");
+        return;
+    }
+
+    // Toggle progress status
+    const updatedStatus = card.progressStatus !== "completed" ? "completed" : "todo";
+
+    // Updated state
     const newState = {
-        id: card.id ? card.id : '',
-        projectName: card.projectName ? card.projectName : '',
-        taskName: card.taskName ? card.taskName : '',
-        priority: card.priority ? card.priority : 'medium',
-        progressStatus: (card.progressStatus != "completed") ? 'completed' : 'todo',
-        startDate: card.startDate ? card.startDate : '',
-        endDate: card.endDate ? card.endDate : '',
-        hoursTime: card.hoursTime ? card.hoursTime : '',
-        minutesTime: card.minutesTime ? card.minutesTime : '',
-        secondsTime: card.secondsTime ? card.secondsTime : ''
+        ...card,
+        progressStatus: updatedStatus
     };
 
-    //maps throught each item array and if id matches changes the checkbox items i.e if checked is sent to completed else to todo
-    let ids = item.map(e => (e.id == card.id) ? newState : e);
+    try {
+        await api.patch(`/client/todos/${newState.id}`, newState);
 
-    localStorage.setItem('myObj1', JSON.stringify(ids));
+        // const checkedTodo = response.data;
+
+        // console.log("Checked Successfully completed", checkedTodo);
+
+
+        setIsFetch(true);
+
+    } catch (error) {
+        console.error("Error checking task:", error);
+        alert("❌ Error checking task! ❌");
+    }
+    //maps throught each item array and if id matches changes the checkbox items i.e if checked is sent to completed else to todo
+    // let ids = item.map(e => (e.id == card.id) ? newState : e);
+
+    // localStorage.setItem('myObj1', JSON.stringify(ids));
 
 
 }

@@ -11,7 +11,8 @@ import { MdDeleteForever } from "react-icons/md";
 
 
 
-const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
+// const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_OutputComponent, handleEditData, setActiveCard }) => {
+const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_OutputComponent, handleEditData }) => {
 
 
     // const [isEditOptions, setIsEditOptions] = useState(false);
@@ -30,7 +31,8 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
 
     return (
         <>
-            <div className="cards-outerContainer" draggable onDragStart={() => setActiveCard(cardsData.id)} onDragEnd={() => setActiveCard(null)}>
+            {/* <div className="cards-outerContainer" draggable onDragStart={() => setActiveCard(cardsData.id)} onDragEnd={() => setActiveCard(null)}> */}
+            <div className="cards-outerContainer">
                 <div
 
 
@@ -38,12 +40,26 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
                 >
                     <div className='cards-subInner cSisub1'>
                         <div className='sub1cSisub1'>
-                            <FaCalendarAlt className='cards-icon' />
-                            <p className='output-para'>
+                            <div className='sub1cSisub1 innerC2'>
+                                <FaCalendarAlt className='cards-icon' />
 
-                                {capitalizedTaskName}
+                                <p className='output-para'>
 
-                            </p>
+                                    {capitalizedTaskName}
+
+                                </p>
+                                <FaEdit
+                                    className='Mobile-edit-icon-cards'
+                                    onClick={() => {
+
+                                        setIsPopUp_OutputComponent((prev) => !prev);
+
+                                        handleEditData(cardsData);
+
+                                    }}
+
+                                />
+                            </div>
                             <div className={`cards-Priority ${cardsData.priority}`}>
                                 <p>
                                     {captializedPriority} Priority
@@ -131,7 +147,7 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
                     </div>
                 </div>
 
-            </div>
+            </div >
         </>
     )
 
@@ -153,7 +169,7 @@ Cards.propTypes = {
     handleCheck: PropTypes.func.isRequired,
     setIsPopUp_OutputComponent: PropTypes.func.isRequired,
     handleEditData: PropTypes.func.isRequired,
-    setActiveCard: PropTypes.func.isRequired,
+    // setActiveCard: PropTypes.func.isRequired,
     handleDeleteDataEditComp: PropTypes.func.isRequired,
     // handleTodoToCompleteSection: PropTypes.func.isRequired,
 

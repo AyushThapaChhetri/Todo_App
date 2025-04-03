@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 /* 
 .navs-outer{
     position: relative;
@@ -6,107 +6,129 @@
 
     
 } */
-.navs{
+
+/* @media (min-width:1282px) { */
+@media (min-width: 768px) {
+  .navs {
     position: relative;
-    background-color: #FFFFFF;
-    border-right:3px solid #F6F6F6;
+    background-color: #ffffff;
+    border-right: 3px solid #f6f6f6;
     padding: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-}
-nav{
+  }
+  nav {
     /* border: 2px solid green; */
     padding-top: 20px;
-}
-.upperBox{
-    border-bottom: 3px solid #F6F6F6;
+  }
+  .upperBox {
+    border-bottom: 3px solid #f6f6f6;
     width: 100%;
     height: 40%;
-}
-.tNavpara{
-    font-family: "Mona Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-variation-settings:
-        "wdth" 100;
-    margin: 0;
-    font-size: 20px;
-    text-align: center;
-    color: #0B0B0B;
-}
-.projectContainer{
+  }
+
+  .projectContainer {
     /* border: 2px solid black; */
     height: 60%;
     width: 100%;
     position: absolute;
-    bottom:0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
-}
-.navPara{
+  }
+  .navPara {
     font-size: 18px;
     font-family: "Mona Sans", serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    font-variation-settings:
-        "wdth" 100;
+    font-variation-settings: "wdth" 100;
     margin: 0;
     font-size: 15px;
     /* text-align: center; */
     color: rgb(61, 61, 78);
-}
-.navSettings{
+  }
+  .navSettings {
     position: absolute;
-    bottom:10px;
+    bottom: 10px;
     /* border: 2px solid red; */
     display: grid;
-    grid-template-rows: repeat(2,50%);
+    grid-template-rows: repeat(2, 50%);
     grid-template-columns: 20% 80%;
-    grid-template-areas: 
-    'a b'
-    'c d';
+    grid-template-areas:
+      "a b"
+      "c d";
     align-items: center;
     grid-row-gap: 0.5em;
     width: 80%;
-}
-.settingIcon{
+  }
+  .settingIcon {
     grid-area: a;
-}
-.setCap{
+  }
+  .setCap {
     grid-area: b;
-
-}
-.supportIcon{
+  }
+  .supportIcon {
     grid-area: c;
-
-}
-.supCap{
+  }
+  .supCap {
     grid-area: d;
-
-}
-.navIcon{
+  }
+  .navIcon {
     display: flex;
     justify-content: flex-end;
     padding-right: 15%;
-}
-.nvicon {
+  }
+  .nvicon {
     /* color: blue; Change color to blue */
     font-size: 1.3rem; /* Increase size */
-    
-    
+  }
+  .navSettings .logout {
+    display: flex;
   }
 
+  .loginLink {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+}
 
-  @media (max-width: 768px) {
-    .navPara{
-        font-size: 12px;
-    }
+@media (min-width: 768px) and (max-width: 1282px) {
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .navs {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 3px solid #f6f6f6;
+    justify-content: center;
+  }
+  .navSettings {
+    display: none;
+  }
+  .navPara {
+    font-size: 12px;
+  }
+}
+
+.tNavpara {
+  font-family: "Mona Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  margin: 0;
+  font-size: 20px;
+  text-align: center;
+  color: #0b0b0b;
+}
+
+.loginLink {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 }

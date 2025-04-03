@@ -3,6 +3,10 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router";
 import App from './App.jsx';
 import MoreInfo from './components/MoreInfo';
+import Login from './components/Login.jsx';
+import SignupForm from './components/SignupForm.jsx';
+import { ToastContainer, Bounce } from 'react-toastify';
+
 
 
 createRoot(document.getElementById('root')).render(
@@ -11,7 +15,22 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/moreInfo" element={<MoreInfo />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/signup' element={<SignupForm />} />
       </Routes>
     </BrowserRouter>
+    <ToastContainer
+      position="top-right"
+      autoClose={2000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick={false}
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+      transition={Bounce}
+    />
   </StrictMode>,
 )

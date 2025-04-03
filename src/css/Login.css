@@ -1,0 +1,70 @@
+.loginPage-outer-container{
+
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-y: hidden;
+}
+.loginPage-image-container{
+    width: 50vw;
+    height: 100vh;
+    /* border: 2px solid black; */
+    background-image: url(../assets/loginPageImage1.png);
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    overflow-y: hidden;
+}
+
+.loginPage-form-container{
+    width: 50vw;
+    display: flex;
+    
+}
+
+.signUpLink{
+    text-decoration: none;
+    text-decoration: inherit;
+}
+
+@media (min-width: 320px) and (max-width: 768px)   { 
+    .loginPage-outer-container{
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: auto;
+    }
+    .loginPage-image-container{
+        width: 100vw;
+        height: 600px;
+    }
+    .loginPage-form-container{
+        /* display: block; */
+        width: 100vw;
+        height: auto;
+        justify-content: center;
+        
+    }
+}
+
+/* landscape view of mobile */
+@media(max-height: 430px) {
+    .loginPage-image-container{
+        overflow: hidden;
+    }
+    .loginPage-form-container{
+        justify-content: center;
+        overflow-y: auto;
+    }
+}
+
+/* css not interfering the landscape view of mobile */
+@media (min-width: 769px) and (min-height: 431px){
+
+    .loginPage-form-container{
+        width: 50vw;
+        justify-content: center;
+        align-items: center;
+    }
+}
+

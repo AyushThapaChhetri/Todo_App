@@ -34,3 +34,28 @@
 .outputProgressCards{
     margin-bottom: 20px;
 }
+
+
+
+@media (min-width: 320px) and (max-width: 768px) { 
+    .outputMultipleCards{
+        margin-top: 100px;
+        width: 100%;
+        
+    }
+
+    .outputMultipleCards .outputProgressCards{
+       
+        width: 75%;
+        background-color: #f6f6f6;
+        /* padding: 2em;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+     */
+    }
+}
+
+
+
