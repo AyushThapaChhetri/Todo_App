@@ -50,7 +50,7 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
 
@@ -74,7 +74,7 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
             //local Storage variable definition 
             const newData = {
                 // id: item./length + 1,
-                id: editData?.id ? editData.id : Date.now(),
+                // id: editData?.id ? editData.id : Date.now(),
                 // id: Date.now(),
                 projectName: formData.projectName,
                 taskName: formData.taskName,
@@ -87,8 +87,16 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
                 secondsTime: formData.secondsTime
             };
 
+            // Only add id if it’s an update (editData exists)
+            if (editData?.id) {
+                newData.id = editData.id;
+            }
+
+
+
             //utils handleAdd data 
-            handleAdd(newData, item);
+            const createdTodo = await handleAdd(newData, item);
+            console.log("from popup: ", createdTodo);
             setIsFetch(true);
 
             setFormData({
@@ -224,10 +232,10 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
 // Define PropTypes for your component
 Popup.propTypes = {
     item: PropTypes.array.isRequired,
-    setItem: PropTypes.func.isRequired, // setItem should be a function
+    // setItem: PropTypes.func.isRequired, // setItem should be a function
     editData: PropTypes.object, // editData should be an object (it could be , so no isRequired)
     setIsPopUp_OutputComponent: PropTypes.func, // setIsPopUp_OutputComponent should be a function
-    setIsFetch: PropTypes.func, // setIsPopUp_OutputComponent should be a function
+    setIsFetch: PropTypes.func.isRequired, // setIsPopUp_OutputComponent should be a function
 };
 
 

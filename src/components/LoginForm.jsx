@@ -33,7 +33,7 @@ const LoginForm = () => {
 
     useEffect(() => {
         const accessToken = localStorage.getItem("accessToken");
-        if (accessToken && accessToken.trim() === "") {
+        if (accessToken && accessToken.trim() !== "") {
             navigate("/");
         }
     })

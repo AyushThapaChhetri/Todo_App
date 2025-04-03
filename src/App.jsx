@@ -4,6 +4,7 @@ import InputField from './components/InputField'
 import Output from './components/Output'
 import './App.css'
 import { useNavigate } from 'react-router-dom'
+import api from './utils/api'
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
   const [item, setItem] = useState([]);
   const [isPopUpVisible, setPopUpVisible] = useState(false);
   // const [activeCard, setActiveCard] = useState(null);
-  const [isFetch, setIsFetch] = useState(false);
+  // const [isFetch, setIsFetch] = useState(false);
+  const [isFetch, setIsFetch] = useState(true);
   const [searchField, setSearchField] = useState('');
 
 
@@ -33,12 +35,43 @@ function App() {
     const token = localStorage.getItem("accessToken");
     if (!token || token.trim() === "") {
       navigate("/login");
+      return;
     }
-    const rawData = localStorage.getItem("myObj1");
-    const parsedData = JSON.parse(rawData) || [];
-    setItem(parsedData);
-    setIsFetch(false);
-  }, [isFetch, navigate]);
+
+    // console.log("Updated item : ", item);
+    // const rawData = localStorage.getItem("myObj1");
+    // const parsedData = JSON.parse(rawData) || [];
+    // setItem(parsedData);
+    const fetchTodos = async () => {
+      try {
+        const response = await api.get("client/todos");
+        // console.log(response.data.serializedTodos);
+        // setItem(response.data || []); // Update state with fetched todos
+        // setItem(response.data);
+        // Convert `id` from string to number
+        // console.log("Response data", response);
+        // console.log("Response .data", response.data);
+
+        const todosWithNumericId = response.data.map(todo => ({
+          ...todo,
+          id: Number(todo.id) // Convert ID to a number
+        }));
+
+        // console.log("all todos", todosWithNumericId);
+        setItem(todosWithNumericId);
+      } catch (error) {
+        console.error("Error fetching todos: ", error);
+      } finally {
+        setIsFetch(false);
+      }
+    }
+
+    if (isFetch) {
+      fetchTodos();
+    }
+
+    // setIsFetch(false);
+  }, [isFetch, navigate, item]);
 
   // toast.error("Signup Successful");
 

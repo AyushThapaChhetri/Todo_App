@@ -34,16 +34,15 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
     function handleCheck(value) {
 
         //utils Handle Chekbox function
-        handleCheckbox(value, item);
-        setIsFetch(true);
+        handleCheckbox(value, setIsFetch);
+        // setIsFetch(true);
     }
 
 
     // Handling delete operation performed in each card (Clicking delete button exectues this function)
     function handleDeleteDataEditComp(deleteData) {
         //utils delete function
-        handleDelete(deleteData, item);
-        setIsFetch(true);
+        handleDelete(deleteData, setIsFetch);
     }
 
     return (
