@@ -6,17 +6,23 @@ import MoreInfo from './components/MoreInfo';
 import Login from './components/Login.jsx';
 import SignupForm from './components/SignupForm.jsx';
 import { ToastContainer, Bounce } from 'react-toastify';
+import EditProfile from './components/editProfile/EditProfile.jsx';
+
 
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/moreInfo" element={<MoreInfo />} />
         <Route path="/login" element={<Login />} />
         <Route path='/signup' element={<SignupForm />} />
+
+        <Route path='/editProfile' element={<EditProfile />} />
+
       </Routes>
     </BrowserRouter>
     <ToastContainer
@@ -32,5 +38,6 @@ createRoot(document.getElementById('root')).render(
       theme="colored"
       transition={Bounce}
     />
+
   </StrictMode>,
 )
