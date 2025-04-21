@@ -22,6 +22,33 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
 
     // console.log(typeof isPopUp_OutputComponent);
 
+    const priorityOrder = { high: 1, medium: 2, low: 3 };
+
+    const parseDateOrTime = (task) => {
+        // Check if it's stored as a full date
+        if (task.endDate?.trim()) {
+            return new Date(task.endDate.trim());
+        }
+
+        // Otherwise use hours/minutes/seconds
+        const hours = parseInt(task.hoursTime || "0", 10);
+        const minutes = parseInt(task.minutesTime || "0", 10);
+        const seconds = parseInt(task.secondsTime || "0", 10);
+
+        const now = new Date(); // today
+        now.setHours(hours, minutes, seconds, 0);
+        return now;
+    };
+
+    const sortByPriorityThenDate = (a, b) => {
+        const priorityDiff =
+            priorityOrder[a.priority.trim()] - priorityOrder[b.priority.trim()];
+        if (priorityDiff !== 0) return priorityDiff;
+
+        const dateA = parseDateOrTime(a);
+        const dateB = parseDateOrTime(b);
+        return dateA - dateB;
+    };
 
 
     // Handling edit data , card info retrieval when clicking edit button in each card fetches it info
@@ -61,7 +88,9 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
                                 )}
 
                             {/* {(!isTodoChecked) && <DropArea />} */}
-                            {filteredTodoItems
+                            {/* initial */}
+                            {/* {filteredTodoItems
+                                
                                 .map((e) => (
                                     <Cards
                                         key={e.id}
@@ -73,7 +102,22 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
                                     // setActiveCard={setActiveCard}
                                     />
                                 ))
+                            } */}
+                            {filteredTodoItems
+                                .slice()
+                                .sort(sortByPriorityThenDate)
+                                .map((e) => (
+                                    <Cards
+                                        key={e.id}
+                                        cardsData={e}
+                                        handleCheck={handleCheck}
+                                        setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                                        handleEditData={handleEditData}
+                                        handleDeleteDataEditComp={handleDeleteDataEditComp}
+                                    />
+                                ))
                             }
+
                         </div>
                     </>
                 )}
@@ -90,8 +134,9 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
                                 )}
 
                             {filteredProgressItems
-                                .map((e) =>
-                                (
+                                .slice()
+                                .sort(sortByPriorityThenDate)
+                                .map((e) => (
                                     <Cards
                                         key={e.id}
                                         cardsData={e}
@@ -99,11 +144,10 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
                                         setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                         handleEditData={handleEditData}
                                         handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                    // setActiveCard={setActiveCard}
                                     />
-                                )
-                                )
+                                ))
                             }
+
 
                         </div>
                     </>
@@ -123,6 +167,8 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
                             {/* <DropArea /> */}
 
                             {filteredCompletedItems
+                                .slice()
+                                .sort(sortByPriorityThenDate)
                                 .map((e) => (
                                     <Cards
                                         key={e.id}
@@ -131,10 +177,10 @@ const BoardView = ({ item, setItem, searchField, setIsFetch, editData, setEditDa
                                         setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
                                         handleEditData={handleEditData}
                                         handleDeleteDataEditComp={handleDeleteDataEditComp}
-                                    // setActiveCard={setActiveCard}
                                     />
                                 ))
                             }
+
                         </div>
                     </>
                 )}

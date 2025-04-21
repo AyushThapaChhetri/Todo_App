@@ -3,12 +3,36 @@ import { Provider } from "../ui/provider"
 import { Box, Button, Flex, Text, useMediaQuery } from "@chakra-ui/react"
 import SidebarProfile from "./SidebarProfile"
 import MyProfile from "./myProfile"
+import { useEffect, useState } from "react"
+import api from "../../utils/api"
 // import { IoIosArrowBack } from "react-icons/io";
 // import { DecorativeBox } from "./ui/DecorativeBox"
 
 
 const EditProfile = () => {
     const [isShortScreen] = useMediaQuery("(max-height: 800px)");
+    const [user, setUser] = useState({
+        fullName: "",
+        email: "",
+        gender: "",
+        dob: "",
+        createdAt: "",
+    });
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await api.get("user/me");
+                console.log("User fetched:", response.data);
+                setUser(response.data); // assuming response.data has the user info
+            }
+            catch (error) {
+                console.error("Error fetching profile: ", error);
+            }
+        }
+        fetchUser();
+    }, [])
+
     return (
         <>
             <Provider>
@@ -19,7 +43,6 @@ const EditProfile = () => {
                     overflow="hidden"
                     height="100vh"
                     width="100vw"
-                    border="2px dashed green"
                     direction="column"
                     gap="10px"
 
@@ -32,7 +55,6 @@ const EditProfile = () => {
                         color="black"
                         fontWeight="bold"
                         height="5%"
-                    // mt={{ base: "20px", xl: "10px" }}
 
                     >
                         Account Settings
@@ -69,7 +91,7 @@ const EditProfile = () => {
                             width={{ base: "100%", md: "80%" }}
                             height="100%"
                         >
-                            <MyProfile />
+                            <MyProfile user={user} />
                         </Box>
 
                     </Flex>
@@ -86,7 +108,7 @@ const EditProfile = () => {
                     </Flex>
                 </Flex>
 
-            </Provider >
+            </Provider>
         </>
     )
 }

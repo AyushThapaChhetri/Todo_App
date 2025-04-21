@@ -61,8 +61,8 @@ const LoginForm = () => {
                             }
                         });
 
-                        console.log("Login Success:", response.data);
-                        console.log("User Details:", response.data.user)
+                        // console.log("Login Success:", response.data);
+                        // console.log("User Details:", response.data.user)
                         // console.log(response.data.token);
                         // const token = response.data.token;
                         // console.log(response.data.data)

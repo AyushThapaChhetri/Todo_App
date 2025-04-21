@@ -8,6 +8,7 @@ import { IoMdClipboard } from "react-icons/io";
 import PropTypes from 'prop-types';
 
 import BoardView from './BoardView';
+import ListView from './ListView';
 // import DropArea from './DropArea';
 
 
@@ -20,6 +21,7 @@ import BoardView from './BoardView';
 const Output = ({ item, setItem, setIsFetch, searchField }) => {
     const [editData, setEditData] = useState(null);
     const [isPopUp_OutputComponent, setIsPopUp_OutputComponent] = useState(false);
+    const [viewMode, setViewMode] = useState("list");
 
 
     return (
@@ -36,14 +38,14 @@ const Output = ({ item, setItem, setIsFetch, searchField }) => {
                     </div>
 
                     <div className='output-subContainer sub2'>
-                        <div className='output-sub2 List'>
+                        <div className='output-sub2 List' onClick={() => setViewMode("list")}>
                             <CiCircleList />
                             <p>
                                 List
                             </p>
 
                         </div>
-                        <div className='output-sub2 Board'>
+                        <div className='output-sub2 Board' onClick={() => setViewMode("board")}>
                             <IoMdClipboard />
                             <p>
                                 Board
@@ -52,12 +54,23 @@ const Output = ({ item, setItem, setIsFetch, searchField }) => {
                     </div>
                 </div>
 
+
+
                 {/* <div className='output-list'>Today</div> */}
-                <BoardView item={item} setItem={setItem} searchField={searchField} setIsFetch={setIsFetch}
-                    // setActiveCard={setActiveCard} 
 
-                    editData={editData} setEditData={setEditData} isPopUp_OutputComponent={isPopUp_OutputComponent} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} />
+                {viewMode === "board" ? (
+                    <BoardView item={item} setItem={setItem} searchField={searchField} setIsFetch={setIsFetch}
+                        // setActiveCard={setActiveCard} 
 
+                        editData={editData} setEditData={setEditData} isPopUp_OutputComponent={isPopUp_OutputComponent} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent} />
+                ) : (
+                    <ListView
+                        item={item} setItem={setItem} searchField={searchField} setIsFetch={setIsFetch}
+                        // setActiveCard={setActiveCard} 
+
+                        editData={editData} setEditData={setEditData} isPopUp_OutputComponent={isPopUp_OutputComponent} setIsPopUp_OutputComponent={setIsPopUp_OutputComponent}
+                    />
+                )}
 
             </div>
 

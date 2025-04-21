@@ -2,10 +2,37 @@ import { Box, Flex, Icon, Text, useMediaQuery } from "@chakra-ui/react"
 import { Avatar } from "@chakra-ui/react"
 import bhaktapurImg from '../../assets/bhaktapuriph.jpg';
 import { CiEdit } from "react-icons/ci";
+import PropTypes from "prop-types";
 
-const MyProfile = () => {
+
+const MyProfile = ({ user }) => {
     const [isShortScreen] = useMediaQuery("(max-height: 800px)");
     // const [isCompactView] = useMediaQuery("(max-width: 768px) and (max-height: 600px)");
+
+    const fullName = user.fullName || ""; // fallback to empty if undefined
+    const firstSpaceIndex = fullName.indexOf(" ");
+
+    let firstName = fullName;
+    let lastName = "-";
+
+    // Helper to capitalize first letter
+    const capitalize = (str) => {
+        if (!str) return "";
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    };
+
+    if (firstSpaceIndex !== -1) {
+        firstName = fullName.slice(0, firstSpaceIndex);
+        lastName = fullName.slice(firstSpaceIndex + 1).trim();
+    }
+
+    firstName = capitalize(firstName);
+    lastName = capitalize(lastName);
+    let capitalizedFullName = capitalize(fullName);
+    console.log(fullName);
+
+
+
     return (
         <>
             <Text
@@ -21,10 +48,6 @@ const MyProfile = () => {
             <Flex
                 width={{ base: "100%" }}
                 height="100%"
-                // borderColor="gray"
-                // borderRadius="xl"
-                // borderWidth="2px"
-                // bgColor="green"
                 direction="column"
                 gap="5px"
             >
@@ -49,7 +72,7 @@ const MyProfile = () => {
                             "2xl": "95px"
                         }}
                     >
-                        <Avatar.Fallback name="Ayush" />
+                        <Avatar.Fallback name={capitalizedFullName} />
                         <Avatar.Image src={bhaktapurImg} />
                     </Avatar.Root>
 
@@ -63,7 +86,7 @@ const MyProfile = () => {
                             as="h4"
                             color="black"
                             fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl", xl: "2xl" }}
-                        >Ayush Thapa</Text>
+                        >{capitalizedFullName}</Text>
                         <Text
                             color="gray"
                             fontSize={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
@@ -176,7 +199,7 @@ const MyProfile = () => {
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >Ayush</Text>
+                                >{firstName}</Text>
                             </Box>
 
                             <Box>
@@ -190,7 +213,7 @@ const MyProfile = () => {
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >Thapa</Text>
+                                >{lastName}</Text>
                             </Box>
 
                             <Box>
@@ -204,7 +227,7 @@ const MyProfile = () => {
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >ayush@gmail.com</Text>
+                                >{user.email}</Text>
                             </Box>
 
                         </Flex>
@@ -237,7 +260,7 @@ const MyProfile = () => {
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >Male</Text>
+                                >{user.gender}</Text>
                             </Box>
                         </Flex>
                     </Flex>
@@ -253,3 +276,13 @@ const MyProfile = () => {
 }
 
 export default MyProfile
+
+MyProfile.propTypes = {
+    user: PropTypes.shape({
+        fullName: PropTypes.string,
+        email: PropTypes.string,
+        gender: PropTypes.string,
+        dob: PropTypes.string,
+        createdAt: PropTypes.string,
+    }).isRequired,
+};
