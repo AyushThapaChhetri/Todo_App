@@ -5,6 +5,7 @@ import bhaktapurImg from '../assets/bhaktapuriph.jpg';
 import Popup from "./Popup";
 import { Link } from 'react-router-dom';
 import api from "../utils/api";
+import { useState } from "react";
 
 const InputField = ({
     item,
@@ -15,6 +16,14 @@ const InputField = ({
     isPopUpVisible,
     setPopUpVisible,
 }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+    const handleAvatarClick = () => {
+        setIsDropdownVisible(prev => !prev);
+    };
+
+
     const handleButtonClick = () => {
         setPopUpVisible(!isPopUpVisible);
     };
@@ -73,21 +82,31 @@ const InputField = ({
                                 <b>+</b>&nbsp;&nbsp;New Project
                             </span>
                         </button>
-                        <div className="div-input-profile-avatar">
+
+                        <div className="div-input-profile-avatar"
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
+                            onClick={handleAvatarClick}
+                        >
                             <img
                                 src={bhaktapurImg}
                                 alt="image"
                                 className="image-avatar"
                             />
                         </div>
-                        <div className="dropdown-content">
-                            <Link to="/editProfile" className='dropdown-avatar-edit'>
-                                Edit
-                            </Link>
-                            <Link to="/login" className='dropdown-avatar-logout' onClick={logout}>
-                                Logout
-                            </Link>
-                        </div>
+                        {(isHovered || isDropdownVisible) && (
+                            <div className="dropdown-content"
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                            >
+                                <Link to="/editProfile" className='dropdown-avatar-edit'>
+                                    Edit
+                                </Link>
+                                <Link to="/login" className='dropdown-avatar-logout' onClick={logout}>
+                                    Logout
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
                 {isPopUpVisible && (

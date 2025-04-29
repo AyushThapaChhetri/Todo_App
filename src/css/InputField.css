@@ -98,7 +98,6 @@
 }
 
 .buttons-avatar .dropdown-content {
-  display: none;
   background-color: #d6d5d5;
   position: absolute;
   border-radius: 5px;
@@ -106,10 +105,10 @@
   right: -20px;
 }
 
-.buttons-avatar:hover .dropdown-content {
+/* .div-input-profile-avatar:hover .dropdown-content {
   display: block;
-}
-.buttons-avatar:hover .div-input-profile-avatar {
+} */
+.div-input-profile-avatar:hover {
   box-shadow: none;
 }
 .buttons-avatar a:hover {
@@ -197,51 +196,18 @@
 
   .div-innerInput {
     display: flex;
-    right: 0;
-    justify-content: flex-end;
+    /* overflow: auto; */
+
+    /* right: 0; */
+    /* justify-content: flex-end; */
   }
 
-  .inner-Title-input {
-    position: absolute;
-    left: 20px;
-    font-family: "Mona Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-    margin: 0;
-    line-height: 28px;
-    font-weight: 800;
-    font-size: 22px;
-  }
-  .searchField:focus {
+  /* .button-input {
     width: 200px;
-    border-color: none;
-  }
-}
-
-@media (max-width: 375px) {
+  } */
   .button-input {
-    width: 10%;
+    width: 40px;
     font-size: 15px;
-    margin-right: 45px;
-    margin-left: 25px;
-  }
-
-  .searchField {
-    width: 100px;
-  }
-  .searchField:focus {
-    width: 100px;
-    border-color: none;
-  }
-}
-@media (max-width: 768px) {
-  .button-input {
-    width: 10%;
-    font-size: 15px;
-    margin-right: 45px;
-    margin-left: 25px;
   }
   /* Hide "New Project" text */
   .button-input span {
@@ -252,10 +218,66 @@
   .button-input::before {
     content: "+";
     font-weight: bold;
-    /* margin-right: 5px; */
-    padding-left: 41%;
+  }
+  .inner-Title-input {
+    font-family: "Mona Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    margin: 0;
+    line-height: 28px;
+    font-weight: 800;
+    font-size: 22px;
+  }
+  .buttons-avatar .dropdown-content {
+    z-index: 1000000000000;
+  }
+  .searchField:focus {
+    width: 150px;
+    border-color: none;
   }
 }
+
+@media (max-width: 375px) {
+  /* .button-input {
+    width: 10%;
+    font-size: 15px;
+    margin-right: 45px;
+    margin-left: 25px;
+  } */
+  .inner-Title-input {
+    display: block;
+    /* display: none; */
+  }
+  .searchField {
+    width: 100px;
+  }
+  .searchField:focus {
+    width: 100px;
+    border-color: none;
+  }
+}
+/* @media (max-width: 768px) {
+  .button-input {
+    width: 10%;
+    font-size: 15px;
+    margin-right: 45px;
+    margin-left: 25px;
+  }
+  /* Hide "New Project" text */
+/* .button-input span {
+    display: none;
+  } */
+
+/* Add the "+" sign using a pseudo-element */
+/* .button-input::before {
+    content: "+";
+    font-weight: bold;
+    /* margin-right: 5px; */
+/* padding-left: 41%; */
+/* } */
+/* }  */
 
 @media (min-width: 769px) and (max-width: 1281px) {
   /* hi-res laptops and desktops */

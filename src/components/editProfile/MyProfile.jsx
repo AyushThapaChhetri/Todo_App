@@ -29,9 +29,10 @@ const MyProfile = ({ user }) => {
     firstName = capitalize(firstName);
     lastName = capitalize(lastName);
     let capitalizedFullName = capitalize(fullName);
-    console.log(fullName);
+    // console.log(fullName);
 
-
+    const dob = user.dob;
+    const dateOnly = new Date(dob).toLocaleDateString('en-CA');
 
     return (
         <>
@@ -49,11 +50,12 @@ const MyProfile = ({ user }) => {
                 width={{ base: "100%" }}
                 height="100%"
                 direction="column"
+                // border="2px solid green"
                 gap="5px"
             >
                 <Flex
                     width={{ base: "100%" }}
-                    height={isShortScreen ? "25%" : { base: "16%", sm: "18%", md: "18%", lg: "19%", xl: "20%" }}
+                    // height={isShortScreen ? "25%" : { base: "16%", sm: "18%", md: "18%", lg: "19%", xl: "20%" }}
                     borderColor="gray.200"
                     borderRadius="xl"
                     borderWidth="2px"
@@ -129,7 +131,7 @@ const MyProfile = ({ user }) => {
                 <Flex
                     width={{ base: "100%" }}
                     // height={isShortScreen ? "50%" : { base: "50%" }}
-                    height={isShortScreen ? "68%" : { base: "58%", sm: "45%", md: "50%", lg: "50%", xl: "61%", "2xl": "70%" }}
+                    // height={isShortScreen ? "68%" : { base: "58%", sm: "45%", md: "50%", lg: "50%", xl: "61%", "2xl": "70%" }}
                     borderColor="gray.200"
 
                     borderRadius="xl"
@@ -230,6 +232,7 @@ const MyProfile = ({ user }) => {
                                 >{user.email}</Text>
                             </Box>
 
+
                         </Flex>
 
                         <Flex
@@ -238,7 +241,7 @@ const MyProfile = ({ user }) => {
 
                         >
 
-                            <Box>
+                            {/* <Box>
                                 <Text
                                     color="gray"
                                     fontSize={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
@@ -249,7 +252,7 @@ const MyProfile = ({ user }) => {
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
                                 >9846531138</Text>
-                            </Box>
+                            </Box> */}
                             <Box>
                                 <Text
                                     color="gray"
@@ -261,6 +264,20 @@ const MyProfile = ({ user }) => {
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
                                 >{user.gender}</Text>
+                            </Box>
+
+                            <Box>
+
+                                <Text
+                                    color="gray"
+                                    fontSize={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
+                                >DOB</Text>
+
+                                <Text
+                                    as="h6"
+                                    color="black"
+                                    fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
+                                >{dateOnly}</Text>
                             </Box>
                         </Flex>
                     </Flex>

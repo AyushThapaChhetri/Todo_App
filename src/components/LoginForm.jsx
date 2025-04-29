@@ -32,8 +32,8 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const accessToken = localStorage.getItem("accessToken");
-        if (accessToken && accessToken.trim() !== "") {
+        const refreshToken = localStorage.getItem("refreshToken");
+        if (refreshToken && refreshToken.trim() !== "") {
             navigate("/");
         }
     })
@@ -66,7 +66,11 @@ const LoginForm = () => {
                         // console.log(response.data.token);
                         // const token = response.data.token;
                         // console.log(response.data.data)
-                        const { accessToken, refreshToken } = response.data;
+                        const { accessToken, refreshToken } = response.data.data;
+
+                        // console.log("Access Token: ", accessToken);
+                        // console.log("Refresh Token: ", refreshToken);
+
                         // localStorage.setItem("authToken", token);
                         localStorage.setItem("accessToken", accessToken);
                         localStorage.setItem("refreshToken", refreshToken);

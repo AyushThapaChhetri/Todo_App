@@ -27,7 +27,18 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
     let capitalizedTaskName = capitalizerFunc(cardsData.taskName);
     let captializedPriority = capitalizerFunc(cardsData.priority);
 
-
+    const formatDeadline = (data) => {
+        if (!data.endDate || data.endDate.length === 0) {
+            let time = '';
+            if (data.hoursTime != 0) time += `${data.hoursTime} hours `;
+            if (data.minutesTime != 0) time += `${data.minutesTime} minutes `;
+            if (data.hoursTime == 0 && data.minutesTime == 0 && data.secondsTime != 0)
+                time += `${data.secondsTime} seconds`;
+            return time.trim();
+        } else {
+            return new Date(data.endDate).toLocaleDateString('en-CA');
+        }
+    };
 
     return (
         <>
@@ -88,11 +99,7 @@ const Cards = ({ cardsData, handleCheck, handleDeleteDataEditComp, setIsPopUp_Ou
                         <div className='sub2cSisub1'>
                             <MdAccessTime className='sub2cSisub1-timeIcon' />
                             <p className='sub2cSisub1-para'>
-                                {(cardsData.endDate.length === 0) ?
-                                    (!(cardsData.hoursTime == 0) ? cardsData.hoursTime + ` hours ` : '') +
-                                    (!(cardsData.minutesTime == 0) ? cardsData.minutesTime + ` minutes ` : '') +
-                                    (((cardsData.hoursTime == 0 && cardsData.minutesTime == 0 && cardsData.secondsTime != 0) ? (cardsData.secondsTime + ` seconds`) : '')) :
-                                    cardsData.endDate}
+                                {formatDeadline(cardsData)}
                             </p>
                         </div>
                     </div>

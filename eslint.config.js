@@ -6,16 +6,34 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   { ignores: ['dist'] },
+
+  // 2. Node env for build/config files (allows `process`, `__dirname`, etc.)
+  {
+    files: ['vite.config.{js,ts}', '*.config.{js,ts}'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+      sourceType: 'module',
+    },
+    rules: {
+      // you can apply or disable rules specific to config files here
+    },
+  },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      // globals: globals.browser,
+      globals: {
+        ...globals.browser, // 🟢 Enable Node.js globals like `process`
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
+
     },
     settings: { react: { version: '18.3' } },
     plugins: {

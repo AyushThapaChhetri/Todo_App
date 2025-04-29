@@ -1,191 +1,188 @@
-@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 
-.cards-outerContainer{
-    padding: 0;
-    margin: 0;
-    cursor: grab;
-    
+.cards-outerContainer {
+  padding: 0;
+  margin: 0;
+  cursor: grab;
 }
-.cards-outerContainer:active{
-    border: solid grey 1px;
-    opacity: 0.7;
+.cards-outerContainer:active {
+  border: solid grey 1px;
+  opacity: 0.7;
 }
-.cards-innerContainer{
-    position: relative;
-    background-color: #FFFFFF;
-    border: 2px solid #F6F6F6;
-    height: 5em;
-    padding: 1rem;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 18px;
+.cards-innerContainer {
+  position: relative;
+  background-color: #ffffff;
+  border: 2px solid #f6f6f6;
+  height: 5em;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 18px;
 }
 
-.blured{
-    opacity: 0.5 ;
+.blured {
+  opacity: 0.5;
 }
-.cSisub1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.cSisub1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.sub1cSisub1{
-    
-    display: flex;
-    align-items: center;
-    gap: 0.8em;
-
+.sub1cSisub1 {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
 }
 
 .cards-icon {
-    font-size: 18px; /* Adjust icon size */
-    color: grey;     /* Set icon color */
-    font-weight: bold;
-  }
- 
-  .output-para{
-    font-family: "Mona Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    font-variation-settings:
-        "wdth" 100;
-    margin: 0;
-    line-height:28px;
-    font-size: 16px;
-    color: rgb(61, 61, 78);
-}
-.cards-Priority{
-    background-color: #ee9ae3cc;
-    border-radius: 10px;
-    height: 1.3em;
-    width: auto;
-    padding: 0 1em;
-    display: flex;
-    align-items: center;
-    color: white;
-  }
-.cards-Priority.high{
-    background-color: darkred;
-   
-}
-.cards-Priority.medium{
-    background-color: #79a65e;
-}
-.cards-Priority.low{
-    background-color: #cb93e4;
+  font-size: 18px; /* Adjust icon size */
+  color: grey; /* Set icon color */
+  font-weight: bold;
 }
 
-.cards-Task{
-    background-color: #2598bce8;
-    border-radius: 10px;
-    height: 1.3em;
-    width: auto;
-    padding: 0 1em;
-    display: flex;
-    align-items: center;
-    color: white;
+.output-para {
+  font-family: "Mona Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  margin: 0;
+  line-height: 28px;
+  font-size: 16px;
+  color: rgb(61, 61, 78);
 }
-.cards-progressStatus{
-    border-radius: 10px;
-    height: 1.3em;
-    width: auto;
-    padding: 0 1em;
-    display: flex;
-    align-items: center;
+.cards-Priority {
+  background-color: #ee9ae3cc;
+  border-radius: 10px;
+  /* height: 1.3em; */
+  width: auto;
+  padding: 0.2rem 0.6rem;
+  display: flex;
+  align-items: center;
+  color: white;
 }
-.cards-progressStatus.todo{
-    background-color: #ffdc02d1;
+.cards-Priority p {
+  margin: 0;
 }
-.cards-progressStatus.progress{
-    background-color: #33d933;
+.cards-Priority.high {
+  background-color: darkred;
 }
-.sub2cSisub1{
-    display: flex;
-    align-items: center;
-    gap: 0.8em;
+.cards-Priority.medium {
+  background-color: #79a65e;
 }
-  .sub2cSisub1-time.Icon{
-    color: grey;
-    font-size: 20px;
-  }
-  .sub2cSisub1-para{
-    color: black;
-    
-  }
-
-.cSisub2{
-    position: relative;
-    right: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
+.cards-Priority.low {
+  background-color: #cb93e4;
 }
 
+.cards-Task {
+  background-color: #2598bce8;
+  border-radius: 10px;
+  /* height: 1.3em; */
+  width: auto;
+  padding: 0.2rem 1rem;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.cards-Task p {
+  margin: 0;
+}
+.cards-progressStatus {
+  border-radius: 10px;
+  height: 1.3em;
+  width: auto;
+  padding: 0 1em;
+  display: flex;
+  align-items: center;
+}
+.cards-progressStatus.todo {
+  background-color: #ffdc02d1;
+}
+.cards-progressStatus.progress {
+  background-color: #33d933;
+}
+.sub2cSisub1 {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
+.sub2cSisub1-time.Icon {
+  color: grey;
+  font-size: 20px;
+}
+.sub2cSisub1-para {
+  color: black;
+}
+
+.cSisub2 {
+  position: relative;
+  right: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .edit-icon-cards {
-    color: grey;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  color: grey;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.edit-icon-cards:hover {
+  transform: scale(1.2);
+  color: blue;
+}
+.delete-icon-cards {
+  color: grey;
+  font-size: 25px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.delete-icon-cards:hover {
+  transform: scale(1.4);
+  color: red;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 16px;
+}
+.Mobile-edit-icon-cards {
+  display: none;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .cards-innerContainer {
+    height: 7em;
   }
-  
-  .edit-icon-cards:hover {
+  .sub1cSisub1 {
+    display: block;
+  }
+  .Mobile-edit-icon-cards {
+    display: block;
+    color: grey;
+  }
+  .Mobile-edit-icon-cards:hover {
     transform: scale(1.2);
     color: blue;
   }
-  .delete-icon-cards{
-    color: grey;
-    font-size: 25px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  .delete-icon-cards:hover{
-    transform: scale(1.4);
-    color: red;
-  }
 
-input[type="checkbox"] {
-    width: 20px;
-    height: 16px;
-    
-}
-.Mobile-edit-icon-cards{
- display: none;       
-}
-
-@media (min-width: 320px) and (max-width: 768px) { 
-    .cards-innerContainer{
-        height: 7em;
-    }
-    .sub1cSisub1{
-        display: block;
-    }
-    .Mobile-edit-icon-cards{
-        display: block;       
-        color: grey;
-    }
-    .Mobile-edit-icon-cards:hover{
-        transform: scale(1.2);
-        color: blue;
-    }
-    
-   .edit-icon-cards{
-        display: none;
-   }
-    .sub1cSisub1.innerC2{
-        display: flex;
-    }
-    .cards-Priority{
-        width: fit-content;
-        margin-top: 4px;
-    }
-    .cards-Task{
-        width: fit-content;
-        margin-top: 4px;
-    }
+  .edit-icon-cards {
+    display: none;
+  }
+  .sub1cSisub1.innerC2 {
+    display: flex;
+  }
+  .cards-Priority {
+    width: fit-content;
+    margin-top: 4px;
+  }
+  .cards-Task {
+    width: fit-content;
+    margin-top: 4px;
+  }
 }

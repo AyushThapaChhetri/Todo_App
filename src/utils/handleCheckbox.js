@@ -14,13 +14,13 @@ const handleCheckbox = async (card, setIsFetch) => {
     const updatedStatus = card.progressStatus !== "completed" ? "completed" : "todo";
 
     // Updated state
-    const newState = {
-        ...card,
+    const patchBody = {
         progressStatus: updatedStatus
     };
 
+    console.log("New State being sent:", patchBody);
     try {
-        await api.patch(`/client/todos/${newState.id}`, newState);
+        await api.patch(`/client/todos/${card.id}`, patchBody);
 
         // const checkedTodo = response.data;
 

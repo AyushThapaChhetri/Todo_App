@@ -1,6 +1,6 @@
 
 import { Provider } from "../ui/provider"
-import { Box, Button, Flex, Text, useMediaQuery } from "@chakra-ui/react"
+import { Box, Button, Flex, Text } from "@chakra-ui/react"
 import SidebarProfile from "./SidebarProfile"
 import MyProfile from "./myProfile"
 import { useEffect, useState } from "react"
@@ -10,7 +10,7 @@ import api from "../../utils/api"
 
 
 const EditProfile = () => {
-    const [isShortScreen] = useMediaQuery("(max-height: 800px)");
+    // const [isShortScreen] = useMediaQuery("(max-height: 800px)");
     const [user, setUser] = useState({
         fullName: "",
         email: "",
@@ -23,8 +23,8 @@ const EditProfile = () => {
         const fetchUser = async () => {
             try {
                 const response = await api.get("user/me");
-                console.log("User fetched:", response.data);
-                setUser(response.data); // assuming response.data has the user info
+                // console.log("User fetched:", response.data);
+                setUser(response.data.data); // assuming response.data has the user info
             }
             catch (error) {
                 console.error("Error fetching profile: ", error);
@@ -61,7 +61,7 @@ const EditProfile = () => {
                     </Text>
 
                     <Flex
-                        height={isShortScreen ? "85%" : { base: "80%" }}
+                        // height={isShortScreen ? "85%" : { base: "80%" }}
                         bgColor="white"
                         borderWidth="2px"
                         borderColor="gray.300"
@@ -74,7 +74,7 @@ const EditProfile = () => {
                             // justifyContent="center"
                             p={{ base: "2% 1%", md: "3% 1%" }}
                             width={{ base: "100%", md: "20%" }}
-                            height={{ base: "8%", md: "100%" }}
+                            // height={{ base: "8%", md: "100%" }}
                             borderRightWidth={{ base: "0", md: "2px" }}
                             borderBottomWidth={{ base: "2px", md: "0" }}
                             borderColor="gray.200"
@@ -96,6 +96,7 @@ const EditProfile = () => {
 
                     </Flex>
                     <Flex
+                        justifyContent="flex-end"
                         // border="2px dashed tomato"
                         gap="10px"
 
