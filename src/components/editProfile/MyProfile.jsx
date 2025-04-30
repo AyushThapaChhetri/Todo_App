@@ -9,29 +9,32 @@ const MyProfile = ({ user }) => {
     const [isShortScreen] = useMediaQuery("(max-height: 800px)");
     // const [isCompactView] = useMediaQuery("(max-width: 768px) and (max-height: 600px)");
 
-    const fullName = user.fullName || ""; // fallback to empty if undefined
-    const firstSpaceIndex = fullName.indexOf(" ");
+    // const fullName = user.fullName || ""; // fallback to empty if undefined
+    // const firstSpaceIndex = fullName.indexOf(" ");
 
-    let firstName = fullName;
-    let lastName = "-";
+    // console.log("My profile: ", user.firstName);
 
-    // Helper to capitalize first letter
-    const capitalize = (str) => {
-        if (!str) return "";
-        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-    };
 
-    if (firstSpaceIndex !== -1) {
-        firstName = fullName.slice(0, firstSpaceIndex);
-        lastName = fullName.slice(firstSpaceIndex + 1).trim();
-    }
+    const { firstName, lastName, title, address, email, gender, dob, phone } = user;
 
-    firstName = capitalize(firstName);
-    lastName = capitalize(lastName);
-    let capitalizedFullName = capitalize(fullName);
+    const fullName = firstName + " " + lastName;
+    // // Helper to capitalize first letter
+    // const capitalize = (str) => {
+    //     if (!str) return "";
+    //     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    // };
+
+    // if (firstSpaceIndex !== -1) {
+    //     firstName = firstName.slice(0, firstSpaceIndex);
+    //     lastName = lastName.slice(0, firstSpaceIndex)
+    // }
+
+    // firstName = capitalize(firstName);
+    // lastName = capitalize(lastName);
+    // let capitalizedFullName = capitalize(firstName);
     // console.log(fullName);
 
-    const dob = user.dob;
+    // const dob = user.dob;
     const dateOnly = new Date(dob).toLocaleDateString('en-CA');
 
     return (
@@ -74,7 +77,8 @@ const MyProfile = ({ user }) => {
                             "2xl": "95px"
                         }}
                     >
-                        <Avatar.Fallback name={capitalizedFullName} />
+                        {/* <Avatar.Fallback name={capitalizedFullName} /> */}
+                        <Avatar.Fallback name={fullName} />
                         <Avatar.Image src={bhaktapurImg} />
                     </Avatar.Root>
 
@@ -88,15 +92,24 @@ const MyProfile = ({ user }) => {
                             as="h4"
                             color="black"
                             fontSize={{ base: "sm", sm: "md", md: "lg", lg: "xl", xl: "2xl" }}
-                        >{capitalizedFullName}</Text>
+                        >
+                            {fullName}
+
+                        </Text>
                         <Text
                             color="gray"
                             fontSize={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
-                        >Intern</Text>
+                        >
+                            {/* Intern */}
+                            {title}
+                        </Text>
                         <Text
                             color="gray"
                             fontSize={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
-                        >Satungal, Kalanki</Text>
+                        >
+                            {/* Satungal, Kalanki */}
+                            {address}
+                        </Text>
 
 
                     </Box>
@@ -201,7 +214,10 @@ const MyProfile = ({ user }) => {
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >{firstName}</Text>
+                                >
+                                    {firstName}
+
+                                </Text>
                             </Box>
 
                             <Box>
@@ -209,13 +225,19 @@ const MyProfile = ({ user }) => {
                                 <Text
                                     color="gray"
                                     fontSize={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
-                                >Last Name</Text>
+                                >
+                                    Last Name
+
+                                </Text>
 
                                 <Text
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >{lastName}</Text>
+                                >
+                                    {lastName}
+
+                                </Text>
                             </Box>
 
                             <Box>
@@ -229,7 +251,10 @@ const MyProfile = ({ user }) => {
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >{user.email}</Text>
+                                >
+                                    {email}
+
+                                </Text>
                             </Box>
 
 
@@ -263,7 +288,7 @@ const MyProfile = ({ user }) => {
                                     as="h6"
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
-                                >{user.gender}</Text>
+                                >{gender}</Text>
                             </Box>
 
                             <Box>
@@ -278,6 +303,21 @@ const MyProfile = ({ user }) => {
                                     color="black"
                                     fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
                                 >{dateOnly}</Text>
+                            </Box>
+                            <Box>
+
+                                <Text
+                                    color="gray"
+                                    fontSize={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
+                                >Phone Number</Text>
+
+                                <Text
+                                    as="h6"
+                                    color="black"
+                                    fontSize={{ base: "12px", sm: "md", md: "lg", lg: "xl", xl: "xl" }}
+                                >
+                                    {phone}
+                                </Text>
                             </Box>
                         </Flex>
                     </Flex>
@@ -296,8 +336,12 @@ export default MyProfile
 
 MyProfile.propTypes = {
     user: PropTypes.shape({
-        fullName: PropTypes.string,
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
         email: PropTypes.string,
+        address: PropTypes.string,
+        title: PropTypes.string,
+        phone: PropTypes.string,
         gender: PropTypes.string,
         dob: PropTypes.string,
         createdAt: PropTypes.string,

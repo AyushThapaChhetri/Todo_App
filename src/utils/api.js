@@ -41,7 +41,7 @@ api.interceptors.response.use(
                         console.log("No refresh token available");
                         return Promise.reject("No refresh token found");
                     }
-                    console.log("Sending refresh token:", refreshToken);
+                    // console.log("Sending refresh token:", refreshToken);
                     const response = await axios.post(
                         // "http://192.168.1.102:5000/api/auth/refresh",
                         `${import.meta.env.VITE_API_URL}/auth/refresh`,

@@ -1,7 +1,15 @@
 import * as Yup from 'Yup';
 
 export const signUpSchema = Yup.object({
-    fullName: Yup.string().min(2, "Too short").max(30, "Too long").required("Please Enter Name"),
+    firstName: Yup.string()
+        .min(2, "First name is too short")
+        .max(30, "First name is too long")
+        .required("Please enter your first name"),
+
+    lastName: Yup.string()
+        .min(2, "Last name is too short")
+        .max(30, "Last name is too long")
+        .required("Please enter your last name"),
     emailName: Yup.string().email("Please Enter Valid Email").matches(
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
         "Please Enter Valid Email"
@@ -19,5 +27,13 @@ export const signUpSchema = Yup.object({
         .required("Please Enter Your Gender"),
     emailDob: Yup.date().required("Please select your date of birth")
         .max(new Date(), "Date of birth cannot be in the future"),
+
+    address: Yup.string().optional(),
+
+    phone: Yup.string()
+        .matches(/^\d{10}$/, "Phone number must be exactly 10 digits")
+        .optional(),
+
+    title: Yup.string().optional(),
 });
 

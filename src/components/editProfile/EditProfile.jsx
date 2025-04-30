@@ -12,7 +12,10 @@ import api from "../../utils/api"
 const EditProfile = () => {
     // const [isShortScreen] = useMediaQuery("(max-height: 800px)");
     const [user, setUser] = useState({
-        fullName: "",
+        firstName: "",
+        lastName: "",
+        title: "",
+        address: "",
         email: "",
         gender: "",
         dob: "",
@@ -23,7 +26,7 @@ const EditProfile = () => {
         const fetchUser = async () => {
             try {
                 const response = await api.get("user/me");
-                // console.log("User fetched:", response.data);
+                // console.log("User fetched:", response.data.data);
                 setUser(response.data.data); // assuming response.data has the user info
             }
             catch (error) {
