@@ -57,8 +57,8 @@ const Navbar = () => {
                             const { data } = await api.post("/auth/refresh", { refreshToken });
                             console.log("New tokens:", data);
 
-                            localStorage.setItem("accessToken", data.accessToken);
-                            localStorage.setItem("refreshToken", data.refreshToken);
+                            localStorage.setItem("accessToken", data.data.accessToken);
+                            localStorage.setItem("refreshToken", data.data.refreshToken);
                         } catch (error) {
                             console.error("Refresh failed", error);
                             localStorage.removeItem("accessToken");

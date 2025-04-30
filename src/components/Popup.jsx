@@ -15,8 +15,9 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
         taskName: editData?.taskName ? editData.taskName : '',
         priority: editData?.priority ? editData.priority : 'medium',
         progressStatus: editData?.progressStatus ? editData.progressStatus : 'todo',
-        startDate: editData?.startDate ? editData.startDate : '',
-        endDate: editData?.endDate ? editData.endDate : '',
+        // Convert ISO string to local YYYY-MM-DD for date inputs
+        startDate: editData?.startDate ? new Date(editData.startDate).toLocaleDateString('en-CA') : '',
+        endDate: editData?.endDate ? new Date(editData.endDate).toLocaleDateString('en-CA') : '',
         hoursTime: editData?.hoursTime ? editData.hoursTime : '',
         minutesTime: editData?.minutesTime ? editData.minutesTime : '',
         secondsTime: editData?.secondsTime ? editData.secondsTime : ''
@@ -71,20 +72,23 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
         }
         else {
 
+            // console.log("Form data: ", formData);
+            const trimmedValues = Object.fromEntries((Object.entries(formData).map(([key, value]) => [key, typeof value === "string" ? value.trim() : value])));
+
+            // console.log("Trimmed Values: ", trimmedValues);
+
             //local Storage variable definition 
             const newData = {
-                // id: item./length + 1,
-                // id: editData?.id ? editData.id : Date.now(),
-                // id: Date.now(),
-                projectName: formData.projectName,
-                taskName: formData.taskName,
-                priority: formData.priority,
-                progressStatus: formData.progressStatus,
-                startDate: formData.startDate,
-                endDate: formData.endDate,
-                hoursTime: formData.hoursTime,
-                minutesTime: formData.minutesTime,
-                secondsTime: formData.secondsTime
+                projectName: trimmedValues.projectName,
+                taskName: trimmedValues.taskName,
+                priority: trimmedValues.priority,
+                progressStatus: trimmedValues.progressStatus,
+                // Convert local YYYY-MM-DD to ISO string in UTC for calendar mode
+                startDate: timeFormat === 'calendar' ? new Date(trimmedValues.startDate).toISOString() : undefined,
+                endDate: timeFormat === 'calendar' ? new Date(trimmedValues.endDate).toISOString() : undefined,     // Send null for hours format
+                hoursTime: timeFormat === 'hours' ? trimmedValues.hoursTime : undefined,
+                minutesTime: timeFormat === 'hours' ? trimmedValues.minutesTime : undefined,
+                secondsTime: timeFormat === 'hours' ? trimmedValues.secondsTime : undefined
             };
 
             // Only add id if it’s an update (editData exists)
@@ -92,6 +96,7 @@ const Popup = ({ item, setIsFetch, editData, setIsPopUp_OutputComponent }) => {
                 newData.id = editData.id;
             }
 
+            console.log("Created Data: ", newData);
 
 
             //utils handleAdd data 

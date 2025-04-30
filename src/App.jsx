@@ -32,7 +32,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
 
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("refreshToken");
     if (!token || token.trim() === "") {
       navigate("/login");
       return;
@@ -52,15 +52,20 @@ function App() {
         // console.log("Response data", response);
         // console.log("Response .data", response.data);
 
-        const todosWithNumericId = response.data.map(todo => ({
+        const todosWithNumericId = response.data.data.map(todo => ({
           ...todo,
           id: Number(todo.id) // Convert ID to a number
         }));
 
-        // console.log("all todos", todosWithNumericId);
+        console.log("all todos", todosWithNumericId);
         setItem(todosWithNumericId);
       } catch (error) {
         console.error("Error fetching todos: ", error);
+        if (error.response?.status === 401) {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          navigate("/login");
+        }
       } finally {
         setIsFetch(false);
       }
